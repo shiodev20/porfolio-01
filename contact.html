@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Thao</title>
+  <meta name="description" content="Get in touch with Thao about your next project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="contact-page">
+
+  <div class="transition" aria-hidden="true"><p class="transition__label"></p></div>
+
+  <header class="header">
+    <a href="index.html" class="logo" data-page="Home">
+      <span class="logo__copy">©</span>
+      <span class="logo__names">
+        <span class="logo__name">Made by Thao</span>
+        <span class="logo__name logo__name--alt">Thao Studio</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html#work" class="nav__link" data-magnetic="0.3" data-page="Work"><span class="btn__text">Work</span></a>
+      <a href="about.html" class="nav__link" data-magnetic="0.3"><span class="btn__text">About</span></a>
+      <a href="contact.html" class="nav__link is-active" data-magnetic="0.3"><span class="btn__text">Contact</span></a>
+    </nav>
+  </header>
+
+  <button class="menu-btn" aria-label="Open menu">
+    <span class="menu-btn__lines btn__text"><span></span><span></span></span>
+  </button>
+  <div class="side-menu-overlay"></div>
+  <aside class="side-menu">
+    <div>
+      <p class="side-menu__label">Navigation</p>
+      <nav class="side-menu__links">
+        <a href="index.html" data-page="Home">Home</a>
+        <a href="index.html#work" data-page="Work">Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
+    </div>
+    <div>
+      <p class="side-menu__label">Socials</p>
+      <div class="side-menu__socials">
+        <a href="#" class="u-link" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" class="u-link" target="_blank" rel="noopener">Behance</a>
+        <a href="#" class="u-link" target="_blank" rel="noopener">Dribbble</a>
+        <a href="#" class="u-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="contact-head container">
+      <div class="contact-head__row">
+        <h1 class="page-title" data-reveal>Let’s build something together</h1>
+        <div>
+          <img class="contact-head__avatar" src="assets/avatar.svg" alt="Thao">
+          <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l12 12M13 1v12H1"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-body container">
+      <form class="form" data-mailto="hello@thao.design" novalidate>
+        <div class="form__field">
+          <span class="form__num">01</span>
+          <div>
+            <label for="f-name">What should I call you?</label>
+            <input id="f-name" name="name" type="text" placeholder="Your name *" autocomplete="name">
+          </div>
+        </div>
+        <div class="form__field">
+          <span class="form__num">02</span>
+          <div>
+            <label for="f-email">Where can I reach you?</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com *" autocomplete="email">
+          </div>
+        </div>
+        <div class="form__field">
+          <span class="form__num">03</span>
+          <div>
+            <label for="f-org">Which company or team are you with?</label>
+            <input id="f-org" name="organization" type="text" placeholder="Company name">
+          </div>
+        </div>
+        <div class="form__field">
+          <span class="form__num">04</span>
+          <div>
+            <label for="f-services">What do you need help with?</label>
+            <input id="f-services" name="services" type="text" placeholder="Branding, website, landing page…">
+          </div>
+        </div>
+        <div class="form__field">
+          <span class="form__num">05</span>
+          <div>
+            <label for="f-message">Tell me a little about the project</label>
+            <textarea id="f-message" name="message" rows="5" placeholder="Goals, timeline, budget… *"></textarea>
+          </div>
+        </div>
+        <div class="form__submit">
+          <button type="submit" class="btn-round btn-round--accent" data-magnetic="0.35">
+            <span class="btn__fill"></span>
+            <span class="btn__text">Send it</span>
+          </button>
+          <p class="form__status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <aside class="contact-aside">
+        <div>
+          <h5>Contact details</h5>
+          <ul>
+            <li><a href="mailto:hello@thao.design" class="u-link">hello@thao.design</a></li>
+            <li><a href="tel:+84000000000" class="u-link">+84 000 000 000</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Business details</h5>
+          <ul>
+            <li>Thao Studio</li>
+            <li>Location: Vietnam</li>
+            <li>Tax ID: —</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Socials</h5>
+          <ul>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Behance</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Dribbble</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container">
+      <div class="footer__bottom">
+        <div class="footer__meta">
+          <div><h5>Version</h5><p>2026 © Edition</p></div>
+          <div><h5>Local time</h5><p data-clock="Asia/Ho_Chi_Minh">--:--</p></div>
+        </div>
+        <div class="footer__socials">
+          <h5>Socials</h5>
+          <ul>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Behance</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">Dribbble</a></li>
+            <li><a href="#" class="u-link" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
