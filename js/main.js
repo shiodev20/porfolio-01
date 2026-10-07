@@ -55,7 +55,7 @@ function initTransitions() {
   let arriving = null;
   try { arriving = sessionStorage.getItem("transition-label"); sessionStorage.removeItem("transition-label"); } catch (e) {}
   if (arriving) {
-    label.textContent = arriving;
+    label.textContent = window.i18n ? i18n.page(arriving) : arriving;
     overlay.classList.add("is-covering");
     requestAnimationFrame(() => {
       setTimeout(() => {
@@ -81,7 +81,7 @@ function initTransitions() {
       }
       e.preventDefault();
       const name = a.dataset.page || a.textContent.trim();
-      label.textContent = name;
+      label.textContent = window.i18n ? i18n.page(name) : name;
       try { sessionStorage.setItem("transition-label", name); } catch (err) {}
       overlay.classList.add("is-entering");
       setTimeout(() => { location.href = url.href; }, 750);
@@ -276,7 +276,7 @@ function initForm() {
     e.preventDefault();
     const d = new FormData(form);
     if (!d.get("name") || !d.get("email") || !d.get("message")) {
-      status.textContent = "Please fill in your name, email and message.";
+      status.textContent = window.i18n ? i18n.t("_msg.fill", "Please fill in your name, email and message.") : "Please fill in your name, email and message.";
       return;
     }
     const body = [
@@ -289,7 +289,7 @@ function initForm() {
     ].join("\n");
     const to = form.dataset.mailto;
     location.href = `mailto:${to}?subject=${encodeURIComponent("New project enquiry")}&body=${encodeURIComponent(body)}`;
-    status.textContent = "Opening your mail app…";
+    status.textContent = window.i18n ? i18n.t("_msg.opening", "Opening your mail app…") : "Opening your mail app…";
   });
 }
 

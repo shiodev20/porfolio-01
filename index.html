@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>thảo educator — Self-Leadership &amp; Family Education</title>
-  <meta name="description" content="thảo educator — Solo Expert in Self-Leadership &amp; Family Education, based in Vietnam. I design learning experiences that help people make more intentional choices and create meaningful change in their lives and families.">
+  <title data-i18n="thao-educator-self-leadership-and-family">thảo educator — Self-Leadership &amp; Family Education</title>
+  <meta name="description" content="thảo educator — Solo Expert in Self-Leadership &amp; Family Education, based in Vietnam. I design learning experiences that help people make more intentional choices and create meaningful change in their lives and families." data-i18n-attr="content:thao-educator-solo-expert-in-self">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
+  <script src="js/dev-theme.js"></script>
 </head>
 <body>
 
   <!-- Preloader -->
   <div class="preloader" aria-hidden="true">
-    <p class="preloader__word">Hello</p>
+    <p class="preloader__word" data-i18n="hello">Hello</p>
     <svg class="preloader__curve" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 0 Q50 20 100 0 Z"/></svg>
   </div>
 
@@ -22,36 +24,41 @@
   <div class="transition" aria-hidden="true"><p class="transition__label"></p></div>
 
   <!-- Header -->
-  <header class="header">
+  <header class="header header--dark">
     <a href="index.html" class="logo" data-page="Home">
       <!-- <span class="logo__copy">©</span> -->
       <span class="logo__names">
         <span class="logo__name">Thảo Educator</span>
-        <span class="logo__name logo__name--alt">Solo Expert</span>
+        <span class="logo__name logo__name--alt" data-i18n="solo-expert">Solo Expert</span>
       </span>
     </a>
     <nav class="nav">
-      <a href="portfolio.html" class="nav__link" data-magnetic="0.3"><span class="btn__text">Portfolio</span></a>
-      <a href="contact.html" class="nav__link" data-magnetic="0.3"><span class="btn__text">Contact</span></a>
+      <a href="portfolio.html" class="nav__link" data-magnetic="0.3"><span class="btn__text" data-i18n="portfolio">Portfolio</span></a>
+      <a href="contact.html" class="nav__link" data-magnetic="0.3"><span class="btn__text" data-i18n="contact">Contact</span></a>
+      <div class="lang" data-lang-switch></div>
     </nav>
   </header>
 
   <!-- Round menu button + side menu -->
-  <button class="menu-btn" aria-label="Open menu">
+  <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
     <span class="menu-btn__lines btn__text"><span></span><span></span></span>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
     <div>
-      <p class="side-menu__label">Navigation</p>
+      <p class="side-menu__label" data-i18n="navigation">Navigation</p>
       <nav class="side-menu__links">
-        <a href="index.html" class="is-active" data-page="Home">Home</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" class="is-active" data-page="Home" data-i18n="home">Home</a>
+        <a href="portfolio.html" data-i18n="portfolio">Portfolio</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
       </nav>
     </div>
     <div>
-      <p class="side-menu__label">Socials</p>
+      <p class="side-menu__label" data-i18n="language">Language</p>
+      <div class="lang lang--menu" data-lang-switch></div>
+    </div>
+    <div>
+      <p class="side-menu__label" data-i18n="socials">Socials</p>
       <div class="side-menu__socials">
         <a href="#" class="u-link" target="_blank" rel="noopener">Instagram</a>
         <a href="#" class="u-link" target="_blank" rel="noopener">Facebook</a>
@@ -64,10 +71,10 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <img class="hero__portrait" src="assets/portrait.svg" alt="Portrait of thảo">
+      <img class="hero__portrait" src="assets/portrait.svg" alt="Portrait of thảo" data-i18n-attr="alt:portrait-of-thao">
 
       <div class="hero__badge">
-        <p>Based<br>in Vietnam</p>
+        <p data-i18n="based-in-vietnam">Based<br>in Vietnam</p>
         <div class="hero__globe">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4.5" ry="10"/><path d="M2 12h20M4 7h16M4 17h16"/></svg>
         </div>
@@ -75,7 +82,7 @@
 
       <div class="hero__role">
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l12 12M13 1v12H1"/></svg>
-        <p>Solo Expert<br>Self-Leadership &amp;<br>Family Education</p>
+        <p data-i18n="hero-role">Solo Expert<br>Self-Leadership &amp;<br>Family Education</p>
       </div>
 
       <h1 class="marquee" aria-label="thảo educator">
@@ -91,36 +98,36 @@
     <!-- Value proposition -->
     <section class="intro container">
       <div class="intro__grid">
-        <p class="intro__lead" data-reveal>
+        <p class="intro__lead" data-reveal data-i18n="i-design-learning-experiences-that-help">
           I design learning experiences that help people understand what shapes them,
           make more intentional choices, and create meaningful change in their lives
           and families with a positive impact on the next generation.
         </p>
-        <p class="intro__side" data-reveal>
+        <p class="intro__side" data-reveal data-i18n="intro-side">
           Analytical Thinking × Inclusive Learning Design × Transformative Facilitation
           <br><br>
           Clarity → Agency → Growth
         </p>
         <a href="portfolio.html" class="btn-round intro__btn" data-magnetic="0.35">
           <span class="btn__fill"></span>
-          <span class="btn__text">About me</span>
+          <span class="btn__text" data-i18n="about-me">About me</span>
         </a>
       </div>
     </section>
 
     <!-- Portfolio (preview) -->
     <section class="work container" id="portfolio">
-      <p class="label">Portfolio</p>
+      <p class="label" data-i18n="portfolio">Portfolio</p>
       <ul class="work__list">
-        <li><a class="work__row" href="portfolio.html#studify"><h3 class="work__title">Studify Vietnam</h3><span class="work__meta">Educreator, Partnership · 2025 – Present</span></a></li>
-        <li><a class="work__row" href="portfolio.html#titbrain"><h3 class="work__title">TiTBrain Education</h3><span class="work__meta">Chief Executive Officer · 2024 – 2026</span></a></li>
-        <li><a class="work__row" href="portfolio.html#thom-thao"><h3 class="work__title">Thom Thao</h3><span class="work__meta">Founder · 2023 – 2025</span></a></li>
-        <li><a class="work__row" href="portfolio.html#home-credit"><h3 class="work__title">Home Credit Vietnam</h3><span class="work__meta">Senior L&amp;D Business Partner · 2021 – 2022</span></a></li>
+        <li><a class="work__row" href="portfolio.html#studify"><h3 class="work__title">Studify Vietnam</h3><span class="work__meta" data-i18n="educreator-partnership-2025-present">Educreator, Partnership · 2025 – Present</span></a></li>
+        <li><a class="work__row" href="portfolio.html#titbrain"><h3 class="work__title">TiTBrain Education</h3><span class="work__meta" data-i18n="chief-executive-officer-2024-2026">Chief Executive Officer · 2024 – 2026</span></a></li>
+        <li><a class="work__row" href="portfolio.html#thom-thao"><h3 class="work__title">Thom Thao</h3><span class="work__meta" data-i18n="founder-2023-2025">Founder · 2023 – 2025</span></a></li>
+        <li><a class="work__row" href="portfolio.html#home-credit"><h3 class="work__title">Home Credit Vietnam</h3><span class="work__meta" data-i18n="senior-l-and-d-business-partner">Senior L&amp;D Business Partner · 2021 – 2022</span></a></li>
       </ul>
       <div class="work__more">
         <a href="portfolio.html" class="btn-pill" data-magnetic="0.3">
           <span class="btn__fill"></span>
-          <span class="btn__text">View full portfolio</span>
+          <span class="btn__text" data-i18n="view-full-portfolio">View full portfolio</span>
         </a>
       </div>
     </section>
@@ -128,14 +135,14 @@
     <!-- Floating preview for work list -->
     <div class="preview" aria-hidden="true">
       <div class="preview__slider">
-        <div class="preview__slide" style="background:#e8ded4"><img src="assets/project-1.svg" alt=""></div>
-        <div class="preview__slide" style="background:#d8e6e1"><img src="assets/project-2.svg" alt=""></div>
-        <div class="preview__slide" style="background:#e1dbe8"><img src="assets/project-3.svg" alt=""></div>
-        <div class="preview__slide" style="background:#f1e8cf"><img src="assets/project-4.svg" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img src="assets/project-1.svg" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img src="assets/project-2.svg" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img src="assets/project-3.svg" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img src="assets/project-4.svg" alt=""></div>
       </div>
     </div>
     <div class="preview-cursor" aria-hidden="true"></div>
-    <div class="preview-label" aria-hidden="true">View</div>
+    <div class="preview-label" aria-hidden="true" data-i18n="view">View</div>
 
   </main>
 
@@ -146,14 +153,14 @@
       <div class="container">
         <div class="footer__head">
           <img class="footer__avatar" src="assets/avatar.svg" alt="">
-          <h2 class="footer__title">Let’s make it</h2>
+          <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
         </div>
-        <h2 class="footer__title">together</h2>
+        <h2 class="footer__title" data-i18n="together">together</h2>
 
         <div class="footer__divider">
           <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35">
             <span class="btn__fill"></span>
-            <span class="btn__text">Get in touch</span>
+            <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
           </a>
         </div>
 
@@ -172,11 +179,11 @@
 
         <div class="footer__bottom">
           <div class="footer__meta">
-            <div><h5>Version</h5><p>2026 © Edition</p></div>
-            <div><h5>Local time</h5><p data-clock="Asia/Ho_Chi_Minh">--:--</p></div>
+            <div><h5 data-i18n="version">Version</h5><p data-i18n="2026-edition">2026 © Edition</p></div>
+            <div><h5 data-i18n="local-time">Local time</h5><p data-clock="Asia/Ho_Chi_Minh">--:--</p></div>
           </div>
           <div class="footer__socials">
-            <h5>Socials</h5>
+            <h5 data-i18n="socials">Socials</h5>
             <ul>
               <li><a href="#" class="u-link" target="_blank" rel="noopener">Instagram</a></li>
               <li><a href="#" class="u-link" target="_blank" rel="noopener">Facebook</a></li>
@@ -189,6 +196,8 @@
     </footer>
   </div>
 
+  <script src="js/lang/vi.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
