@@ -327,7 +327,7 @@ function initTimeline() {
   const timeline = $(".timeline");
   if (!timeline) return;
   const progress = $(".timeline__progress", timeline);
-  const items = $$(".timeline__item", timeline);
+  const items = $$(".timeline__item, .stage", timeline);
 
   const update = () => {
     const r = timeline.getBoundingClientRect();
@@ -355,25 +355,18 @@ function initFlow() {
 }
 
 /* --------------------------------------------------------------------------
-   Portfolio: filters, list/grid view, expandable rows, deep links (#id)
+   Portfolio: expandable career rows (one open at a time) + deep links (#id)
    -------------------------------------------------------------------------- */
 function initPortfolio() {
   const root = $("[data-portfolio]");
   if (!root) return;
-
   const items = $$(".pf-item", root);
-  const cards = $$(".pf-card", root);
-  const listView = $(".pf-list", root);
-  const gridView = $(".pf-grid", root);
-  const viewBtns = $$("[data-view]", root);
-  const filterBtns = $$("[data-filter]", root);
 
   const setOpen = (item, open) => {
     item.classList.toggle("is-open", open);
     $(".pf-row", item).setAttribute("aria-expanded", open);
   };
 
-  // Accordion: one open at a time
   items.forEach((item) => {
     $(".pf-row", item).addEventListener("click", () => {
       const willOpen = !item.classList.contains("is-open");
@@ -383,47 +376,37 @@ function initPortfolio() {
     });
   });
 
-  // View toggle
-  const setView = (view) => {
-    listView.hidden = view !== "list";
-    gridView.hidden = view !== "grid";
-    viewBtns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.view === view));
-    try { localStorage.setItem("pf-view", view); } catch (e) {}
-  };
-  viewBtns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
-
-  // Filters
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const f = btn.dataset.filter;
-      filterBtns.forEach((b) => b.setAttribute("aria-pressed", b === btn));
-      [...items, ...cards].forEach((el) => {
-        el.hidden = f !== "all" && el.dataset.cat !== f;
-      });
-    });
-  });
-
-  // Open an item by id (from hash or a grid card), switching to list view
-  const openById = (id, smooth) => {
-    const item = id && $("#" + CSS.escape(id), root);
-    if (!item || !item.classList.contains("pf-item")) return;
-    setView("list");
-    item.hidden = false;
+  const openFromHash = (smooth) => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const item = id && items.find((it) => it.id === id);
+    if (!item) return;
     items.forEach((it) => setOpen(it, it === item));
-    setTimeout(() => item.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" }), 50);
+    setTimeout(() => item.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "center" }), 80);
   };
+  openFromHash(false);
+  window.addEventListener("hashchange", () => openFromHash(true));
+}
 
-  cards.forEach((card) => {
-    card.addEventListener("click", (e) => {
-      e.preventDefault();
-      openById(card.getAttribute("href").slice(1), true);
-    });
+/* --------------------------------------------------------------------------
+   Sticky in-page nav: highlight the section currently in view
+   -------------------------------------------------------------------------- */
+function initSubnav() {
+  const links = $$(".subnav__link");
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  const map = new Map();
+  links.forEach((a) => {
+    const target = $(a.getAttribute("href"));
+    if (target) map.set(target, a);
   });
-
-  let saved = "list";
-  try { saved = localStorage.getItem("pf-view") || "list"; } catch (e) {}
-  setView(saved);
-  if (location.hash) openById(decodeURIComponent(location.hash.slice(1)), false);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      links.forEach((l) => l.classList.toggle("is-active", l === map.get(en.target)));
+      // keep the active pill visible in the horizontally scrollable bar
+      map.get(en.target)?.scrollIntoView({ block: "nearest", inline: "center" });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  map.forEach((_, section) => io.observe(section));
 }
 
 /* --------------------------------------------------------------------------
@@ -441,5 +424,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTimeline();
   initFlow();
   initPortfolio();
+  initSubnav();
   initPreloader().then(initReveal);
 });

@@ -24,7 +24,6 @@
     </a>
     <nav class="nav">
       <a href="portfolio.html" class="nav__link is-active" data-magnetic="0.3" data-page="Portfolio"><span class="btn__text">Portfolio</span></a>
-      <a href="about.html" class="nav__link" data-magnetic="0.3"><span class="btn__text">About</span></a>
       <a href="contact.html" class="nav__link" data-magnetic="0.3" data-page="Contact"><span class="btn__text">Contact</span></a>
     </nav>
   </header>
@@ -38,7 +37,6 @@
       <p class="side-menu__label">Navigation</p>
       <nav class="side-menu__links">
         <a href="index.html" data-page="Home">Home</a>
-        <a href="about.html">About</a>
         <a href="portfolio.html" class="is-active">Portfolio</a>
         <a href="contact.html" data-page="Contact">Contact</a>
       </nav>
@@ -55,68 +53,246 @@
   </aside>
 
   <main data-portfolio>
-    <!-- 1. Heading -->
-    <section class="pf-head container">
-      <p class="section-label">Portfolio · Career Timeline</p>
-      <h1 class="pf-title" data-reveal>More than a list of roles—this is the journey through which my thinking about people, learning and development has evolved.</h1>
+<!-- 1. Hero -->
+    <section class="page-head container">
+      <h1 class="page-title" data-reveal>Cultivating human wisdom in the age of AI</h1>
+      <div class="page-head__divider">
+        <span class="btn-round" style="pointer-events:none">
+          <svg viewBox="0 0 24 24" width="40" fill="none" stroke="#fff" stroke-width="1.2" class="btn__text" aria-hidden="true"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4.5" ry="10"/><path d="M2 12h20M4 7h16M4 17h16"/></svg>
+        </span>
+      </div>
     </section>
 
-    <!-- Controls -->
-    <section class="container">
-      <div class="pf-controls">
-        <div class="pf-filters" role="group" aria-label="Filter by field">
-          <button class="tab" data-filter="all" aria-pressed="true">All<span class="tab__count">7</span></button>
-          <button class="tab" data-filter="education" aria-pressed="false">Education<span class="tab__count">2</span></button>
-          <button class="tab" data-filter="experiential" aria-pressed="false">Experiential Learning<span class="tab__count">1</span></button>
-          <button class="tab" data-filter="ld" aria-pressed="false">Learning &amp; Development<span class="tab__count">3</span></button>
-          <button class="tab" data-filter="cx" aria-pressed="false">Customer Experience<span class="tab__count">1</span></button>
-        </div>
-        <div class="pf-views" role="group" aria-label="View">
-          <button class="pf-view-btn" data-view="list" aria-pressed="true" aria-label="List view">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 3h14M1 8h14M1 13h14"/></svg>
-          </button>
-          <button class="pf-view-btn" data-view="grid" aria-pressed="false" aria-label="Grid view">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="5.5" height="5.5"/><rect x="9.5" y="1" width="5.5" height="5.5"/><rect x="1" y="9.5" width="5.5" height="5.5"/><rect x="9.5" y="9.5" width="5.5" height="5.5"/></svg>
-          </button>
-        </div>
+    <section class="about-body container">
+      <div class="about-body__text" data-reveal>
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l12 12M13 1v12H1"/></svg>
+        <p class="lead">
+          I help people understand what shapes them, make more intentional choices,
+          and create meaningful change in their lives and families—with a positive
+          impact on the next generation.
+        </p>
+        <p class="section-label" style="margin:0">Self-Leadership · Family Education · AI-enabled Learning</p>
+      </div>
+      <img class="about-body__img" src="assets/portrait.svg" alt="Portrait of thảo" data-reveal>
+    </section>
+
+    
+    <!-- In-page navigation (sticky) -->
+    <nav class="subnav" aria-label="On this page">
+      <div class="subnav__inner container">
+        <a href="#how" class="subnav__link">How I work</a>
+        <a href="#journey" class="subnav__link">Journey &amp; career</a>
+        <a href="#education" class="subnav__link">Education</a>
+        <a href="#work-with-me" class="subnav__link">Work with me</a>
+      </div>
+    </nav>
+
+<!-- 2. How I Work -->
+    <section class="how container" id="how">
+      <p class="section-label">How I work</p>
+      <div class="pillars">
+        <article class="pillar" data-reveal>
+          <p class="pillar__num">01</p>
+          <h3>Analytical Thinking</h3>
+        </article>
+        <article class="pillar" data-reveal>
+          <p class="pillar__num">02</p>
+          <h3>Inclusive Learning Design</h3>
+        </article>
+        <article class="pillar" data-reveal>
+          <p class="pillar__num">03</p>
+          <h3>Transformative Facilitation</h3>
+        </article>
       </div>
 
-      <!-- LIST VIEW -->
-      <div class="pf-list">
-        <div class="pf-cols" aria-hidden="true">
-          <span>Organization</span><span>Category</span><span>Role</span><span>Year</span><span></span>
-        </div>
-        <ul class="pf-items">
+      <span class="flow__down" aria-hidden="true">↓</span>
+      <p class="flow" aria-label="Clarity, then Agency, then Growth">
+        <span>Clarity</span>
+        <span class="flow__arrow" aria-hidden="true">→</span>
+        <span>Agency</span>
+        <span class="flow__arrow" aria-hidden="true">→</span>
+        <span>Growth</span>
+      </p>
+    </section>
 
-          <!-- 01 Studify -->
-          <li class="pf-item" id="studify" data-cat="education">
-            <button class="pf-row" aria-expanded="false" aria-controls="studify-detail" data-preview-item data-preview-index="0">
-              <span class="pf-row__org">Studify Vietnam</span>
-              <span class="pf-row__cell pf-row__cat">Digital Learning &amp; Education</span>
-              <span class="pf-row__cell">Educreator, Partnership</span>
-              <span class="pf-row__cell pf-row__year">Mar 2025 – Present</span>
+    
+    <!-- 3. Journey & Career (merged) -->
+    <section class="journey" id="journey">
+      <div class="container">
+        <p class="section-label">Journey &amp; career</p>
+        <h2 class="section-title" data-reveal>More than a list of roles—the journey through which my thinking evolved</h2>
+
+        <div class="timeline">
+          <span class="timeline__rail" aria-hidden="true"></span>
+          <span class="timeline__progress" aria-hidden="true"></span>
+
+          <section class="stage" aria-label="Customer Experience">
+            <header class="stage__head">
+              <p class="stage__year">2013</p>
+              <p class="stage__label">Customer Experience</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Understanding people in context</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="vietjet-cx">
+            <button class="pf-row" aria-expanded="false" aria-controls="vietjet-cx-detail" data-preview-item data-preview-index="0">
+              <span class="pf-row__org">VietJet Air</span>
+              <span class="pf-row__cell pf-row__cat">Customer Experience</span>
+              <span class="pf-row__cell">Senior Customer Service Executive</span>
+              <span class="pf-row__cell pf-row__year">Dec 2013 – May 2021</span>
               <span class="pf-row__icon" aria-hidden="true"></span>
             </button>
-            <div class="pf-detail" id="studify-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+            <div class="pf-detail" id="vietjet-cx-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
               <div>
-                <div class="pf-block"><h4>Context</h4><p>Education is increasingly moving toward digital and personalized learning. The work called for educators who could translate pedagogical thinking into learning materials suitable for digital environments and contribute within a multidisciplinary educator community.</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I collaborate with a community of experts to develop and refine digital learning materials, bringing pedagogical perspectives and creative teaching approaches into the development process.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Selected to participate as an Educreator in an initiative focused on building a community of creative educators and supporting digital transformation in education, with the broader aim of making personalized learning more accessible to Vietnamese learners.</p>
-                  <!-- TODO: thay href bằng link trang Course -->
-                  <div class="pf-cta"><a href="#" class="btn-pill" data-magnetic="0.25"><span class="btn__fill"></span><span class="btn__text">Explore more →</span></a></div>
-                </div>
+                <div class="pf-block"><h4>Context</h4><p>Customer issues rarely exist in isolation. Understanding a complaint required looking across the customer journey, operational touchpoints, expectations, available information and the context surrounding each situation.</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I investigated complex customer feedback, handled escalations and crisis situations, audited service quality across customer touchpoints, supported training planning and workshops, and collaborated with IT on customer-service systems including CRM, touchpoint evaluation and Lost &amp; Found.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Contributed to the development of customer-service systems with IT while combining case investigation, service-quality auditing and complex feedback resolution across multiple customer-journey touchpoints.</p></div>
               </div>
               <aside class="pf-built">
                 <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Digital learning</span><span class="pf-tag">Personalization</span><span class="pf-tag">Cross-disciplinary collaboration</span><span class="pf-tag">Technology-enabled education</span></div>
-                <p>This chapter is strengthening my ability to think beyond the classroom and explore how technology can extend, personalize and scale learning while keeping the learner at the center.</p>
+                <div class="pf-tags"><span class="pf-tag">Problem diagnosis</span><span class="pf-tag">Context awareness</span><span class="pf-tag">Connecting the dots</span><span class="pf-tag">Customer perspective</span><span class="pf-tag">Systems thinking</span></div>
+                <p>Looking back, this is one of the earliest professional environments in which my Analytical identity became visible: before solving a problem, I learned to gather information across multiple touchpoints, understand context and question what was actually happening.</p>
+              </aside>
+            </div></div></div>
+          </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Facilitation & Training">
+            <header class="stage__head">
+              <p class="stage__year">2016</p>
+              <p class="stage__label">Facilitation &amp; Training</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Helping people learn</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="vietjet-trainer">
+            <button class="pf-row" aria-expanded="false" aria-controls="vietjet-trainer-detail" data-preview-item data-preview-index="1">
+              <span class="pf-row__org">VietJet Air</span>
+              <span class="pf-row__cell pf-row__cat">Learning &amp; Facilitation</span>
+              <span class="pf-row__cell">Soft Skills Trainer</span>
+              <span class="pf-row__cell pf-row__year">Jan 2016 – May 2021</span>
+              <span class="pf-row__icon" aria-hidden="true"></span>
+            </button>
+            <div class="pf-detail" id="vietjet-trainer-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+              <div>
+                <div class="pf-block"><h4>Context</h4><p>In a fast-moving airline environment, learning had to work across frontline employees, team leaders and supervisors while responding continuously to changing operational and customer-service needs.</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I owned the learning cycle from needs analysis and content revision through facilitation and post-training evaluation. I led core curricula in Customer Service Excellence, Effective Communication and Teamwork &amp; Collaboration across ILT, virtual ILT, e-learning/LMS and blended learning formats.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Expanded learning across four delivery approaches—classroom, virtual classroom, LMS/e-learning and blended learning—while supporting development across three workforce levels: employees, team leaders and supervisors.</p></div>
+              </div>
+              <aside class="pf-built">
+                <h4>What It Built in Me</h4>
+                <div class="pf-tags"><span class="pf-tag">Facilitation</span><span class="pf-tag">Instructional design</span><span class="pf-tag">Adult learning</span><span class="pf-tag">Blended learning</span><span class="pf-tag">Learning evaluation</span></div>
+                <p>This was the chapter where “knowing something” and “helping another person learn it” became clearly different skills for me. It built the foundation for my Teaching/Coaching identity and later Learning Design work.</p>
+              </aside>
+            </div></div></div>
+          </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Organizational L&D">
+            <header class="stage__head">
+              <p class="stage__year">2021</p>
+              <p class="stage__label">Organizational L&amp;D</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Designing capability systems</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="home-credit">
+            <button class="pf-row" aria-expanded="false" aria-controls="home-credit-detail" data-preview-item data-preview-index="2">
+              <span class="pf-row__org">Home Credit Vietnam</span>
+              <span class="pf-row__cell pf-row__cat">Tech-enabled Consumer Finance</span>
+              <span class="pf-row__cell">Senior L&amp;D Business Partner</span>
+              <span class="pf-row__cell pf-row__year">May 2021 – Jan 2022</span>
+              <span class="pf-row__icon" aria-hidden="true"></span>
+            </button>
+            <div class="pf-detail" id="home-credit-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+              <div>
+                <div class="pf-block"><h4>Context</h4><p>The role required learning to respond directly to organizational needs rather than operate as a separate training function—connecting business priorities, capability gaps, curriculum, learning investment and employee development.</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I managed learning projects from Training Needs Analysis through strategy, annual curricula, budgeting, delivery and evaluation; redesigned and facilitated orientation for management and non-management employees; supported e-learning systems; and established an internal Facilitator Pool.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Established an internal Facilitator Pool to strengthen in-house learning capability and reduce dependence on external delivery, while expanding employee access to learning through e-learning systems and cross-functional HR initiatives.</p></div>
+              </div>
+              <aside class="pf-built">
+                <h4>What It Built in Me</h4>
+                <div class="pf-tags"><span class="pf-tag">Learning strategy</span><span class="pf-tag">Capability development</span><span class="pf-tag">Business partnering</span><span class="pf-tag">Internal knowledge transfer</span><span class="pf-tag">Learning ecosystem thinking</span></div>
+                <p>This chapter sharpened an idea that remains important in my work today: good learning should build capability inside the learner or system, rather than creating long-term dependency on the person delivering it.</p>
               </aside>
             </div></div></div>
           </li>
 
-          <!-- 02 TiTBrain -->
-          <li class="pf-item" id="titbrain" data-cat="education">
-            <button class="pf-row" aria-expanded="false" aria-controls="titbrain-detail" data-preview-item data-preview-index="1">
+<li class="pf-item" id="novagroup">
+            <button class="pf-row" aria-expanded="false" aria-controls="novagroup-detail" data-preview-item data-preview-index="3">
+              <span class="pf-row__org">NovaGroup</span>
+              <span class="pf-row__cell pf-row__cat">Real Estate and Services</span>
+              <span class="pf-row__cell">Senior Training Supervisor</span>
+              <span class="pf-row__cell pf-row__year">Mar 2022 – Oct 2022</span>
+              <span class="pf-row__icon" aria-hidden="true"></span>
+            </button>
+            <div class="pf-detail" id="novagroup-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+              <div>
+                <div class="pf-block"><h4>Context</h4><p>Learning had to operate across diverse service environments—F&amp;B, hospitality, travel, entertainment, butler services and Nova Service leadership—where different business units had different operational needs but still required consistency in learning and service standards.</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I translated business and operational needs into soft-skills, customer-service and management learning programs; standardized training content and procedural documents; developed e-learning; facilitated classroom programs; implemented Train-the-Trainer; and created pre-opening training plans for large-scale projects.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Built learning support across classroom, e-learning and Train-the-Trainer channels while standardizing materials, documentation and internal learning resources across multiple business units. I also developed role-based pre-opening learning plans to support workforce readiness for new projects.</p></div>
+              </div>
+              <aside class="pf-built">
+                <h4>What It Built in Me</h4>
+                <div class="pf-tags"><span class="pf-tag">Systems thinking</span><span class="pf-tag">Scalable learning</span><span class="pf-tag">Learning standardization</span><span class="pf-tag">Train-the-Trainer</span><span class="pf-tag">Context-based learning design</span></div>
+                <p>This chapter strengthened my ability to see learning not simply as a class, but as a system that has to work across contexts, people, standards and operations.</p>
+              </aside>
+            </div></div></div>
+          </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Experiential Learning">
+            <header class="stage__head">
+              <p class="stage__year">2023</p>
+              <p class="stage__label">Experiential Learning</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Designing conditions for reflection</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="thom-thao">
+            <button class="pf-row" aria-expanded="false" aria-controls="thom-thao-detail" data-preview-item data-preview-index="4">
+              <span class="pf-row__org">Thom Thao – Holistic Workshop &amp; Retreat</span>
+              <span class="pf-row__cell pf-row__cat">Experiential Learning &amp; Facilitation</span>
+              <span class="pf-row__cell">Founder</span>
+              <span class="pf-row__cell pf-row__year">Jul 2023 – Dec 2025</span>
+              <span class="pf-row__icon" aria-hidden="true"></span>
+            </button>
+            <div class="pf-detail" id="thom-thao-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+              <div>
+                <div class="pf-block"><h4>Context</h4><p>Many development experiences rely heavily on verbal instruction and cognitive understanding. Thom Thao explored another question: what happens when reflection and personal development are approached through multi-sensory, creative experiences?</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I founded and designed a portfolio of experiences using art, sound and aroma, and facilitated workshops for individuals and corporate groups around personal growth, connection, reflection and creative engagement.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Built a multi-sensory learning and wellbeing portfolio across three primary formats—art, sound and aroma-based experiences—and extended these formats into corporate workshops designed to support team connection, engagement and creative energy.</p>
+                  <!-- TODO: logo các brand đã cộng tác -->
+                  <span class="pf-pending">Brand collaborations — coming soon</span>
+                </div>
+              </div>
+              <aside class="pf-built">
+                <h4>What It Built in Me</h4>
+                <div class="pf-tags"><span class="pf-tag">Experiential learning</span><span class="pf-tag">Creative facilitation</span><span class="pf-tag">Learning conditions</span><span class="pf-tag">Reflection beyond instruction</span></div>
+                <p>This chapter expanded my understanding that meaningful learning does not happen only through information. Environment, experience, emotion and the way a person is invited to reflect can all shape what they are able to see and learn.</p>
+              </aside>
+            </div></div></div>
+          </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Education Leadership">
+            <header class="stage__head">
+              <p class="stage__year">2024</p>
+              <p class="stage__label">Education Leadership</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Developing the whole learner</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="titbrain">
+            <button class="pf-row" aria-expanded="false" aria-controls="titbrain-detail" data-preview-item data-preview-index="5">
               <span class="pf-row__org">TiTBrain Education</span>
               <span class="pf-row__cell pf-row__cat">Abacus Mental Arithmetic - Enrichment programs</span>
               <span class="pf-row__cell">Chief Executive Officer</span>
@@ -145,169 +321,139 @@
               </aside>
             </div></div></div>
           </li>
+              </ul>
+            </div>
+          </section>
 
-          <!-- 03 Thom Thao -->
-          <li class="pf-item" id="thom-thao" data-cat="experiential">
-            <button class="pf-row" aria-expanded="false" aria-controls="thom-thao-detail" data-preview-item data-preview-index="2">
-              <span class="pf-row__org">Thom Thao – Holistic Workshop &amp; Retreat</span>
-              <span class="pf-row__cell pf-row__cat">Experiential Learning &amp; Facilitation</span>
-              <span class="pf-row__cell">Founder</span>
-              <span class="pf-row__cell pf-row__year">Jul 2023 – Dec 2025</span>
+          <section class="stage" aria-label="Digital Education">
+            <header class="stage__head">
+              <p class="stage__year">2025+</p>
+              <p class="stage__label">Digital Education</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">Personalization &amp; technology-enabled learning</h3>
+              <ul class="pf-items">
+<li class="pf-item" id="studify">
+            <button class="pf-row" aria-expanded="false" aria-controls="studify-detail" data-preview-item data-preview-index="6">
+              <span class="pf-row__org">Studify Vietnam</span>
+              <span class="pf-row__cell pf-row__cat">Digital Learning &amp; Education</span>
+              <span class="pf-row__cell">Educreator, Partnership</span>
+              <span class="pf-row__cell pf-row__year">Mar 2025 – Present</span>
               <span class="pf-row__icon" aria-hidden="true"></span>
             </button>
-            <div class="pf-detail" id="thom-thao-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
+            <div class="pf-detail" id="studify-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
               <div>
-                <div class="pf-block"><h4>Context</h4><p>Many development experiences rely heavily on verbal instruction and cognitive understanding. Thom Thao explored another question: what happens when reflection and personal development are approached through multi-sensory, creative experiences?</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I founded and designed a portfolio of experiences using art, sound and aroma, and facilitated workshops for individuals and corporate groups around personal growth, connection, reflection and creative engagement.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Built a multi-sensory learning and wellbeing portfolio across three primary formats—art, sound and aroma-based experiences—and extended these formats into corporate workshops designed to support team connection, engagement and creative energy.</p>
-                  <!-- TODO: logo các brand đã cộng tác -->
-                  <span class="pf-pending">Brand collaborations — coming soon</span>
+                <div class="pf-block"><h4>Context</h4><p>Education is increasingly moving toward digital and personalized learning. The work called for educators who could translate pedagogical thinking into learning materials suitable for digital environments and contribute within a multidisciplinary educator community.</p></div>
+                <div class="pf-block"><h4>Key Contribution</h4><p>I collaborate with a community of experts to develop and refine digital learning materials, bringing pedagogical perspectives and creative teaching approaches into the development process.</p></div>
+                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Selected to participate as an Educreator in an initiative focused on building a community of creative educators and supporting digital transformation in education, with the broader aim of making personalized learning more accessible to Vietnamese learners.</p>
+                  <!-- TODO: thay href bằng link trang Course -->
+                  <div class="pf-cta"><a href="#" class="btn-pill" data-magnetic="0.25"><span class="btn__fill"></span><span class="btn__text">Explore more →</span></a></div>
                 </div>
               </div>
               <aside class="pf-built">
                 <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Experiential learning</span><span class="pf-tag">Creative facilitation</span><span class="pf-tag">Learning conditions</span><span class="pf-tag">Reflection beyond instruction</span></div>
-                <p>This chapter expanded my understanding that meaningful learning does not happen only through information. Environment, experience, emotion and the way a person is invited to reflect can all shape what they are able to see and learn.</p>
+                <div class="pf-tags"><span class="pf-tag">Digital learning</span><span class="pf-tag">Personalization</span><span class="pf-tag">Cross-disciplinary collaboration</span><span class="pf-tag">Technology-enabled education</span></div>
+                <p>This chapter is strengthening my ability to think beyond the classroom and explore how technology can extend, personalize and scale learning while keeping the learner at the center.</p>
               </aside>
             </div></div></div>
           </li>
+              </ul>
+            </div>
+          </section>
 
-          <!-- 04 NovaGroup -->
-          <li class="pf-item" id="novagroup" data-cat="ld">
-            <button class="pf-row" aria-expanded="false" aria-controls="novagroup-detail" data-preview-item data-preview-index="3">
-              <span class="pf-row__org">NovaGroup</span>
-              <span class="pf-row__cell pf-row__cat">Real Estate and Services</span>
-              <span class="pf-row__cell">Senior Training Supervisor</span>
-              <span class="pf-row__cell pf-row__year">Mar 2022 – Oct 2022</span>
-              <span class="pf-row__icon" aria-hidden="true"></span>
-            </button>
-            <div class="pf-detail" id="novagroup-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
-              <div>
-                <div class="pf-block"><h4>Context</h4><p>Learning had to operate across diverse service environments—F&amp;B, hospitality, travel, entertainment, butler services and Nova Service leadership—where different business units had different operational needs but still required consistency in learning and service standards.</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I translated business and operational needs into soft-skills, customer-service and management learning programs; standardized training content and procedural documents; developed e-learning; facilitated classroom programs; implemented Train-the-Trainer; and created pre-opening training plans for large-scale projects.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Built learning support across classroom, e-learning and Train-the-Trainer channels while standardizing materials, documentation and internal learning resources across multiple business units. I also developed role-based pre-opening learning plans to support workforce readiness for new projects.</p></div>
-              </div>
-              <aside class="pf-built">
-                <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Systems thinking</span><span class="pf-tag">Scalable learning</span><span class="pf-tag">Learning standardization</span><span class="pf-tag">Train-the-Trainer</span><span class="pf-tag">Context-based learning design</span></div>
-                <p>This chapter strengthened my ability to see learning not simply as a class, but as a system that has to work across contexts, people, standards and operations.</p>
-              </aside>
-            </div></div></div>
-          </li>
-
-          <!-- 05 Home Credit -->
-          <li class="pf-item" id="home-credit" data-cat="ld">
-            <button class="pf-row" aria-expanded="false" aria-controls="home-credit-detail" data-preview-item data-preview-index="4">
-              <span class="pf-row__org">Home Credit Vietnam</span>
-              <span class="pf-row__cell pf-row__cat">Tech-enabled Consumer Finance</span>
-              <span class="pf-row__cell">Senior L&amp;D Business Partner</span>
-              <span class="pf-row__cell pf-row__year">May 2021 – Jan 2022</span>
-              <span class="pf-row__icon" aria-hidden="true"></span>
-            </button>
-            <div class="pf-detail" id="home-credit-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
-              <div>
-                <div class="pf-block"><h4>Context</h4><p>The role required learning to respond directly to organizational needs rather than operate as a separate training function—connecting business priorities, capability gaps, curriculum, learning investment and employee development.</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I managed learning projects from Training Needs Analysis through strategy, annual curricula, budgeting, delivery and evaluation; redesigned and facilitated orientation for management and non-management employees; supported e-learning systems; and established an internal Facilitator Pool.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Established an internal Facilitator Pool to strengthen in-house learning capability and reduce dependence on external delivery, while expanding employee access to learning through e-learning systems and cross-functional HR initiatives.</p></div>
-              </div>
-              <aside class="pf-built">
-                <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Learning strategy</span><span class="pf-tag">Capability development</span><span class="pf-tag">Business partnering</span><span class="pf-tag">Internal knowledge transfer</span><span class="pf-tag">Learning ecosystem thinking</span></div>
-                <p>This chapter sharpened an idea that remains important in my work today: good learning should build capability inside the learner or system, rather than creating long-term dependency on the person delivering it.</p>
-              </aside>
-            </div></div></div>
-          </li>
-
-          <!-- 06 VietJet – Trainer -->
-          <li class="pf-item" id="vietjet-trainer" data-cat="ld">
-            <button class="pf-row" aria-expanded="false" aria-controls="vietjet-trainer-detail" data-preview-item data-preview-index="5">
-              <span class="pf-row__org">VietJet Air</span>
-              <span class="pf-row__cell pf-row__cat">Learning &amp; Facilitation</span>
-              <span class="pf-row__cell">Soft Skills Trainer</span>
-              <span class="pf-row__cell pf-row__year">Jan 2016 – May 2021</span>
-              <span class="pf-row__icon" aria-hidden="true"></span>
-            </button>
-            <div class="pf-detail" id="vietjet-trainer-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
-              <div>
-                <div class="pf-block"><h4>Context</h4><p>In a fast-moving airline environment, learning had to work across frontline employees, team leaders and supervisors while responding continuously to changing operational and customer-service needs.</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I owned the learning cycle from needs analysis and content revision through facilitation and post-training evaluation. I led core curricula in Customer Service Excellence, Effective Communication and Teamwork &amp; Collaboration across ILT, virtual ILT, e-learning/LMS and blended learning formats.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Expanded learning across four delivery approaches—classroom, virtual classroom, LMS/e-learning and blended learning—while supporting development across three workforce levels: employees, team leaders and supervisors.</p></div>
-              </div>
-              <aside class="pf-built">
-                <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Facilitation</span><span class="pf-tag">Instructional design</span><span class="pf-tag">Adult learning</span><span class="pf-tag">Blended learning</span><span class="pf-tag">Learning evaluation</span></div>
-                <p>This was the chapter where “knowing something” and “helping another person learn it” became clearly different skills for me. It built the foundation for my Teaching/Coaching identity and later Learning Design work.</p>
-              </aside>
-            </div></div></div>
-          </li>
-
-          <!-- 07 VietJet – CX -->
-          <li class="pf-item" id="vietjet-cx" data-cat="cx">
-            <button class="pf-row" aria-expanded="false" aria-controls="vietjet-cx-detail" data-preview-item data-preview-index="6">
-              <span class="pf-row__org">VietJet Air</span>
-              <span class="pf-row__cell pf-row__cat">Customer Experience</span>
-              <span class="pf-row__cell">Senior Customer Service Executive</span>
-              <span class="pf-row__cell pf-row__year">Dec 2013 – May 2021</span>
-              <span class="pf-row__icon" aria-hidden="true"></span>
-            </button>
-            <div class="pf-detail" id="vietjet-cx-detail"><div class="pf-detail__inner"><div class="pf-detail__grid">
-              <div>
-                <div class="pf-block"><h4>Context</h4><p>Customer issues rarely exist in isolation. Understanding a complaint required looking across the customer journey, operational touchpoints, expectations, available information and the context surrounding each situation.</p></div>
-                <div class="pf-block"><h4>Key Contribution</h4><p>I investigated complex customer feedback, handled escalations and crisis situations, audited service quality across customer touchpoints, supported training planning and workshops, and collaborated with IT on customer-service systems including CRM, touchpoint evaluation and Lost &amp; Found.</p></div>
-                <div class="pf-block"><h4>Achievement / Milestone</h4><p>Contributed to the development of customer-service systems with IT while combining case investigation, service-quality auditing and complex feedback resolution across multiple customer-journey touchpoints.</p></div>
-              </div>
-              <aside class="pf-built">
-                <h4>What It Built in Me</h4>
-                <div class="pf-tags"><span class="pf-tag">Problem diagnosis</span><span class="pf-tag">Context awareness</span><span class="pf-tag">Connecting the dots</span><span class="pf-tag">Customer perspective</span><span class="pf-tag">Systems thinking</span></div>
-                <p>Looking back, this is one of the earliest professional environments in which my Analytical identity became visible: before solving a problem, I learned to gather information across multiple touchpoints, understand context and question what was actually happening.</p>
-              </aside>
-            </div></div></div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- GRID VIEW -->
-      <div class="pf-grid" hidden>
-        <a class="pf-card" href="#studify" data-cat="education">
-          <div class="pf-card__media" style="background:#e8ded4"><img src="assets/project-1.svg" alt=""></div>
-          <h3 class="pf-card__org">Studify Vietnam</h3>
-          <div class="pf-card__meta"><span>Educreator, Partnership</span><span>2025 – Present</span></div>
-        </a>
-        <a class="pf-card" href="#titbrain" data-cat="education">
-          <div class="pf-card__media" style="background:#d8e6e1"><img src="assets/project-2.svg" alt=""></div>
-          <h3 class="pf-card__org">TiTBrain Education</h3>
-          <div class="pf-card__meta"><span>Chief Executive Officer</span><span>2024 – 2026</span></div>
-        </a>
-        <a class="pf-card" href="#thom-thao" data-cat="experiential">
-          <div class="pf-card__media" style="background:#e1dbe8"><img src="assets/project-3.svg" alt=""></div>
-          <h3 class="pf-card__org">Thom Thao</h3>
-          <div class="pf-card__meta"><span>Founder</span><span>2023 – 2025</span></div>
-        </a>
-        <a class="pf-card" href="#novagroup" data-cat="ld">
-          <div class="pf-card__media" style="background:#f1e8cf"><img src="assets/project-4.svg" alt=""></div>
-          <h3 class="pf-card__org">NovaGroup</h3>
-          <div class="pf-card__meta"><span>Senior Training Supervisor</span><span>2022</span></div>
-        </a>
-        <a class="pf-card" href="#home-credit" data-cat="ld">
-          <div class="pf-card__media" style="background:#dfe3ea"><img src="assets/project-5.svg" alt=""></div>
-          <h3 class="pf-card__org">Home Credit Vietnam</h3>
-          <div class="pf-card__meta"><span>Senior L&amp;D Business Partner</span><span>2021 – 2022</span></div>
-        </a>
-        <a class="pf-card" href="#vietjet-trainer" data-cat="ld">
-          <div class="pf-card__media" style="background:#ecdcdc"><img src="assets/project-6.svg" alt=""></div>
-          <h3 class="pf-card__org">VietJet Air</h3>
-          <div class="pf-card__meta"><span>Soft Skills Trainer</span><span>2016 – 2021</span></div>
-        </a>
-        <a class="pf-card" href="#vietjet-cx" data-cat="cx">
-          <div class="pf-card__media" style="background:#dbe8e4"><img src="assets/project-7.svg" alt=""></div>
-          <h3 class="pf-card__org">VietJet Air</h3>
-          <div class="pf-card__meta"><span>Senior Customer Service Executive</span><span>2013 – 2021</span></div>
-        </a>
+          <section class="stage stage--end" aria-label="Now">
+            <header class="stage__head">
+              <p class="stage__year">Now</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">thảo educator</h3>
+              <p class="stage__tagline">Self-Leadership · Family Education · AI-enabled Learning</p>
+            </div>
+          </section>
+        </div>
       </div>
     </section>
 
-    <!-- Floating preview (list view) -->
+<!-- 4. Education & Continuous Learning -->
+    <section class="education container" id="education">
+      <p class="section-label">Education &amp; Continuous Learning</p>
+      <p class="lead education__intro" data-reveal>
+        My learning has evolved alongside my work—from customer experience and
+        organizational learning to coaching, child development, education and emerging
+        technologies. These disciplines continue to shape how I think about human
+        development and design learning.
+      </p>
+
+      <div data-tabs>
+        <div class="tabs" role="tablist" aria-label="Fields of study">
+          <button class="tab" role="tab" id="tab-academic" aria-controls="panel-academic" aria-selected="true">Academic<span class="tab__count">3</span></button>
+          <button class="tab" role="tab" id="tab-leadership" aria-controls="panel-leadership" aria-selected="false" tabindex="-1">Learning, Leadership &amp; OD<span class="tab__count">4</span></button>
+          <button class="tab" role="tab" id="tab-child" aria-controls="panel-child" aria-selected="false" tabindex="-1">Education &amp; Child Development<span class="tab__count">4</span></button>
+          <button class="tab" role="tab" id="tab-coaching" aria-controls="panel-coaching" aria-selected="false" tabindex="-1">Coaching &amp; Career Development<span class="tab__count">4</span></button>
+          <button class="tab" role="tab" id="tab-creative" aria-controls="panel-creative" aria-selected="false" tabindex="-1">Creative &amp; Experiential Learning<span class="tab__count">4</span></button>
+          <button class="tab" role="tab" id="tab-cx" aria-controls="panel-cx" aria-selected="false" tabindex="-1">Customer Experience &amp; Service<span class="tab__count">3</span></button>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-academic" aria-labelledby="tab-academic">
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">M.Ed in Emerging Technologies <span class="edu-row__note">(In Progress)</span></span><span class="edu-row__org">Edgewood University – Madison, USA</span><span class="edu-row__year">2026–Present</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Bachelor of Arts – French Linguistics and Literature</span><span class="edu-row__org">University of Social Sciences and Humanities, Vietnam National University – HCMC</span><span class="edu-row__year">2009–2013</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Diplôme de Technicien Supérieur – Business English</span><span class="edu-row__org">Lotus University &amp; CCI Paris, Vietnam</span><span class="edu-row__year">2010–2012</span></li>
+          </ul>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-leadership" aria-labelledby="tab-leadership" hidden>
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">L&amp;D Business Partner Development – CIPD Standards</span><span class="edu-row__org">Eduviet</span><span class="edu-row__year">2021</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Emergency Response SAT Team Leader Training</span><span class="edu-row__org">GHS Aviation Group, USA</span><span class="edu-row__year">2019</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Account Leadership</span><span class="edu-row__org">AIM Academy</span><span class="edu-row__year">2018</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Building a Professional Leader</span><span class="edu-row__org">Griffin Vietnam</span><span class="edu-row__year">2017</span></li>
+          </ul>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-child" aria-labelledby="tab-child" hidden>
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">Developing Creative Capacities in Children Aged 1–8 Through Visual Arts</span><span class="edu-row__org">Vietnam International Reggio Emilia Society</span><span class="edu-row__year">2023</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Introduction to Visual Arts for Educators</span><span class="edu-row__org">Vietnam International Reggio Emilia Society</span><span class="edu-row__year">2023</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Promoting Child Development in the First 3000 Days</span><span class="edu-row__org">Vietnam–France Psychology Institute</span><span class="edu-row__year">2023</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Professional Training in Psychology and Teaching Skills</span><span class="edu-row__org">Ho Chi Minh City University of Education</span><span class="edu-row__year">2015</span></li>
+          </ul>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-coaching" aria-labelledby="tab-coaching" hidden>
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">Employee Performance Coach</span><span class="edu-row__org">Transformation Academy</span><span class="edu-row__year">2021</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Group Life Coach</span><span class="edu-row__org">Transformation Academy</span><span class="edu-row__year">2021</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Job &amp; Career Transition Coach</span><span class="edu-row__org">Career Network, USA</span><span class="edu-row__year">2020</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Job &amp; Career Development Coach</span><span class="edu-row__org">Career Network, USA</span><span class="edu-row__year">2020</span></li>
+          </ul>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-creative" aria-labelledby="tab-creative" hidden>
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">Advanced Music Therapy</span><span class="edu-row__org">Institute for Psychological Research, Training and Application</span><span class="edu-row__year">2024</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Fundamentals of Music Therapy</span><span class="edu-row__org">Institute for Psychological Research, Training and Application</span><span class="edu-row__year">2024</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Foundations of Aromatherapy</span><span class="edu-row__org">National Association for Holistic Aromatherapy and the School for Aromatic Studies, Essensian Vietnam</span><span class="edu-row__year">2024</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Draw All You Can</span><span class="edu-row__org">Circle Painting, USA</span><span class="edu-row__year">2023</span></li>
+          </ul>
+        </div>
+
+        <div class="edu-panel" role="tabpanel" id="panel-cx" aria-labelledby="tab-cx" hidden>
+          <ul class="edu-list">
+            <li class="edu-row"><span class="edu-row__degree">Customer Service and Complaint Handling Skills</span><span class="edu-row__org">TÜV Rheinland Vietnam</span><span class="edu-row__year">2019</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Professional Skills of Customer Service and Handling Customer Feedback</span><span class="edu-row__org">ISM Center</span><span class="edu-row__year">2015</span></li>
+            <li class="edu-row"><span class="edu-row__degree">Professional Skills of Handling Customer Feedback</span><span class="edu-row__org">Griffin Vietnam</span><span class="edu-row__year">2014</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="continuing" aria-label="Continuing">
+        Continuing<span class="continuing__dot" aria-hidden="true">.</span><span class="continuing__dot" aria-hidden="true">.</span><span class="continuing__dot" aria-hidden="true">.</span>
+      </p>
+    </section>
+
+    
+    <!-- Floating preview (hover a role) -->
     <div class="preview" aria-hidden="true">
       <div class="preview__slider">
         <div class="preview__slide" style="background:#e8ded4"><img src="assets/project-1.svg" alt=""></div>
@@ -323,10 +469,7 @@
     <div class="preview-label" aria-hidden="true">Open</div>
 
     <!-- CTA -->
-    <section class="container pf-bottom">
-      <a href="about.html" class="btn-pill" data-magnetic="0.3">
-        <span class="btn__fill"></span><span class="btn__text">About me</span>
-      </a>
+    <section class="container about-cta">
       <a href="contact.html" class="btn-pill" data-magnetic="0.3" data-page="Contact">
         <span class="btn__fill"></span><span class="btn__text">Work with me</span>
       </a>
