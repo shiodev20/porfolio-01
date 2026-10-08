@@ -151,7 +151,7 @@ function initMagnetic() {
   if (isTouch) return;
   $$("[data-magnetic]").forEach((el) => {
     const strength = parseFloat(el.dataset.magnetic) || 0.4;
-    const inner = $(".btn__text", el);
+    const inner = $(".btn__text, .logo__names", el);   // the label that trails the pointer (menu items, brand)
     const base = getComputedStyle(el).transform;
     const baseT = base && base !== "none" ? base + " " : "";
 
@@ -180,8 +180,6 @@ function initMagnetic() {
 function initScroll() {
   const menuBtn = $(".menu-btn");
   const track = $(".marquee__track");
-  const rows = $$(".slides__row");
-  const slidesWrap = $(".slides");
   const footerWrap = $(".footer-wrap");
   const curve = $(".footer-curve");
 
@@ -190,7 +188,6 @@ function initScroll() {
   let x = 0;
   let speed = 0.04; // % per frame
   let boost = 0;    // extra marquee speed from scroll velocity, eased
-  let slideP = null; // eased progress of the sliding image rows
   let curveP = null; // eased footer-curve progress
 
   const loop = () => {
@@ -210,16 +207,6 @@ function initScroll() {
       if (x <= -50) x += 50;
       if (x > 0) x -= 50;
       track.style.transform = `translate3d(${x}%,0,0)`;
-    }
-
-    if (slidesWrap && rows.length) {
-      const r = slidesWrap.getBoundingClientRect();
-      const progress = (innerHeight - r.top) / (innerHeight + r.height); // 0 → 1
-      if (progress > -0.2 && progress < 1.2) {
-        slideP = slideP === null ? progress : lerp(slideP, progress, 0.1);
-        rows[0].style.transform = `translate3d(${slideP * 10}vw,0,0)`;
-        if (rows[1]) rows[1].style.transform = `translate3d(${-slideP * 10}vw,0,0)`;
-      }
     }
 
     // Footer curve: full oval when the footer enters, flat once it fills the screen
@@ -469,7 +456,7 @@ function initTimeline() {
   const timeline = $(".timeline");
   if (!timeline) return;
   const progress = $(".timeline__progress", timeline);
-  const items = $$(".timeline__item, .stage", timeline);
+  const items = $$(".stage", timeline);
 
   let shown = 0;                                   // eased value actually drawn
   const update = () => {
@@ -556,7 +543,6 @@ function initSubnav() {
    Boot
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.lucide) lucide.createIcons(); // <i data-lucide> -> inline <svg>
   initSmoothScroll();
   initTransitions();
   initMenu();

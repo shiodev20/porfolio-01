@@ -34,6 +34,7 @@
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
   <script src="js/dev-theme.js"></script>
+  <!-- Icons: Lucide v1.53.0 (https://lucide.dev), ISC License — inlined as SVG -->
 </head>
 
 <body>
@@ -53,7 +54,7 @@
 
   <!-- Header -->
   <header class="header header--dark">
-    <a href="index.html" class="logo" data-page="Home">
+    <a href="index.html" class="logo" data-magnetic="0.3" data-page="Home">
       <!-- <span class="logo__copy">©</span> -->
       <span class="logo__names">
         <span class="logo__name">Your Brand</span>
@@ -69,8 +70,8 @@
   </header>
 
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <i data-lucide="menu" class="menu-btn__icon menu-btn__icon--open" aria-hidden="true"></i>
-    <i data-lucide="x" class="menu-btn__icon menu-btn__icon--close" aria-hidden="true"></i>
+    <svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+    <svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -101,17 +102,17 @@
     <!-- Hero -->
     <section class="hero">
       <img class="hero__portrait" src="assets/placeholder-portrait.png" alt="Portrait of thảo"
-        data-i18n-attr="alt:portrait-of-thao">
+        data-i18n-attr="alt:portrait-of-thao" width="1200" height="1800" fetchpriority="high" decoding="async">
 
       <div class="hero__badge">
         <p data-i18n="based-in-vietnam">Based<br>in Vietnam</p>
         <div class="hero__globe">
-          <i data-lucide="globe" class="icon" aria-hidden="true"></i>
+          <svg class="lucide lucide-globe icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
         </div>
       </div>
 
       <div class="hero__role">
-        <!-- <i data-lucide="arrow-down-right" class="icon" aria-hidden="true"></i> -->
+        <!-- <svg class="lucide lucide-arrow-down-right icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg> -->
         <p data-i18n="hero-role">Lorem Ipsum is simply <br> dummy text of the printing</p>
       </div>
 
@@ -145,11 +146,9 @@
           <p class="label" data-i18n="portfolio">Portfolio</p>
           <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
             <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="true"
-              aria-label="List view" data-i18n-attr="aria-label:list-view"><i data-lucide="list" class="icon"
-                aria-hidden="true"></i></button>
+              aria-label="List view" data-i18n-attr="aria-label:list-view"><svg class="lucide lucide-list icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg></button>
             <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="false"
-              aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><i data-lucide="layout-grid" class="icon"
-                aria-hidden="true"></i></button>
+              aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><svg class="lucide lucide-layout-grid icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></button>
           </div>
         </div>
       </div>
@@ -158,7 +157,7 @@
           <a class="work__row" href="portfolio.html#studify" data-page="Studify Vietnam">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
-                src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+                src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
             <h3 class="work__title">Studify Vietnam</h3>
             <span class="work__meta"><span class="work__role" data-i18n="educreator-partnership">Educreator,
                 Partnership</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year"
@@ -169,7 +168,7 @@
           <a class="work__row" href="portfolio.html#titbrain" data-page="TiTBrain Education">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
-                src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+                src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
             <h3 class="work__title">TiTBrain Education</h3>
             <span class="work__meta"><span class="work__role" data-i18n="chief-executive-officer">Chief Executive
                 Officer</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2024 –
@@ -180,7 +179,7 @@
           <a class="work__row" href="portfolio.html#thom-thao" data-page="Thom Thao">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
-                src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+                src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
             <h3 class="work__title">Thom Thao</h3>
             <span class="work__meta"><span class="work__role" data-i18n="founder">Founder</span><span class="work__sep"
                 aria-hidden="true"> · </span><span class="work__year">2023 – 2025</span></span>
@@ -190,7 +189,7 @@
           <a class="work__row" href="portfolio.html#home-credit" data-page="Home Credit Vietnam">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
-                src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+                src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
             <h3 class="work__title">Home Credit Vietnam</h3>
             <span class="work__meta"><span class="work__role" data-i18n="senior-l-and-d-business-partner-2">Senior
                 L&amp;D Business Partner</span><span class="work__sep" aria-hidden="true"> · </span><span
@@ -210,13 +209,13 @@
     <div class="preview" aria-hidden="true">
       <div class="preview__slider">
         <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt=""></div>
+            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt=""></div>
+            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt=""></div>
+            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt=""></div>
+            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
       </div>
     </div>
     <div class="preview-cursor" aria-hidden="true"></div>
@@ -234,13 +233,13 @@
         <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
           consectetur adipiscing elit</p>
         <div class="footer__head">
-          <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="">
+          <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="" width="1200" height="1800" loading="lazy" decoding="async">
           <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
         </div>
         <h2 class="footer__title" data-i18n="together">together</h2>
 
         <div class="footer__divider">
-          <i data-lucide="arrow-down-left" class="icon footer__arrow" aria-hidden="true"></i>
+          <svg class="lucide lucide-arrow-down-left icon footer__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7 7 17"/><path d="M17 17H7V7"/></svg>
           <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35" data-page="Work with me">
             <span class="btn__fill"></span>
             <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
@@ -291,7 +290,6 @@
   <script src="js/i18n.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </body>
 
 </html>
