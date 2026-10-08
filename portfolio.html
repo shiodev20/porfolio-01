@@ -13,6 +13,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Page transition: when arriving from an internal link, show the cover + page name
+    // before the first paint (no flash of the page). js/main.js then slides it away.
+    try {
+      var tl = sessionStorage.getItem("transition-label");
+      if (tl !== null) {
+        document.documentElement.classList.add("is-arriving");
+        document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
+        setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
+      }
+      // Intro "Hello" screen (home only) plays once per visit: skip it if it already ran,
+      // or when arriving from another page — otherwise it paints over the transition cover.
+      if (tl !== null || sessionStorage.getItem("preloaded") === "1") {
+        document.documentElement.classList.add("is-preloaded");
+        sessionStorage.setItem("preloaded", "1");
+      }
+    } catch (e) {}
+  </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
   <script src="js/dev-theme.js"></script>
 </head>

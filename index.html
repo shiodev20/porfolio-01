@@ -14,6 +14,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Page transition: when arriving from an internal link, show the cover + page name
+    // before the first paint (no flash of the page). js/main.js then slides it away.
+    try {
+      var tl = sessionStorage.getItem("transition-label");
+      if (tl !== null) {
+        document.documentElement.classList.add("is-arriving");
+        document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
+        setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
+      }
+      // Intro "Hello" screen (home only) plays once per visit: skip it if it already ran,
+      // or when arriving from another page — otherwise it paints over the transition cover.
+      if (tl !== null || sessionStorage.getItem("preloaded") === "1") {
+        document.documentElement.classList.add("is-preloaded");
+        sessionStorage.setItem("preloaded", "1");
+      }
+    } catch (e) {}
+  </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
   <script src="js/dev-theme.js"></script>
 </head>
@@ -141,7 +159,7 @@
       </div>
       <ul class="work__list">
         <li>
-          <a class="work__row" href="portfolio.html#studify">
+          <a class="work__row" href="portfolio.html#studify" data-page="Studify Vietnam">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy"></span>
@@ -152,7 +170,7 @@
           </a>
         </li>
         <li>
-          <a class="work__row" href="portfolio.html#titbrain">
+          <a class="work__row" href="portfolio.html#titbrain" data-page="TiTBrain Education">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy"></span>
@@ -163,7 +181,7 @@
           </a>
         </li>
         <li>
-          <a class="work__row" href="portfolio.html#thom-thao">
+          <a class="work__row" href="portfolio.html#thom-thao" data-page="Thom Thao">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy"></span>
@@ -173,7 +191,7 @@
           </a>
         </li>
         <li>
-          <a class="work__row" href="portfolio.html#home-credit">
+          <a class="work__row" href="portfolio.html#home-credit" data-page="Home Credit Vietnam">
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy"></span>

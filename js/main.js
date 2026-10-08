@@ -56,7 +56,8 @@ function initTransitions() {
   try { arriving = sessionStorage.getItem("transition-label"); sessionStorage.removeItem("transition-label"); } catch (e) {}
   if (arriving) {
     label.textContent = window.i18n ? i18n.page(arriving) : arriving;
-    overlay.classList.add("is-covering");
+    overlay.classList.add("is-covering");                       // hand over from the <head> cover…
+    document.documentElement.classList.remove("is-arriving");   // …without a frame in between
     requestAnimationFrame(() => {
       setTimeout(() => {
         overlay.classList.remove("is-covering");
@@ -80,9 +81,9 @@ function initTransitions() {
         return;
       }
       e.preventDefault();
-      const name = a.dataset.page || a.textContent.trim();
+      const name = (a.dataset.page || a.textContent).replace(/s+/g, " ").trim(); // one line, same text before/after load
       label.textContent = window.i18n ? i18n.page(name) : name;
-      try { sessionStorage.setItem("transition-label", name); } catch (err) {}
+      try { sessionStorage.setItem("transition-label", label.textContent); } catch (err) {}
       overlay.classList.add("is-entering");
       setTimeout(() => { location.href = url.href; }, 750);
     });
@@ -90,7 +91,10 @@ function initTransitions() {
 
   // Back/forward cache: reset overlay
   window.addEventListener("pageshow", (e) => {
-    if (e.persisted) overlay.className = "transition";
+    if (e.persisted) {
+      overlay.className = "transition";
+      document.documentElement.classList.remove("is-arriving");
+    }
   });
 }
 

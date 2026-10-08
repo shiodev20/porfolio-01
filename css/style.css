@@ -87,6 +87,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .transition.is-entering { transition: transform 0.7s var(--ease); transform: translateY(0); }
 .transition.is-covering { transform: translateY(0); }
 .transition.is-leaving { transition: transform 0.8s var(--ease); transform: translateY(-100%); }
+/* Arriving from an internal link: covered from the first paint (class set in <head>) */
+html.is-arriving .transition { transform: translateY(0); transition: none; }
+.transition__label:empty::after { content: var(--transition-label, ""); }
+html.is-preloaded .preloader { display: none; }   /* intro already played / arriving via a link */
 
 /* --------------------------------------------------------------------------
    Header
