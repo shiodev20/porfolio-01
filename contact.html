@@ -7,7 +7,7 @@
   <meta name="description" content="Get in touch with Thao about your next project." data-i18n-attr="content:get-in-touch-with-thao-about">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
     // Page transition: when arriving from an internal link, show the cover + page name
@@ -19,12 +19,6 @@
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
       }
-      // Intro "Hello" screen (home only) plays once per visit: skip it if it already ran,
-      // or when arriving from another page — otherwise it paints over the transition cover.
-      if (tl !== null || sessionStorage.getItem("preloaded") === "1") {
-        document.documentElement.classList.add("is-preloaded");
-        sessionStorage.setItem("preloaded", "1");
-      }
     } catch (e) {}
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
@@ -35,7 +29,7 @@
 
   <div class="transition" aria-hidden="true"><p class="transition__label"></p></div>
 
-  <header class="header">
+  <header class="header header--dark">
     <a href="index.html" class="logo" data-magnetic="0.3" data-page="Home">
       <!-- <span class="logo__copy">©</span> -->
       <span class="logo__names">
@@ -52,8 +46,8 @@
   </header>
 
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-    <svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    <span class="menu-btn__label" aria-hidden="true"><span class="menu-btn__text menu-btn__text--open" data-i18n="menu">Menu</span><span class="menu-btn__text menu-btn__text--close" data-i18n="close">Close</span></span>
+    <span class="menu-btn__icons" aria-hidden="true"><svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -80,77 +74,28 @@
     </div>
   </aside>
 
-  <main>
-    <section class="contact-head container">
-      <div class="contact-head__row">
-        <h1 class="page-title" data-reveal data-i18n="let-s-build-something-together">Let’s build something together</h1>
-        <div>
-          <img class="contact-head__avatar" src="assets/placeholder-portrait.png" alt="Thao" data-i18n-attr="alt:thao" width="1200" height="1800" decoding="async">
-          <!-- <svg class="lucide lucide-arrow-down-right icon arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg> -->
+  <main class="contact">
+    <section class="contact-wrap container">
+      <div class="contact-intro" data-reveal>
+        <div class="contact-intro__who">
+          <img class="contact-intro__avatar" src="assets/placeholder-portrait.png" alt="Thao" data-i18n-attr="alt:thao" width="1200" height="1800" decoding="async">
+          <p class="contact-intro__eyebrow" data-i18n="facilitator-speaker-consultant">Facilitator · Speaker · Consultant</p>
         </div>
-      </div>
-    </section>
-
-    <section class="contact-body container">
-      <form class="form" data-mailto="hello@thao.design" novalidate>
-        <div class="form__field">
-          <span class="form__num">01</span>
-          <div>
-            <label for="f-name" data-i18n="what-should-i-call-you">What should I call you?</label>
-            <input id="f-name" name="name" type="text" placeholder="Your name *" autocomplete="name" data-i18n-attr="placeholder:your-name">
-          </div>
-        </div>
-        <div class="form__field">
-          <span class="form__num">02</span>
-          <div>
-            <label for="f-email" data-i18n="where-can-i-reach-you">Where can I reach you?</label>
-            <input id="f-email" name="email" type="email" placeholder="you@example.com *" autocomplete="email" data-i18n-attr="placeholder:you-example-com">
-          </div>
-        </div>
-        <div class="form__field">
-          <span class="form__num">03</span>
-          <div>
-            <label for="f-org" data-i18n="which-company-or-team-are-you">Which company or team are you with?</label>
-            <input id="f-org" name="organization" type="text" placeholder="Company name" data-i18n-attr="placeholder:company-name">
-          </div>
-        </div>
-        <div class="form__field">
-          <span class="form__num">04</span>
-          <div>
-            <label for="f-services" data-i18n="what-do-you-need-help-with">What do you need help with?</label>
-            <input id="f-services" name="services" type="text" placeholder="Branding, website, landing page…" data-i18n-attr="placeholder:branding-website-landing-page">
-          </div>
-        </div>
-        <div class="form__field">
-          <span class="form__num">05</span>
-          <div>
-            <label for="f-message" data-i18n="tell-me-a-little-about-the">Tell me a little about the project</label>
-            <textarea id="f-message" name="message" rows="5" placeholder="Goals, timeline, budget… *" data-i18n-attr="placeholder:goals-timeline-budget"></textarea>
-          </div>
-        </div>
-        <div class="form__submit">
-          <button type="submit" class="btn-round btn-round--accent" data-magnetic="0.35">
-            <span class="btn__fill"></span>
-            <span class="btn__text" data-i18n="send-it">Send it</span>
-          </button>
-          <p class="form__status" aria-live="polite"></p>
-        </div>
-      </form>
-
-      <aside class="contact-aside">
+        <h1 class="page-title contact-title" data-i18n="lets-make-it-together">Let’s make it together</h1>
+        <aside class="contact-aside">
         <div>
           <h5 data-i18n="contact-details">Contact details</h5>
           <ul>
-            <li><a href="mailto:hello@thao.design" class="u-link">hello@thao.design</a></li>
+            <li><a href="mailto:abc@gmail.com" class="u-link">abc@gmail.com</a></li>
             <li><a href="tel:+84000000000" class="u-link">+84 000 000 000</a></li>
           </ul>
         </div>
         <div>
           <h5 data-i18n="business-details">Business details</h5>
           <ul>
-            <li data-i18n="thao-studio">Thao Studio</li>
+            <li data-i18n="thao-studio">Your Brand</li>
             <li data-i18n="location-vietnam">Location: Vietnam</li>
-            <li data-i18n="tax-id">Tax ID: —</li>
+            <li data-i18n="tax-id">Tax ID: 00000000</li>
           </ul>
         </div>
         <div>
@@ -163,6 +108,60 @@
           </ul>
         </div>
       </aside>
+      </div>
+
+      <form class="form form-card" data-mailto="abc@gmail.com" novalidate>
+          <div class="form__group">
+            <label class="form__label form__label--req" for="f-name" data-i18n="what-should-i-call-you">What should I call you?</label>
+            <input class="form__input" id="f-name" name="name" type="text" placeholder="Ken Robinson" autocomplete="name" aria-required="true">
+          </div>
+          <div class="form__group">
+            <label class="form__label form__label--req" for="f-email" data-i18n="whats-your-email">What’s your email?</label>
+            <input class="form__input" id="f-email" name="email" type="email" placeholder="ken@robinson.com" autocomplete="email" aria-required="true">
+          </div>
+          <fieldset class="form__group">
+            <legend class="form__label" data-i18n="are-you-reaching-out-as">Are you reaching out as…?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="as" value="Individual"><span data-i18n="opt-individual">Individual</span></label>
+              <label class="chip"><input type="radio" name="as" value="Organization"><span data-i18n="opt-organization">Organization</span></label>
+              <label class="chip"><input type="radio" name="as" value="Education institution"><span data-i18n="opt-education-institution">Education institution</span></label>
+              <label class="chip"><input type="radio" name="as" value="Community"><span data-i18n="opt-community">Community</span></label>
+              <label class="chip"><input type="radio" name="as" value="Other"><span data-i18n="opt-other">Other</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="form__group">
+            <legend class="form__label" data-i18n="how-would-you-like-to-work">How would you like to work with me?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="role" value="Facilitator"><span data-i18n="opt-facilitator">Facilitator</span></label>
+              <label class="chip"><input type="radio" name="role" value="Speaker"><span data-i18n="opt-speaker">Speaker</span></label>
+              <label class="chip"><input type="radio" name="role" value="Consultant"><span data-i18n="opt-consultant">Consultant</span></label>
+              <label class="chip"><input type="radio" name="role" value="Not sure yet"><span data-i18n="opt-not-sure-yet">Not sure yet</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="form__group">
+            <legend class="form__label" data-i18n="what-format-are-you-considering">What format are you considering?</legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="format" value="Workshop"><span data-i18n="opt-workshop">Workshop</span></label>
+              <label class="chip"><input type="checkbox" name="format" value="Talk"><span data-i18n="opt-talk">Talk</span></label>
+              <label class="chip"><input type="checkbox" name="format" value="Facilitation"><span data-i18n="opt-facilitation">Facilitation</span></label>
+              <label class="chip"><input type="checkbox" name="format" value="Consulting"><span data-i18n="opt-consulting">Consulting</span></label>
+              <label class="chip"><input type="checkbox" name="format" value="Program"><span data-i18n="opt-program">Program</span></label>
+              <label class="chip"><input type="checkbox" name="format" value="Not sure"><span data-i18n="opt-not-sure">Not sure</span></label>
+            </div>
+          </fieldset>
+          <div class="form__group">
+            <label class="form__label" for="f-timing" data-i18n="when-are-you-hoping">When are you hoping this could happen?</label>
+            <input class="form__input" id="f-timing" name="timing" type="text" placeholder="Timing" data-i18n-attr="placeholder:timing">
+          </div>
+          <div class="form__group">
+            <label class="form__label form__label--req" for="f-message" data-i18n="your-message">Your message</label>
+            <textarea class="form__input" id="f-message" name="message" rows="5" placeholder="Hello thảo, can you help me with…" aria-required="true" data-i18n-attr="placeholder:hello-thao-can-you-help"></textarea>
+          </div>
+          <div class="form__actions">
+            <button type="submit" class="btn-pill btn-pill--solid"><span class="btn__text" data-i18n="send-it">Send it</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+            <p class="form__status" aria-live="polite"></p>
+          </div>
+        </form>
     </section>
 
     <section class="container">

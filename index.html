@@ -11,7 +11,7 @@
     data-i18n-attr="content:thao-educator-solo-expert-in-self">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
@@ -24,12 +24,6 @@
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
       }
-      // Intro "Hello" screen (home only) plays once per visit: skip it if it already ran,
-      // or when arriving from another page — otherwise it paints over the transition cover.
-      if (tl !== null || sessionStorage.getItem("preloaded") === "1") {
-        document.documentElement.classList.add("is-preloaded");
-        sessionStorage.setItem("preloaded", "1");
-      }
     } catch (e) {}
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
@@ -39,13 +33,6 @@
 
 <body>
 
-  <!-- Preloader -->
-  <div class="preloader" aria-hidden="true">
-    <p class="preloader__word" data-i18n="hello">Hello</p>
-    <svg class="preloader__curve" viewBox="0 0 100 20" preserveAspectRatio="none">
-      <path d="M0 0 Q50 20 100 0 Z" />
-    </svg>
-  </div>
 
   <!-- Page transition -->
   <div class="transition" aria-hidden="true">
@@ -70,8 +57,8 @@
   </header>
 
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-    <svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    <span class="menu-btn__label" aria-hidden="true"><span class="menu-btn__text menu-btn__text--open" data-i18n="menu">Menu</span><span class="menu-btn__text menu-btn__text--close" data-i18n="close">Close</span></span>
+    <span class="menu-btn__icons" aria-hidden="true"><svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -100,34 +87,32 @@
 
   <main>
     <!-- Hero -->
-    <section class="hero">
-      <img class="hero__portrait" src="assets/placeholder-portrait.png" alt="Portrait of thảo"
-        data-i18n-attr="alt:portrait-of-thao" width="1200" height="1800" fetchpriority="high" decoding="async">
-
-      <div class="hero__badge">
-        <p data-i18n="based-in-vietnam">Based<br>in Vietnam</p>
-        <div class="hero__globe">
-          <svg class="lucide lucide-globe icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+    <section class="home-hero container">
+      <div class="home-hero__text" data-reveal>
+        <p class="home-hero__eyebrow"><svg class="lucide lucide-globe icon home-hero__globe" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span data-i18n="based-in-vietnam-line">Based in Vietnam</span></p>
+        <p class="home-hero__role" data-i18n="hero-role">Lorem Ipsum is simply <br> dummy text of the printing</p>
+        <div class="home-hero__actions">
+          <a href="portfolio.html" class="btn-pill btn-pill--solid" data-page="Portfolio"><span class="btn__text" data-i18n="view-portfolio">View portfolio</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a href="contact.html" class="btn-pill" data-page="Contact"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span></a>
         </div>
       </div>
-
-      <div class="hero__role">
-        <!-- <svg class="lucide lucide-arrow-down-right icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg> -->
-        <p data-i18n="hero-role">Lorem Ipsum is simply <br> dummy text of the printing</p>
-      </div>
-
-      <h1 class="marquee" aria-label="Your Name">
-        <span class="marquee__track" aria-hidden="true">
-          <span class="marquee__item">Your Name —</span>
-          <span class="marquee__item">Your Name —</span>
-          <span class="marquee__item">Your Name —</span>
-          <span class="marquee__item">Your Name —</span>
+      <figure class="home-hero__media">
+        <img class="home-hero__img" src="assets/portrait.png" alt="Portrait of thảo"
+        data-i18n-attr="alt:portrait-of-thao" width="1228" height="1540" fetchpriority="high" decoding="async">
+      </figure>
+    
+      <h1 class="home-marquee" aria-label="Your Name">
+        <span class="home-marquee__track" aria-hidden="true">
+          <span class="home-marquee__item">Your Name —</span>
+          <span class="home-marquee__item">Your Name —</span>
+          <span class="home-marquee__item">Your Name —</span>
+          <span class="home-marquee__item">Your Name —</span>
         </span>
       </h1>
     </section>
 
     <!-- Intro + Portfolio preview: one grid, so the "Portfolio" label sits at the bottom of the intro row -->
-    <section class="work container" id="portfolio" data-view="list">
+    <section class="work container" id="portfolio" data-view="grid">
       <div class="intro__grid">
         <p class="intro__lead" data-reveal data-i18n="i-design-learning-experiences-that-help">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -138,16 +123,14 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua.
           </p>
-          <a href="portfolio.html" class="btn-round btn-round--static intro__btn" data-magnetic="0.35">
-            <span class="btn__text" data-i18n="about-me">About me</span>
-          </a>
+          <a href="portfolio.html" class="btn-pill intro__btn"><span class="btn__text" data-i18n="about-me">About me</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
         <div class="work__head">
           <p class="label" data-i18n="portfolio">Portfolio</p>
           <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
-            <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="true"
+            <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="false"
               aria-label="List view" data-i18n-attr="aria-label:list-view"><svg class="lucide lucide-list icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg></button>
-            <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="false"
+            <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="true"
               aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><svg class="lucide lucide-layout-grid icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></button>
           </div>
         </div>
@@ -158,6 +141,8 @@
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
+            <span class="work__num">01</span>
+            <span class="work__cat" data-i18n="digital-learning-and-education">Digital Learning &amp; Education</span>
             <h3 class="work__title">Studify Vietnam</h3>
             <span class="work__meta"><span class="work__role" data-i18n="educreator-partnership">Educreator,
                 Partnership</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year"
@@ -169,6 +154,8 @@
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
+            <span class="work__num">02</span>
+            <span class="work__cat" data-i18n="abacus-mental-arithmetic-enrichment-programs">Abacus Mental Arithmetic - Enrichment programs</span>
             <h3 class="work__title">TiTBrain Education</h3>
             <span class="work__meta"><span class="work__role" data-i18n="chief-executive-officer">Chief Executive
                 Officer</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2024 –
@@ -180,6 +167,8 @@
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
+            <span class="work__num">03</span>
+            <span class="work__cat" data-i18n="experiential-learning-and-facilitation">Experiential Learning &amp; Facilitation</span>
             <h3 class="work__title">Thom Thao</h3>
             <span class="work__meta"><span class="work__role" data-i18n="founder">Founder</span><span class="work__sep"
                 aria-hidden="true"> · </span><span class="work__year">2023 – 2025</span></span>
@@ -190,6 +179,8 @@
             <span class="work__media" aria-hidden="true"
               style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
+            <span class="work__num">04</span>
+            <span class="work__cat" data-i18n="tech-enabled-consumer-finance">Tech-enabled Consumer Finance</span>
             <h3 class="work__title">Home Credit Vietnam</h3>
             <span class="work__meta"><span class="work__role" data-i18n="senior-l-and-d-business-partner-2">Senior
                 L&amp;D Business Partner</span><span class="work__sep" aria-hidden="true"> · </span><span
@@ -198,14 +189,13 @@
         </li>
       </ul>
       <div class="work__more">
-        <a href="portfolio.html" class="btn-pill" data-magnetic="0.3">
-          <span class="btn__fill"></span>
-          <span class="btn__text" data-i18n="view-full-portfolio">View full portfolio</span>
+        <a href="portfolio.html" class="btn-pill">
+          <span class="btn__text" data-i18n="view-full-portfolio">View full portfolio</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
     </section>
 
-    <!-- Floating preview for work list -->
+    <!-- Floating preview: follows the pointer over project rows in List mode -->
     <div class="preview" aria-hidden="true">
       <div class="preview__slider">
         <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
@@ -225,41 +215,22 @@
 
   <!-- Footer -->
   <div class="footer-wrap" id="work-with-me">
-    <div class="footer-curve"><svg viewBox="0 0 100 10" preserveAspectRatio="none">
-        <path d="M0 0 H100 V0 Q50 20 0 0 Z" />
-      </svg></div>
+    <div class="footer-curve" aria-hidden="true"></div>
     <footer class="footer">
       <div class="container">
-        <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
+        <div class="footer__cta">
+          <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
           consectetur adipiscing elit</p>
-        <div class="footer__head">
-          <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="" width="1200" height="1800" loading="lazy" decoding="async">
-          <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
-        </div>
-        <h2 class="footer__title" data-i18n="together">together</h2>
-
-        <div class="footer__divider">
-          <svg class="lucide lucide-arrow-down-left icon footer__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7 7 17"/><path d="M17 17H7V7"/></svg>
-          <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35" data-page="Work with me">
-            <span class="btn__fill"></span>
-            <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
-          </a>
+          <h2 class="footer__title"><span data-i18n="let-s-make-it">Let’s make it</span> <span data-i18n="together">together</span></h2>
+          <a href="contact.html" class="btn-pill btn-pill--solid" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
 
         <!-- TODO: thay email / số Zalo / WhatsApp thật -->
-        <div class="footer__pills">
-          <a href="mailto:hello@thaoeducator.com" class="btn-pill btn-pill--light" data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">hello@thaoeducator.com</span>
-          </a>
-          <a href="https://zalo.me/84000000000" target="_blank" rel="noopener" class="btn-pill btn-pill--light"
-            data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">Zalo</span>
-          </a>
-          <a href="https://wa.me/84000000000" target="_blank" rel="noopener" class="btn-pill btn-pill--light"
-            data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">WhatsApp</span>
-          </a>
-      </div>
+        <ul class="footer__contacts">
+          <li><a class="footer__contact" href="mailto:abc@gmail.com"><svg class="lucide lucide-mail icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span class="footer__contact-label">Email</span><span class="footer__contact-value">abc@gmail.com</span></a></li>
+          <li><a class="footer__contact" href="https://zalo.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-message-circle icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span class="footer__contact-label">Zalo</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
+          <li><a class="footer__contact" href="https://wa.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-phone icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span class="footer__contact-label">WhatsApp</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
+        </ul>
 
         <div class="footer__bottom">
           <div class="footer__meta">

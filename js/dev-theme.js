@@ -83,22 +83,15 @@
   .dt .dt__panel { position: absolute; top: calc(100% + 0.4rem); right: 0; z-index: 40;
     opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-6px); transition: opacity .2s, transform .25s, visibility 0s .25s; }
   .dt.is-open .dt__panel { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
-  .dt__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; font-weight: 600; }
   .dt__row { display: grid; grid-template-columns: 2.6rem 1fr 5.6rem; gap: .7rem; align-items: center; padding: .45rem 0; }
   .dt__swatch { position: relative; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); overflow: hidden; cursor: pointer; }
   .dt__swatch input { position: absolute; inset: -0.5rem; width: calc(100% + 1rem); height: calc(100% + 1rem); border: 0; padding: 0; opacity: 0; cursor: pointer; }
   .dt__name { font-weight: 600; }
-  .dt__use { display: block; font-size: .72rem; color: #6b6b6b; }
   .dt__hex { width: 100%; padding: .4rem .5rem; border: 1px solid #d5d5d5; border-radius: .5rem; font: 500 .8rem ui-monospace, monospace; text-transform: uppercase; color: #1a1a1a; background: #fff; }
   .dt__hex.is-bad { border-color: #ff4d4f; }
-  .dt__contrast { margin: .8rem 0; padding-top: .7rem; border-top: 1px solid #eee; display: grid; gap: .25rem; font-size: .76rem; }
-  .dt__contrast div { display: flex; justify-content: space-between; gap: .5rem; }
-  .dt__ok { color: #1a8a3c; } .dt__mid { color: #b7791f; } .dt__bad { color: #d4380d; }
-  .dt__actions { display: flex; gap: .5rem; }
+  .dt__actions { display: flex; margin-top: .8rem; }
   .dt__btn { flex: 1; padding: .6rem .8rem; border: 1px solid #d5d5d5; border-radius: 999px; font: 600 .8rem system-ui, sans-serif; color: #1a1a1a; background: #fff; cursor: pointer; text-align: center; }
   .dt__btn:hover { background: #f3f3f3; } .dt__btn:disabled { opacity: .4; cursor: default; }
-  .dt__btn--primary { background: #1a1a1a; color: #fff; border-color: #1a1a1a; } .dt__btn--primary:hover { background: #333; }
-  .dt__note { margin-top: .7rem; font-size: .7rem; color: #8a8a8a; }
   `;
 
   const panels = [];
@@ -109,19 +102,15 @@
     el.setAttribute("role", "dialog");
     el.setAttribute("aria-label", "Colour tester (dev only)");
     el.innerHTML = `
-      <div class="dt__head"><span>Colour tester</span><span class="dt__tag">DEV</span></div>
       ${ROLES.map((r) => `
       <div class="dt__row" data-var="${r.v}">
         <label class="dt__swatch" title="Pick ${r.name}"><input type="color" aria-label="${r.name}"></label>
-        <div><span class="dt__name">${r.name}</span><span class="dt__use">${r.use}</span></div>
+        <span class="dt__name">${r.name}</span>
         <input class="dt__hex" type="text" maxlength="7" spellcheck="false" aria-label="${r.name} hex">
       </div>`).join("")}
-      <div class="dt__contrast" aria-label="Contrast checks"></div>
       <div class="dt__actions">
         <button type="button" class="dt__btn" data-act="reset">Reset</button>
-        <button type="button" class="dt__btn dt__btn--primary" data-act="copy">Copy CSS</button>
-      </div>
-      <p class="dt__note">Dev-only. Saved in this browser. Paste the copied block over :root in css/style.css.</p>`;
+      </div>`;
 
     el.addEventListener("input", (e) => {
       const row = e.target.closest(".dt__row");
@@ -140,34 +129,12 @@
     el.addEventListener("click", (e) => {
       const act = e.target.dataset && e.target.dataset.act;
       if (act === "reset") { state = { ...defaults }; applyTheme(); }
-      if (act === "copy") copyCss(e.target);
     });
     panels.push(el);
     return el;
   }
 
-  function cssBlock() {
-    return `:root {\n${ROLES.map((r) => `  ${r.v}: ${state[r.v]};  /* ${r.name} */`).join("\n")}\n}`;
-  }
-
-  function copyCss(btn) {
-    const text = cssBlock();
-    const done = () => { const old = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(() => (btn.textContent = old), 1400); };
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
-    else fallback();
-    function fallback() {
-      const ta = document.createElement("textarea");
-      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); done(); } catch (err) { prompt("Copy this CSS:", text); }
-      ta.remove();
-    }
-  }
-
-  const grade = (r) => (r >= 4.5 ? ["dt__ok", "AA ✓"] : r >= 3 ? ["dt__mid", "large only"] : ["dt__bad", "low ✗"]);
-
   function refreshUi() {
-    const [cafe, ivory, blush, khaki] = ROLES.map((r) => state[r.v]);
     panels.forEach((p) => {
       ROLES.forEach((r) => {
         const row = p.querySelector(`[data-var="${r.v}"]`);
@@ -175,11 +142,6 @@
         const color = row.querySelector('input[type="color"]'); if (color.value.toUpperCase() !== state[r.v]) color.value = state[r.v];
         const hex = row.querySelector(".dt__hex"); if (document.activeElement !== hex) { hex.value = state[r.v]; hex.classList.remove("is-bad"); }
       });
-      const checks = [["Ink on Ivory (body text)", cafe, ivory], ["Ivory on Ink (footer, journey)", ivory, cafe], ["Ink on Blush (CTA, hover)", cafe, blush], ["Ink on Khaki", cafe, khaki]];
-      p.querySelector(".dt__contrast").innerHTML = checks.map(([label, a, b]) => {
-        const r = ratio(a, b); const [cls, txt] = grade(r);
-        return `<div><span>${label}</span><span class="${cls}">${r.toFixed(1)}:1 ${txt}</span></div>`;
-      }).join("");
       p.querySelector('[data-act="reset"]').disabled = isDefault();
     });
     document.querySelectorAll(".dt__dots").forEach((d) => {

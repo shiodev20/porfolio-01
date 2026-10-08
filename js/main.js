@@ -54,42 +54,6 @@ function scrollToElement(el, smooth) {
 }
 
 /* --------------------------------------------------------------------------
-   Preloader (home only, once per session)
-   -------------------------------------------------------------------------- */
-function initPreloader() {
-  const el = $(".preloader");
-  if (!el) return Promise.resolve();
-
-  let seen = false;
-  try { seen = sessionStorage.getItem("preloaded") === "1"; } catch (e) {}
-  if (seen) { el.remove(); return Promise.resolve(); }
-
-  const words = ["Hello", "Xin chào", "Bonjour", "Ciao", "Hola", "こんにちは", "Hallo", "안녕하세요", "Hello"];
-  const label = $(".preloader__word", el);
-  document.body.classList.add("is-locked");
-
-  return new Promise((resolve) => {
-    let i = 0;
-    const tick = () => {
-      label.textContent = words[i];
-      i++;
-      if (i < words.length) {
-        setTimeout(tick, i === 1 ? 900 : 150);
-      } else {
-        setTimeout(() => {
-          el.classList.add("is-done");
-          document.body.classList.remove("is-locked");
-          try { sessionStorage.setItem("preloaded", "1"); } catch (e) {}
-          setTimeout(() => el.remove(), 1000);
-          resolve();
-        }, 600);
-      }
-    };
-    tick();
-  });
-}
-
-/* --------------------------------------------------------------------------
    Page transitions
    -------------------------------------------------------------------------- */
 function initTransitions() {
@@ -131,7 +95,7 @@ function initTransitions() {
       label.textContent = window.i18n ? i18n.page(name) : name;
       try { sessionStorage.setItem("transition-label", label.textContent); } catch (err) {}
       overlay.classList.add("is-entering");
-      setTimeout(() => { location.href = url.href; }, 750);
+      setTimeout(() => { location.href = url.href; }, 500);
     });
   });
 
@@ -175,20 +139,21 @@ function initMagnetic() {
 }
 
 /* --------------------------------------------------------------------------
-   Scroll: menu button, hero marquee, sliding rows
+   Scroll: menu pill visibility + the hero name marquee (reacts to scroll speed/direction)
    -------------------------------------------------------------------------- */
 function initScroll() {
   const menuBtn = $(".menu-btn");
-  const track = $(".marquee__track");
+  const track = $(".home-marquee__track");
   const footerWrap = $(".footer-wrap");
   const curve = $(".footer-curve");
+  let curveP = null;    // eased progress of the footer curve
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let lastY = scrollY;
-  let direction = -1;
-  let x = 0;
-  let speed = 0.04; // % per frame
-  let boost = 0;    // extra marquee speed from scroll velocity, eased
-  let curveP = null; // eased footer-curve progress
+  let direction = -1;   // -1 = runs left (scrolling down), 1 = runs right (scrolling up)
+  let x = 0;            // % of the track; the track holds two identical halves, so it wraps at -50%
+  const speed = 0.035;  // % per frame at rest
+  let boost = 0;        // extra speed from scroll velocity, eased up and down
 
   const loop = () => {
     const y = scrollY;
@@ -196,28 +161,23 @@ function initScroll() {
     const delta = Math.abs(y - lastY);
     lastY = y;
 
-    if (menuBtn && !isTouch && innerWidth > 900) {
-      menuBtn.classList.toggle("is-visible", y > 150);
-    }
+    // desktop: the menu pill appears once the header has scrolled away (always shown on small screens)
+    if (menuBtn && !isTouch && innerWidth > 900) menuBtn.classList.toggle("is-visible", y > 150);
 
-    if (track) {
-      boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);   // eases up and back down — no jerks
+    if (track && !still) {
+      boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);
       x += direction * (speed + boost);
-      // track contains two identical halves; wrap at -50%
       if (x <= -50) x += 50;
       if (x > 0) x -= 50;
       track.style.transform = `translate3d(${x}%,0,0)`;
     }
-
-    // Footer curve: full oval when the footer enters, flat once it fills the screen
+    // Footer curve: a deep Ivory arc when the footer enters, flat once it fills the screen
     if (footerWrap && curve) {
       const r = footerWrap.getBoundingClientRect();
-      const distance = Math.min(r.height, innerHeight) * 0.75;
-      const p = Math.min(Math.max((innerHeight - r.top) / distance, 0), 1);
+      const p = Math.min(Math.max((innerHeight - r.top) / (innerHeight * 0.8), 0), 1);
       curveP = curveP === null ? p : lerp(curveP, p, 0.12);
-      curve.style.height = `${(1 - curveP) * innerHeight * 0.3}px`;
+      curve.style.height = `${(1 - curveP) * innerHeight * 0.18}px`;
     }
-
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
@@ -265,6 +225,7 @@ function initWorkPreview() {
     const index = row.dataset.previewIndex !== undefined ? +row.dataset.previewIndex : i;
     row.addEventListener("mouseenter", () => {
       if (row.closest(".pf-item.is-open")) return;        // opened project: no hover effect
+      if (row.closest('.work[data-view="grid"]')) return; // home cards already show their image
       let target = index;
       if (row.dataset.previewSrc && dynamic) {            // per-row image (e.g. certificates)
         dynamic.querySelector("img").src = row.dataset.previewSrc;
@@ -408,13 +369,15 @@ function initForm() {
     const body = [
       `Name: ${d.get("name")}`,
       `Email: ${d.get("email")}`,
-      `Organization: ${d.get("organization") || "-"}`,
-      `Services: ${d.get("services") || "-"}`,
+      `Reaching out as: ${d.get("as") || "-"}`,
+      `Would like to work with me as: ${d.get("role") || "-"}`,
+      `Format: ${d.getAll("format").join(", ") || "-"}`,
+      `Timing: ${d.get("timing") || "-"}`,
       "",
       d.get("message"),
     ].join("\n");
     const to = form.dataset.mailto;
-    location.href = `mailto:${to}?subject=${encodeURIComponent("New project enquiry")}&body=${encodeURIComponent(body)}`;
+    location.href = `mailto:${to}?subject=${encodeURIComponent("Work with me — new enquiry")}&body=${encodeURIComponent(body)}`;
     status.textContent = window.i18n ? i18n.t("_msg.opening", "Opening your mail app…") : "Opening your mail app…";
   });
 }
@@ -558,5 +521,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initFlow();
   initPortfolio();
   initSubnav();
-  initPreloader().then(initReveal);
+  initReveal();
 });

@@ -10,7 +10,7 @@
     data-i18n-attr="content:career-timeline-of-thao-educator-from">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&subset=vietnamese&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
@@ -22,12 +22,6 @@
         document.documentElement.classList.add("is-arriving");
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
-      }
-      // Intro "Hello" screen (home only) plays once per visit: skip it if it already ran,
-      // or when arriving from another page — otherwise it paints over the transition cover.
-      if (tl !== null || sessionStorage.getItem("preloaded") === "1") {
-        document.documentElement.classList.add("is-preloaded");
-        sessionStorage.setItem("preloaded", "1");
       }
     } catch (e) {}
   </script>
@@ -59,8 +53,8 @@
   </header>
 
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-    <svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    <span class="menu-btn__label" aria-hidden="true"><span class="menu-btn__text menu-btn__text--open" data-i18n="menu">Menu</span><span class="menu-btn__text menu-btn__text--close" data-i18n="close">Close</span></span>
+    <span class="menu-btn__icons" aria-hidden="true"><svg class="lucide lucide-menu menu-btn__icon menu-btn__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="lucide lucide-x menu-btn__icon menu-btn__icon--close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -675,8 +669,7 @@
                               supporting digital transformation in education, with the broader aim of making
                               personalized learning more accessible to Vietnamese learners.</p>
                             <!-- TODO: thay href bằng link trang Course -->
-                            <div class="pf-cta"><a href="#" class="btn-pill" data-magnetic="0.25"><span
-                                  class="btn__fill"></span><span class="btn__text"><span
+                            <div class="pf-cta"><a href="#" class="btn-pill"><span class="btn__text"><span
                                     data-i18n="explore-more">Explore more</span> <svg class="lucide lucide-arrow-right icon icon--inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a></div>
                           </div>
                           <div class="pf-block pf-gallery pf-gallery--3">
@@ -765,7 +758,7 @@
         <div class="edu-panel" role="tabpanel" id="panel-academic" aria-labelledby="tab-academic">
           <ul class="edu-list">
             <li class="edu-row" data-preview-src="assets/placeholder-image.png"><span class="edu-row__degree">M.Ed in Emerging Technologies <span class="edu-row__note"
-                  data-i18n="in-progress">(In Progress)</span></span><span class="edu-row__org">Edgewood University –
+                  data-i18n="in-progress">In progress</span></span><span class="edu-row__org">Edgewood University –
                 Madison, USA</span><span class="edu-row__year" data-i18n="2026-present">2026–Present</span><button type="button" class="edu-row__open" aria-haspopup="dialog" aria-label="View certificate" data-i18n-attr="aria-label:view-certificate"></button></li>
             <li class="edu-row" data-preview-src="assets/placeholder-image.png"><span class="edu-row__degree">Bachelor of Arts – French Linguistics and
                 Literature</span><span class="edu-row__org">University of Social Sciences and Humanities, Vietnam
@@ -881,8 +874,7 @@
 
     <!-- CTA -->
     <!-- <section class="container about-cta">
-      <a href="contact.html" class="btn-pill" data-magnetic="0.3" data-page="Contact">
-        <span class="btn__fill"></span><span class="btn__text" data-i18n="work-with-me">Work with me</span>
+      <a href="contact.html" class="btn-pill" data-page="Contact"><span class="btn__text" data-i18n="work-with-me">Work with me</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </section> -->
   </main>
@@ -898,41 +890,22 @@
 
   <!-- Footer -->
   <div class="footer-wrap" id="work-with-me">
-    <div class="footer-curve"><svg viewBox="0 0 100 10" preserveAspectRatio="none">
-        <path d="M0 0 H100 V0 Q50 20 0 0 Z" />
-      </svg></div>
+    <div class="footer-curve" aria-hidden="true"></div>
     <footer class="footer">
       <div class="container">
-        <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
+        <div class="footer__cta">
+          <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
           consectetur adipiscing elit</p>
-        <div class="footer__head">
-          <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="" width="1200" height="1800" loading="lazy" decoding="async">
-          <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
-        </div>
-        <h2 class="footer__title" data-i18n="together">together</h2>
-
-        <div class="footer__divider">
-          <svg class="lucide lucide-arrow-down-left icon footer__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7 7 17"/><path d="M17 17H7V7"/></svg>
-          <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35" data-page="Work with me">
-            <span class="btn__fill"></span>
-            <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
-          </a>
+          <h2 class="footer__title"><span data-i18n="let-s-make-it">Let’s make it</span> <span data-i18n="together">together</span></h2>
+          <a href="contact.html" class="btn-pill btn-pill--solid" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
 
         <!-- TODO: thay email / số Zalo / WhatsApp thật -->
-        <div class="footer__pills">
-          <a href="mailto:hello@thaoeducator.com" class="btn-pill btn-pill--light" data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">hello@thaoeducator.com</span>
-          </a>
-          <a href="https://zalo.me/84000000000" target="_blank" rel="noopener" class="btn-pill btn-pill--light"
-            data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">Zalo</span>
-          </a>
-          <a href="https://wa.me/84000000000" target="_blank" rel="noopener" class="btn-pill btn-pill--light"
-            data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">WhatsApp</span>
-          </a>
-      </div>
+        <ul class="footer__contacts">
+          <li><a class="footer__contact" href="mailto:abc@gmail.com"><svg class="lucide lucide-mail icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span class="footer__contact-label">Email</span><span class="footer__contact-value">abc@gmail.com</span></a></li>
+          <li><a class="footer__contact" href="https://zalo.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-message-circle icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span class="footer__contact-label">Zalo</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
+          <li><a class="footer__contact" href="https://wa.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-phone icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span class="footer__contact-label">WhatsApp</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
+        </ul>
 
         <div class="footer__bottom">
           <div class="footer__meta">
