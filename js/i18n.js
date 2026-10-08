@@ -80,8 +80,7 @@
   }
 
   /* ---------- dropdown ---------- */
-  const CHEVRON =
-    '<svg class="lang__chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>';
+  const CHEVRON = '<i data-lucide="chevron-down" class="lang__chevron icon" aria-hidden="true"></i>';
 
   function render(root, index) {
     const id = `lang-menu-${index}`;

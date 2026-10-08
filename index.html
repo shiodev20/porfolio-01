@@ -41,7 +41,8 @@
 
   <!-- Round menu button + side menu -->
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <span class="menu-btn__lines btn__text"><span></span><span></span></span>
+    <i data-lucide="menu" class="menu-btn__icon menu-btn__icon--open" aria-hidden="true"></i>
+    <i data-lucide="x" class="menu-btn__icon menu-btn__icon--close" aria-hidden="true"></i>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -71,17 +72,17 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <img class="hero__portrait" src="assets/portrait.svg" alt="Portrait of thảo" data-i18n-attr="alt:portrait-of-thao">
+      <img class="hero__portrait" src="assets/placeholder-portrait.png" alt="Portrait of thảo" data-i18n-attr="alt:portrait-of-thao">
 
       <div class="hero__badge">
         <p data-i18n="based-in-vietnam">Based<br>in Vietnam</p>
         <div class="hero__globe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4.5" ry="10"/><path d="M2 12h20M4 7h16M4 17h16"/></svg>
+          <i data-lucide="globe" class="icon" aria-hidden="true"></i>
         </div>
       </div>
 
       <div class="hero__role">
-        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l12 12M13 1v12H1"/></svg>
+        <i data-lucide="arrow-down-right" class="icon" aria-hidden="true"></i>
         <p data-i18n="hero-role">Solo Expert<br>Self-Leadership &amp;<br>Family Education</p>
       </div>
 
@@ -108,21 +109,50 @@
           <br><br>
           Clarity → Agency → Growth
         </p>
-        <a href="portfolio.html" class="btn-round intro__btn" data-magnetic="0.35">
-          <span class="btn__fill"></span>
+        <a href="portfolio.html" class="btn-round btn-round--static intro__btn" data-magnetic="0.35">
           <span class="btn__text" data-i18n="about-me">About me</span>
         </a>
       </div>
     </section>
 
     <!-- Portfolio (preview) -->
-    <section class="work container" id="portfolio">
-      <p class="label" data-i18n="portfolio">Portfolio</p>
+    <section class="work container" id="portfolio" data-view="list">
+      <div class="work__head">
+        <p class="label" data-i18n="portfolio">Portfolio</p>
+        <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
+          <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="true" aria-label="List view" data-i18n-attr="aria-label:list-view"><i data-lucide="list" class="icon" aria-hidden="true"></i></button>
+          <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="false" aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><i data-lucide="layout-grid" class="icon" aria-hidden="true"></i></button>
+        </div>
+      </div>
       <ul class="work__list">
-        <li><a class="work__row" href="portfolio.html#studify"><h3 class="work__title">Studify Vietnam</h3><span class="work__meta" data-i18n="educreator-partnership-2025-present">Educreator, Partnership · 2025 – Present</span></a></li>
-        <li><a class="work__row" href="portfolio.html#titbrain"><h3 class="work__title">TiTBrain Education</h3><span class="work__meta" data-i18n="chief-executive-officer-2024-2026">Chief Executive Officer · 2024 – 2026</span></a></li>
-        <li><a class="work__row" href="portfolio.html#thom-thao"><h3 class="work__title">Thom Thao</h3><span class="work__meta" data-i18n="founder-2023-2025">Founder · 2023 – 2025</span></a></li>
-        <li><a class="work__row" href="portfolio.html#home-credit"><h3 class="work__title">Home Credit Vietnam</h3><span class="work__meta" data-i18n="senior-l-and-d-business-partner">Senior L&amp;D Business Partner · 2021 – 2022</span></a></li>
+        <li>
+          <a class="work__row" href="portfolio.html#studify">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+            <h3 class="work__title">Studify Vietnam</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="educreator-partnership">Educreator, Partnership</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year" data-i18n="year-2025-present">2025 – Present</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="work__row" href="portfolio.html#titbrain">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+            <h3 class="work__title">TiTBrain Education</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="chief-executive-officer">Chief Executive Officer</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2024 – 2026</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="work__row" href="portfolio.html#thom-thao">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+            <h3 class="work__title">Thom Thao</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="founder">Founder</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2023 – 2025</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="work__row" href="portfolio.html#home-credit">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img src="assets/placeholder-image.png" alt="" loading="lazy"></span>
+            <h3 class="work__title">Home Credit Vietnam</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="senior-l-and-d-business-partner-2">Senior L&amp;D Business Partner</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2021 – 2022</span></span>
+          </a>
+        </li>
       </ul>
       <div class="work__more">
         <a href="portfolio.html" class="btn-pill" data-magnetic="0.3">
@@ -135,10 +165,10 @@
     <!-- Floating preview for work list -->
     <div class="preview" aria-hidden="true">
       <div class="preview__slider">
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img src="assets/project-1.svg" alt=""></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img src="assets/project-2.svg" alt=""></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img src="assets/project-3.svg" alt=""></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img src="assets/project-4.svg" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img src="assets/placeholder-image.png" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img src="assets/placeholder-image.png" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img src="assets/placeholder-image.png" alt=""></div>
+        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img src="assets/placeholder-image.png" alt=""></div>
       </div>
     </div>
     <div class="preview-cursor" aria-hidden="true"></div>
@@ -152,14 +182,14 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__head">
-          <img class="footer__avatar" src="assets/avatar.svg" alt="">
+          <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="">
           <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
         </div>
         <h2 class="footer__title" data-i18n="together">together</h2>
 
         <div class="footer__divider">
-          <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35">
-            <span class="btn__fill"></span>
+          <i data-lucide="arrow-down-left" class="icon footer__arrow" aria-hidden="true"></i>
+          <a href="contact.html" class="btn-round btn-round--accent btn-round--static" data-magnetic="0.35">
             <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
           </a>
         </div>
@@ -199,5 +229,6 @@
   <script src="js/lang/vi.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </body>
 </html>

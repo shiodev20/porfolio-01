@@ -32,7 +32,8 @@
   </header>
 
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
-    <span class="menu-btn__lines btn__text"><span></span><span></span></span>
+    <i data-lucide="menu" class="menu-btn__icon menu-btn__icon--open" aria-hidden="true"></i>
+    <i data-lucide="x" class="menu-btn__icon menu-btn__icon--close" aria-hidden="true"></i>
   </button>
   <div class="side-menu-overlay"></div>
   <aside class="side-menu">
@@ -64,8 +65,8 @@
       <div class="contact-head__row">
         <h1 class="page-title" data-reveal data-i18n="let-s-build-something-together">Let’s build something together</h1>
         <div>
-          <img class="contact-head__avatar" src="assets/avatar.svg" alt="Thao" data-i18n-attr="alt:thao">
-          <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l12 12M13 1v12H1"/></svg>
+          <img class="contact-head__avatar" src="assets/placeholder-portrait.png" alt="Thao" data-i18n-attr="alt:thao">
+          <i data-lucide="arrow-down-right" class="icon arrow" aria-hidden="true"></i>
         </div>
       </div>
     </section>
@@ -166,5 +167,6 @@
   <script src="js/lang/vi.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </body>
 </html>

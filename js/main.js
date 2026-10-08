@@ -238,6 +238,24 @@ function initWorkPreview() {
 }
 
 /* --------------------------------------------------------------------------
+   Home portfolio: List / Grid view (phones always show the grid via CSS)
+   -------------------------------------------------------------------------- */
+function initWorkView() {
+  const section = $(".work[data-view]");
+  if (!section) return;
+  const buttons = $$("[data-work-view]", section);
+  const set = (view) => {
+    section.dataset.view = view;
+    buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.workView === view));
+    try { localStorage.setItem("work-view", view); } catch (e) {}
+  };
+  buttons.forEach((b) => b.addEventListener("click", () => set(b.dataset.workView)));
+  let saved = null;
+  try { saved = localStorage.getItem("work-view"); } catch (e) {}
+  if (saved === "list" || saved === "grid") set(saved);
+}
+
+/* --------------------------------------------------------------------------
    Reveal on scroll
    -------------------------------------------------------------------------- */
 function initReveal() {
@@ -413,11 +431,13 @@ function initSubnav() {
    Boot
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  if (window.lucide) lucide.createIcons(); // <i data-lucide> -> inline <svg>
   initTransitions();
   initMenu();
   initMagnetic();
   initScroll();
   initWorkPreview();
+  initWorkView();
   initClock();
   initForm();
   initTabs();

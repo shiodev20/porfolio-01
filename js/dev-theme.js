@@ -17,8 +17,8 @@
   const STORAGE_KEY = "dev-theme";
   const ROLES = [
     { v: "--cafe",  name: "Cafe noir", use: "Ink · dark sections · buttons", fallback: "#4B3623" },
-    { v: "--ivory", name: "Ivory",     use: "Page background · text on dark", fallback: "#FEFEF2" },
-    { v: "--blush", name: "Blush",     use: "Accent · hero · CTA · hover",    fallback: "#FFD2CF" },
+    { v: "--ivory", name: "Ivory",     use: "Page &amp; hero background · text on dark", fallback: "#FEFEF2" },
+    { v: "--blush", name: "Blush",     use: "Accent · CTA · hover · highlights",    fallback: "#FFD2CF" },
     { v: "--khaki", name: "Khaki",     use: "Secondary · small details",      fallback: "#C1B094" },
   ];
 
@@ -180,7 +180,7 @@
         const color = row.querySelector('input[type="color"]'); if (color.value.toUpperCase() !== state[r.v]) color.value = state[r.v];
         const hex = row.querySelector(".dt__hex"); if (document.activeElement !== hex) { hex.value = state[r.v]; hex.classList.remove("is-bad"); }
       });
-      const checks = [["Ink on Ivory (body text)", cafe, ivory], ["Ivory on Ink (footer, journey)", ivory, cafe], ["Ink on Blush (hero, CTA)", cafe, blush], ["Ink on Khaki", cafe, khaki]];
+      const checks = [["Ink on Ivory (body text)", cafe, ivory], ["Ivory on Ink (footer, journey)", ivory, cafe], ["Ink on Blush (CTA, hover)", cafe, blush], ["Ink on Khaki", cafe, khaki]];
       p.querySelector(".dt__contrast").innerHTML = checks.map(([label, a, b]) => {
         const r = ratio(a, b); const [cls, txt] = grade(r);
         return `<div><span>${label}</span><span class="${cls}">${r.toFixed(1)}:1 ${txt}</span></div>`;
