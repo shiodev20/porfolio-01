@@ -1,8 +1,7 @@
 /* ==========================================================================
    DEV MODE ONLY — live colour tester for the 4 brand colours.
 
-   - Injects a "Theme" swatch panel into the header navigation and into the
-     side menu. Nothing in the HTML references it except the <script> tag.
+   - Injects a "Theme" swatch panel into the header navigation. Nothing in the HTML references it except the <script> tag.
    - Edits the 4 palette variables (--cafe, --ivory, --blush, --khaki) on <html>,
      so every semantic role in css/style.css follows. Saved in localStorage.
    - "Copy CSS" gives the final :root block to paste into css/style.css.
@@ -81,11 +80,9 @@
   .dt__tag { font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.15rem 0.4rem; border-radius: 999px; background: #ff4d4f; color: #fff; }
   .dt__panel { color: #1a1a1a; background: #fff; border-radius: 1rem; padding: 1.1rem; width: 21rem; max-width: calc(100vw - 2rem);
     box-shadow: 0 18px 50px rgba(0,0,0,.22); font: 400 0.85rem/1.35 system-ui, sans-serif; }
-  .dt:not(.dt--inline) .dt__panel { position: absolute; top: calc(100% + 0.4rem); right: 0; z-index: 40;
+  .dt .dt__panel { position: absolute; top: calc(100% + 0.4rem); right: 0; z-index: 40;
     opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-6px); transition: opacity .2s, transform .25s, visibility 0s .25s; }
   .dt.is-open .dt__panel { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
-  .dt--inline { margin: 0; }
-  .dt--inline .dt__panel { width: 100%; }
   .dt__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; font-weight: 600; }
   .dt__row { display: grid; grid-template-columns: 2.6rem 1fr 5.6rem; gap: .7rem; align-items: center; padding: .45rem 0; }
   .dt__swatch { position: relative; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); overflow: hidden; cursor: pointer; }
@@ -102,8 +99,6 @@
   .dt__btn:hover { background: #f3f3f3; } .dt__btn:disabled { opacity: .4; cursor: default; }
   .dt__btn--primary { background: #1a1a1a; color: #fff; border-color: #1a1a1a; } .dt__btn--primary:hover { background: #333; }
   .dt__note { margin-top: .7rem; font-size: .7rem; color: #8a8a8a; }
-  .dt-menu-block { overflow: visible; }
-  .side-menu { overflow-y: auto; }
   `;
 
   const panels = [];
@@ -212,15 +207,6 @@
       nav.appendChild(wrap);
     }
 
-    // 2) side menu (mobile + after-scroll menu): the same panel, always open
-    const side = document.querySelector(".side-menu");
-    if (side) {
-      const block = document.createElement("div");
-      block.className = "dt-menu-block";
-      block.innerHTML = `<p class="side-menu__label">Theme · dev</p><div class="dt dt--inline"></div>`;
-      block.querySelector(".dt").appendChild(buildPanel());
-      side.insertBefore(block, side.lastElementChild);
-    }
     refreshUi();
   }
 

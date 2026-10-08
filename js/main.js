@@ -8,6 +8,52 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const isTouch = matchMedia("(hover: none)").matches;
 
 /* --------------------------------------------------------------------------
+   Smooth scrolling (Lenis). Falls back to native scrolling if the library is missing,
+   on reduced-motion, and on touch screens (native momentum is already smooth there).
+   -------------------------------------------------------------------------- */
+let lenis = null;
+
+function initSmoothScroll() {
+  if (!window.Lenis || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  lenis = new Lenis({
+    duration: 1.2,                                            // seconds a wheel "flick" glides for
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo-out: fast start, long soft landing
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+  });
+  window.lenis = lenis;
+  const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+
+  // Overlays that scroll or trap focus must not scroll the page behind them
+  $$(".side-menu, .lightbox").forEach((el) => el.setAttribute("data-lenis-prevent", ""));
+  new MutationObserver(() => (document.body.classList.contains("is-locked") ? lenis.stop() : lenis.start()))
+    .observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  if (document.body.classList.contains("is-locked")) lenis.stop();
+
+  // In-page anchors (#section) glide instead of jumping, honouring each target's scroll-margin
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented) return;
+    const id = a.getAttribute("href");
+    const target = id.length > 1 ? document.querySelector(id) : null;
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -(parseFloat(getComputedStyle(target).scrollMarginTop) || 0), duration: 1.4 });
+    history.replaceState(null, "", id);
+  });
+}
+
+/** Scroll the page so `el` is centred (or at the top if taller than the screen). */
+function scrollToElement(el, smooth) {
+  const r = el.getBoundingClientRect();
+  const tall = r.height > innerHeight - 160;
+  const y = Math.max(0, r.top + scrollY - (tall ? 100 : (innerHeight - r.height) / 2));
+  if (lenis) lenis.scrollTo(y, { immediate: !smooth, duration: 1.4 });
+  else scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
+}
+
+/* --------------------------------------------------------------------------
    Preloader (home only, once per session)
    -------------------------------------------------------------------------- */
 function initPreloader() {
@@ -143,6 +189,9 @@ function initScroll() {
   let direction = -1;
   let x = 0;
   let speed = 0.04; // % per frame
+  let boost = 0;    // extra marquee speed from scroll velocity, eased
+  let slideP = null; // eased progress of the sliding image rows
+  let curveP = null; // eased footer-curve progress
 
   const loop = () => {
     const y = scrollY;
@@ -155,7 +204,7 @@ function initScroll() {
     }
 
     if (track) {
-      const boost = Math.min(delta * 0.02, 0.6);
+      boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);   // eases up and back down — no jerks
       x += direction * (speed + boost);
       // track contains two identical halves; wrap at -50%
       if (x <= -50) x += 50;
@@ -167,8 +216,9 @@ function initScroll() {
       const r = slidesWrap.getBoundingClientRect();
       const progress = (innerHeight - r.top) / (innerHeight + r.height); // 0 → 1
       if (progress > -0.2 && progress < 1.2) {
-        rows[0].style.transform = `translate3d(${progress * 10}vw,0,0)`;
-        if (rows[1]) rows[1].style.transform = `translate3d(${-progress * 10}vw,0,0)`;
+        slideP = slideP === null ? progress : lerp(slideP, progress, 0.1);
+        rows[0].style.transform = `translate3d(${slideP * 10}vw,0,0)`;
+        if (rows[1]) rows[1].style.transform = `translate3d(${-slideP * 10}vw,0,0)`;
       }
     }
 
@@ -177,7 +227,8 @@ function initScroll() {
       const r = footerWrap.getBoundingClientRect();
       const distance = Math.min(r.height, innerHeight) * 0.75;
       const p = Math.min(Math.max((innerHeight - r.top) / distance, 0), 1);
-      curve.style.height = `${(1 - p) * innerHeight * 0.3}px`;
+      curveP = curveP === null ? p : lerp(curveP, p, 0.12);
+      curve.style.height = `${(1 - curveP) * innerHeight * 0.3}px`;
     }
 
     requestAnimationFrame(loop);
@@ -420,19 +471,20 @@ function initTimeline() {
   const progress = $(".timeline__progress", timeline);
   const items = $$(".timeline__item, .stage", timeline);
 
+  let shown = 0;                                   // eased value actually drawn
   const update = () => {
     const r = timeline.getBoundingClientRect();
     const mid = innerHeight * 0.6;
     const p = Math.min(Math.max((mid - r.top) / r.height, 0), 1);
-    progress.style.transform = `scaleY(${p})`;
+    shown = Math.abs(p - shown) < 0.0005 ? p : lerp(shown, p, 0.12);
+    progress.style.transform = `scaleY(${shown})`;
     items.forEach((it) => {
       const dot = it.getBoundingClientRect().top + 50;
       it.classList.toggle("is-in", dot < mid);
     });
+    requestAnimationFrame(update);
   };
-  update();
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
+  requestAnimationFrame(update);
 }
 
 function initFlow() {
@@ -472,7 +524,7 @@ function initPortfolio() {
     const item = id && items.find((it) => it.id === id);
     if (!item) return;
     items.forEach((it) => setOpen(it, it === item));
-    setTimeout(() => item.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "center" }), 80);
+    setTimeout(() => scrollToElement(item, smooth), 80);
   };
   openFromHash(false);
   window.addEventListener("hashchange", () => openFromHash(true));
@@ -505,6 +557,7 @@ function initSubnav() {
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) lucide.createIcons(); // <i data-lucide> -> inline <svg>
+  initSmoothScroll();
   initTransitions();
   initMenu();
   initMagnetic();

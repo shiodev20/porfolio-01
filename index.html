@@ -57,19 +57,17 @@
       <!-- <span class="logo__copy">©</span> -->
       <span class="logo__names">
         <span class="logo__name">Your Brand</span>
-        <span class="logo__name logo__name--alt" data-i18n="solo-expert">Your Brand</span>
       </span>
     </a>
     <nav class="nav">
-      <a href="portfolio.html" class="nav__link" data-magnetic="0.3"><span class="btn__text"
+      <a href="portfolio.html" class="nav__link" data-magnetic="0.3" data-page="Portfolio"><span class="btn__text"
           data-i18n="portfolio">Portfolio</span></a>
-      <a href="contact.html" class="nav__link" data-magnetic="0.3"><span class="btn__text"
+      <a href="contact.html" class="nav__link" data-magnetic="0.3" data-page="Contact"><span class="btn__text"
           data-i18n="contact">Contact</span></a>
       <div class="lang" data-lang-switch></div>
     </nav>
   </header>
 
-  <!-- Round menu button + side menu -->
   <button class="menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:open-menu">
     <i data-lucide="menu" class="menu-btn__icon menu-btn__icon--open" aria-hidden="true"></i>
     <i data-lucide="x" class="menu-btn__icon menu-btn__icon--close" aria-hidden="true"></i>
@@ -80,8 +78,8 @@
       <p class="side-menu__label" data-i18n="navigation">Navigation</p>
       <nav class="side-menu__links">
         <a href="index.html" class="is-active" data-page="Home" data-i18n="home">Home</a>
-        <a href="portfolio.html" data-i18n="portfolio">Portfolio</a>
-        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="portfolio.html" data-page="Portfolio" data-i18n="portfolio">Portfolio</a>
+        <a href="contact.html" data-page="Contact" data-i18n="contact">Contact</a>
       </nav>
     </div>
     <div>
@@ -127,34 +125,32 @@
       </h1>
     </section>
 
-    <!-- Value proposition -->
-    <section class="intro container">
+    <!-- Intro + Portfolio preview: one grid, so the "Portfolio" label sits at the bottom of the intro row -->
+    <section class="work container" id="portfolio" data-view="list">
       <div class="intro__grid">
         <p class="intro__lead" data-reveal data-i18n="i-design-learning-experiences-that-help">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua.
         </p>
-        <p class="intro__side" data-reveal data-i18n="intro-side">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </p>
-        <a href="portfolio.html" class="btn-round btn-round--static intro__btn" data-magnetic="0.35">
-          <span class="btn__text" data-i18n="about-me">About me</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Portfolio (preview) -->
-    <section class="work container" id="portfolio" data-view="list">
-      <div class="work__head">
-        <p class="label" data-i18n="portfolio">Portfolio</p>
-        <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
-          <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="true"
-            aria-label="List view" data-i18n-attr="aria-label:list-view"><i data-lucide="list" class="icon"
-              aria-hidden="true"></i></button>
-          <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="false"
-            aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><i data-lucide="layout-grid" class="icon"
-              aria-hidden="true"></i></button>
+        <div class="intro__col">
+          <p class="intro__side" data-reveal data-i18n="intro-side">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua.
+          </p>
+          <a href="portfolio.html" class="btn-round btn-round--static intro__btn" data-magnetic="0.35">
+            <span class="btn__text" data-i18n="about-me">About me</span>
+          </a>
+        </div>
+        <div class="work__head">
+          <p class="label" data-i18n="portfolio">Portfolio</p>
+          <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
+            <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="true"
+              aria-label="List view" data-i18n-attr="aria-label:list-view"><i data-lucide="list" class="icon"
+                aria-hidden="true"></i></button>
+            <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="false"
+              aria-label="Grid view" data-i18n-attr="aria-label:grid-view"><i data-lucide="layout-grid" class="icon"
+                aria-hidden="true"></i></button>
+          </div>
         </div>
       </div>
       <ul class="work__list">
@@ -228,23 +224,25 @@
 
   </main>
 
-  <!-- Footer: Work With Me -->
+  <!-- Footer -->
   <div class="footer-wrap" id="work-with-me">
     <div class="footer-curve"><svg viewBox="0 0 100 10" preserveAspectRatio="none">
         <path d="M0 0 H100 V0 Q50 20 0 0 Z" />
       </svg></div>
     <footer class="footer">
       <div class="container">
-        <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit</p>
         <div class="footer__head">
           <img class="footer__avatar" src="assets/placeholder-portrait.png" alt="">
-          <h2 class="footer__title" data-i18n="let-s-make-it">Lorem Ipsum</h2>
+          <h2 class="footer__title" data-i18n="let-s-make-it">Let’s make it</h2>
         </div>
-        <!-- <h2 class="footer__title" data-i18n="together">together</h2> -->
+        <h2 class="footer__title" data-i18n="together">together</h2>
 
         <div class="footer__divider">
           <i data-lucide="arrow-down-left" class="icon footer__arrow" aria-hidden="true"></i>
-          <a href="contact.html" class="btn-round btn-round--accent btn-round--static" data-magnetic="0.35">
+          <a href="contact.html" class="btn-round btn-round--accent" data-magnetic="0.35" data-page="Work with me">
+            <span class="btn__fill"></span>
             <span class="btn__text" data-i18n="get-in-touch">Get in touch</span>
           </a>
         </div>
@@ -252,7 +250,7 @@
         <!-- TODO: thay email / số Zalo / WhatsApp thật -->
         <div class="footer__pills">
           <a href="mailto:hello@thaoeducator.com" class="btn-pill btn-pill--light" data-magnetic="0.25">
-            <span class="btn__fill"></span><span class="btn__text">abc@gmail.com</span>
+            <span class="btn__fill"></span><span class="btn__text">hello@thaoeducator.com</span>
           </a>
           <a href="https://zalo.me/84000000000" target="_blank" rel="noopener" class="btn-pill btn-pill--light"
             data-magnetic="0.25">
@@ -262,7 +260,7 @@
             data-magnetic="0.25">
             <span class="btn__fill"></span><span class="btn__text">WhatsApp</span>
           </a>
-        </div>
+      </div>
 
         <div class="footer__bottom">
           <div class="footer__meta">
@@ -291,6 +289,7 @@
 
   <script src="js/lang/vi.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </body>

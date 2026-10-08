@@ -20,7 +20,6 @@ window.I18N.vi = {
   "get-in-touch-with-thao-about": "Liên hệ với thảo về dự án tiếp theo của bạn.",
 
   /* ---------- navigation / shared ---------- */
-  "solo-expert": "Chuyên gia độc lập",
   "portfolio": "Hồ sơ năng lực",
   "contact": "Liên hệ",
   "navigation": "Điều hướng",
