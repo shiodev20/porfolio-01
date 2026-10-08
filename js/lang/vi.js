@@ -196,6 +196,12 @@ window.I18N.vi = {
   /* ---------- portfolio: education & continuous learning ---------- */
   "education-and-continuous-learning": "Học vấn &amp; Học tập liên tục",
   "my-learning-has-evolved-alongside-my": "Việc học của tôi phát triển song hành cùng công việc — từ trải nghiệm khách hàng và học tập tổ chức đến coaching, phát triển trẻ em, giáo dục và các công nghệ mới nổi. Những lĩnh vực này tiếp tục định hình cách tôi nghĩ về sự phát triển con người và thiết kế việc học.",
+  "edu-col-organization": "Tổ chức",
+  "edu-col-degree": "Bằng cấp / Chứng chỉ",
+  "edu-col-year": "Năm",
+  "view-image": "Xem ảnh",
+  "view-certificate": "Xem chứng chỉ",
+  "close": "Đóng",
   "fields-of-study": "Lĩnh vực học tập",
   "academic": "Học thuật",
   "learning-leadership-and-od": "Học tập, Lãnh đạo &amp; Phát triển tổ chức",

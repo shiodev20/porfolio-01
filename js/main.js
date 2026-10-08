@@ -200,7 +200,7 @@ function initMenu() {
 function initWorkPreview() {
   // Rows: home work list, or any [data-preview-item] (portfolio). A row may set
   // data-preview-index to pick its slide, so filtering doesn't break the mapping.
-  const rows = $$(".work__row, [data-preview-item]");
+  const rows = $$(".work__row, [data-preview-item], [data-preview-src]");
   const preview = $(".preview");
   if (!rows.length || !preview || isTouch) return;
 
@@ -216,13 +216,23 @@ function initWorkPreview() {
 
   window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
 
+  const slides = $$(".preview__slide", slider);
+  const dynamic = $(".preview__slide--dynamic", slider);
+
   rows.forEach((row, i) => {
     const index = row.dataset.previewIndex !== undefined ? +row.dataset.previewIndex : i;
     row.addEventListener("mouseenter", () => {
-      slider.style.transform = `translateY(${-index * 100}%)`;
+      if (row.closest(".pf-item.is-open")) return;        // opened project: no hover effect
+      let target = index;
+      if (row.dataset.previewSrc && dynamic) {            // per-row image (e.g. certificates)
+        dynamic.querySelector("img").src = row.dataset.previewSrc;
+        target = slides.indexOf(dynamic);
+      }
+      slider.style.transform = `translateY(${-target * 100}%)`;
       els.forEach((o) => o.el.classList.add("is-active"));
     });
     row.addEventListener("mouseleave", () => els.forEach((o) => o.el.classList.remove("is-active")));
+    row.addEventListener("click", () => els.forEach((o) => o.el.classList.remove("is-active")));
   });
 
   const loop = () => {
@@ -253,6 +263,62 @@ function initWorkView() {
   let saved = null;
   try { saved = localStorage.getItem("work-view"); } catch (e) {}
   if (saved === "list" || saved === "grid") set(saved);
+}
+
+/* --------------------------------------------------------------------------
+   Image viewer (lightbox): Education rows + project gallery images.
+   X / Esc / backdrop click close it; focus returns to the trigger.
+   -------------------------------------------------------------------------- */
+function initLightbox() {
+  const box = $(".lightbox");
+  if (!box) return;
+  const img = $(".lightbox__img", box);
+  const caption = $(".lightbox__caption", box);
+  const closeBtn = $(".lightbox__close", box);
+  let lastFocus = null;
+  const isOpen = () => box.classList.contains("is-open");
+
+  const show = (src, title, meta, trigger) => {
+    img.src = src;
+    img.alt = title || "";
+    const t = document.createElement("strong");
+    t.textContent = title || "";
+    const m = document.createElement("span");
+    m.textContent = meta || "";
+    caption.replaceChildren(t, m);
+    lastFocus = trigger || document.activeElement;   // not every browser focuses a clicked button
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-locked");
+    closeBtn.focus();
+  };
+  const close = () => {
+    if (!isOpen()) return;
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-locked");
+    if (lastFocus) lastFocus.focus();
+  };
+
+  // Education: the row's degree / organization / year become the caption
+  $$(".edu-row[data-preview-src] .edu-row__open").forEach((b) =>
+    b.addEventListener("click", () => {
+      const row = b.closest(".edu-row");
+      const text = (sel) => (($(sel, row) || {}).textContent || "").replace(/\s+/g, " ").trim();
+      show(row.dataset.previewSrc, text(".edu-row__degree"),
+        [text(".edu-row__org"), text(".edu-row__year")].filter(Boolean).join(" · "), b);
+    }));
+  // Project galleries
+  $$("[data-lightbox]").forEach((b) =>
+    b.addEventListener("click", () => show(b.dataset.src, b.dataset.title, b.dataset.meta, b)));
+
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", (e) => { if (e.target === box) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (!isOpen()) return;
+    if (e.key === "Escape") close();
+    if (e.key === "Tab") { e.preventDefault(); closeBtn.focus(); }   // keep focus inside the dialog
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -326,9 +392,12 @@ function initTabs() {
       });
     };
     tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("click", () => {
+        select(tab);
+        tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); // chips row on small screens
+      });
       tab.addEventListener("keydown", (e) => {
-        const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        const dir = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
         if (!dir) return;
         const next = tabs[(i + dir + tabs.length) % tabs.length];
         select(next);
@@ -438,6 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScroll();
   initWorkPreview();
   initWorkView();
+  initLightbox();
   initClock();
   initForm();
   initTabs();

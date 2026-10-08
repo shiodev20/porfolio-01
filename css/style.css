@@ -1140,3 +1140,113 @@ body.contact-page.menu-open .menu-btn { background: var(--accent); color: var(--
   .work[data-view] .work__media { aspect-ratio: 1 / 1; }
   .work[data-view] .work__media img { width: 82%; }
 }
+
+/* ---------- Contact header (desktop) ----------
+   Same 2fr / 1fr grid and gap as .contact-body, so the avatar + arrow line up with
+   the "Contact details" column; the avatar starts around the title's second line. */
+@media (min-width: 901px) {
+  .contact-head__row {
+    display: grid; grid-template-columns: 2fr 1fr; gap: clamp(3rem, 8vw, 9rem); align-items: start;
+  }
+  .contact-head__row > div { padding-top: clamp(4rem, 8.5vw, 8.5rem); }
+  .contact-head__avatar { width: clamp(5rem, 8vw, 8rem); }
+  .contact-head .icon.arrow { margin-top: clamp(3rem, 5vw, 5rem); }
+}
+
+/* ---------- Education: fields + certificates table ----------
+   Desktop: fields as a sticky vertical list on the left, table on the right with an
+   Organization | Degree / Certificate | Year header. Small screens: scrollable chips,
+   each certificate stacked (degree, then organization + year). */
+.edu-head { display: none; }
+.tabs { scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); }
+.tab { scroll-snap-align: start; }
+
+@media (min-width: 901px) {
+  [data-tabs] {
+    display: grid; grid-template-columns: minmax(15rem, 1fr) 3fr;
+    column-gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+  }
+  [data-tabs] > .tabs {
+    grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 5rem;
+    flex-direction: column; gap: 0.5rem; margin: 0; padding: 0; overflow: visible;
+  }
+  [data-tabs] .tab {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    width: 100%; padding: 0.9rem 1.2rem; border-radius: 0.9rem;
+    text-align: left; white-space: normal; line-height: 1.3;
+  }
+  [data-tabs] .tab__count { margin-left: 0; }
+
+  .edu-head {
+    grid-column: 2; grid-row: 1; display: grid; gap: 2rem; padding-bottom: 1rem;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  }
+  .edu-head span:last-child { text-align: right; }
+  .edu-panel { grid-column: 2; grid-row: 2; }
+
+  .edu-head, .edu-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 7.5rem; }
+  .edu-row__org { grid-column: 1; grid-row: 1; color: var(--dark); font-size: 0.95rem; }
+  .edu-row__degree { grid-column: 2; grid-row: 1; }
+  .edu-row__year { grid-column: 3; grid-row: 1; }
+}
+
+/* ---------- Education: certificate hover preview + viewer ---------- */
+.edu-row { position: relative; transition: opacity 0.3s; }
+.edu-row__open {                       /* invisible full-row button: click / Enter opens the viewer */
+  position: absolute; inset: 0; width: 100%; cursor: pointer; border-radius: 0.25rem;
+}
+.edu-row__open:focus-visible { outline: 2px solid var(--dark); outline-offset: 4px; }
+@media (hover: hover) {
+  .edu-list:hover .edu-row { opacity: 0.45; }
+  .edu-list .edu-row:hover { opacity: 1; }
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 300; display: grid; place-items: center;
+  padding: clamp(4.5rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--dark) 90%, transparent);
+  opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0s 0.35s;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+.lightbox__figure {
+  display: flex; flex-direction: column; align-items: center; gap: 1.2rem; max-width: min(1000px, 100%);
+  transform: translateY(14px) scale(0.97); transition: transform 0.5s var(--ease-out);
+}
+.lightbox.is-open .lightbox__figure { transform: none; }
+.lightbox__img {
+  max-width: 100%; max-height: calc(100vh - 13rem); object-fit: contain;
+  border-radius: 0.6rem; background: var(--light); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.lightbox__caption { display: grid; gap: 0.3rem; text-align: center; color: var(--light); }
+.lightbox__caption strong { font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.2rem); }
+.lightbox__caption span { font-size: 0.85rem; color: color-mix(in srgb, var(--light) 60%, transparent); }
+.lightbox__close {
+  position: absolute; top: clamp(1rem, 3vw, 2rem); right: clamp(1rem, 3vw, 2rem);
+  width: 3.5rem; height: 3.5rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--light); color: var(--dark); transition: background 0.3s, color 0.3s, transform 0.4s var(--ease-out);
+}
+.lightbox__close .icon { width: 1.5rem; height: 1.5rem; stroke-width: 1.5; }
+.lightbox__close:hover { background: var(--accent); color: var(--accent-ink); transform: rotate(90deg); }
+
+/* ---------- Portfolio: open project + image gallery ---------- */
+.pf-item.is-open .pf-row:hover .pf-row__org { transform: none; }   /* no hover effect once open */
+
+.pf-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.pf-gallery--1 { grid-template-columns: 1fr; }
+.pf-gallery--3 .pf-shot:first-child { grid-column: 1 / -1; }
+.pf-shot {
+  position: relative; display: block; overflow: hidden; border-radius: 0.6rem; aspect-ratio: 4 / 3;
+  cursor: zoom-in; background: color-mix(in srgb, var(--light) 8%, transparent);
+}
+.pf-gallery--1 .pf-shot, .pf-gallery--3 .pf-shot:first-child { aspect-ratio: 16 / 9; }
+.pf-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+.pf-shot:hover img { transform: scale(1.05); }
+.pf-shot:focus-visible { outline: 2px solid var(--light); outline-offset: 3px; }
+.pf-shot__zoom {
+  position: absolute; right: 0.6rem; bottom: 0.6rem; width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  display: grid; place-items: center; background: var(--light); color: var(--dark);
+  opacity: 0; transform: scale(0.8); transition: opacity 0.3s, transform 0.4s var(--ease-out);
+}
+.pf-shot__zoom .icon { width: 1rem; height: 1rem; stroke-width: 1.6; }
+.pf-shot:hover .pf-shot__zoom, .pf-shot:focus-visible .pf-shot__zoom { opacity: 1; transform: none; }
+@media (hover: none) { .pf-shot__zoom { opacity: 1; transform: none; } }
