@@ -1382,3 +1382,11 @@ textarea.form__input { resize: vertical; min-height: 8rem; }
 @media (max-width: 900px) {
   .footer { padding-top: 6rem; }
 }
+
+/* Mobile/tablet hero: the name band runs over the bottom of the portrait */
+@media (max-width: 900px) {
+  .home-hero .home-marquee {
+    position: absolute; left: 0; right: 0; bottom: clamp(1rem, 4vw, 2rem); z-index: 2;
+    margin: 0;
+  }
+}
