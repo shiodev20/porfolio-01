@@ -23,6 +23,9 @@
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
       }
+      // Greeting intro (home only) plays on every direct visit (typed URL, reload, external link)
+      // and is skipped only when arriving via an internal link (the transition cover is up then)
+      if (tl !== null) document.documentElement.classList.add("is-greeted");
     } catch (e) {}
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
@@ -38,7 +41,7 @@
 
   <header class="header header--dark">
     <a href="index.html" class="logo" data-magnetic="0.3" data-page="Home">
-      <!-- <span class="logo__copy">©</span> -->
+      <svg class="lucide lucide-globe icon logo__globe" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
       <span class="logo__names">
         <span class="logo__name">Your Brand</span>
       </span>
@@ -104,7 +107,7 @@
           Lorem ipsum dolor sit amet</p>
       </div>
       <img class="about-body__img" src="assets/portrait.png" alt="Portrait of thảo" data-reveal
-        data-i18n-attr="alt:portrait-of-thao" width="1200" height="1800" loading="lazy" decoding="async">
+        data-i18n-attr="alt:portrait-of-thao" width="1228" height="1540" loading="lazy" decoding="async">
     </section>
 
 
@@ -163,346 +166,71 @@
           <span class="timeline__rail" aria-hidden="true"></span>
           <span class="timeline__progress" aria-hidden="true"></span>
 
-          <section class="stage" aria-label="Customer Experience" data-i18n-attr="aria-label:customer-experience">
+          <section class="stage stage--end" aria-label="Now" data-i18n-attr="aria-label:now">
             <header class="stage__head">
-              <p class="stage__year">2013</p>
-              <p class="stage__label" data-i18n="customer-experience">Customer Experience</p>
+              <p class="stage__year" data-i18n="now">Now</p>
             </header>
             <div class="stage__body">
-              <h3 class="stage__meaning" data-i18n="understanding-people-in-context">Understanding people in context
-              </h3>
-              <ul class="pf-items">
-                <li class="pf-item" id="vietjet-cx">
-                  <button class="pf-row" aria-expanded="false" aria-controls="vietjet-cx-detail" data-preview-item
-                    data-preview-index="0">
-                    <span class="pf-row__org">VietJet Air</span>
-                    <span class="pf-row__cell pf-row__cat" data-i18n="customer-experience">Customer Experience</span>
-                    <span class="pf-row__cell" data-i18n="senior-customer-service-executive">Senior Customer Service
-                      Executive</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="dec-2013-may-2021">Dec 2013 – May 2021</span>
-                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
-                  </button>
-                  <div class="pf-detail" id="vietjet-cx-detail">
-                    <div class="pf-detail__inner">
-                      <div class="pf-detail__grid">
-                        <div>
-                          <div class="pf-block">
-                            <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="customer-issues-rarely-exist-in-isolation">Customer issues rarely exist in
-                              isolation. Understanding a complaint required looking across the customer journey,
-                              operational touchpoints, expectations, available information and the context surrounding
-                              each situation.</p>
-                          </div>
-                          <div class="pf-block pf-gallery pf-gallery--2">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-investigated-complex-customer-feedback-han">I investigated complex customer
-                              feedback, handled escalations and crisis situations, audited service quality across
-                              customer touchpoints, supported training planning and workshops, and collaborated with IT
-                              on customer-service systems including CRM, touchpoint evaluation and Lost &amp; Found.</p>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="contributed-to-the-development-of-customer">Contributed to the development of
-                              customer-service systems with IT while combining case investigation, service-quality
-                              auditing and complex feedback resolution across multiple customer-journey touchpoints.</p>
-                          </div>
-                        </div>
-                        <aside class="pf-built">
-                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="problem-diagnosis">Problem
-                              diagnosis</span><span class="pf-tag" data-i18n="context-awareness">Context
-                              awareness</span><span class="pf-tag" data-i18n="connecting-the-dots">Connecting the
-                              dots</span><span class="pf-tag" data-i18n="customer-perspective">Customer
-                              perspective</span><span class="pf-tag" data-i18n="systems-thinking">Systems
-                              thinking</span></div>
-                          <p data-i18n="looking-back-this-is-one-of">Looking back, this is one of the earliest
-                            professional environments in which my Analytical identity became visible: before solving a
-                            problem, I learned to gather information across multiple touchpoints, understand context and
-                            question what was actually happening.</p>
-                        </aside>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+              <h3 class="stage__meaning">Lorem Ipsum</h3>
+              <p class="stage__tagline" data-i18n="self-leadership-family-education-ai-enabled">Lorem ipsum dolor sit amet.</p>
             </div>
           </section>
 
-          <section class="stage" aria-label="Facilitation & Training" data-i18n-attr="aria-label:facilitation-training">
+          <section class="stage" aria-label="Digital Education" data-i18n-attr="aria-label:digital-education">
             <header class="stage__head">
-              <p class="stage__year">2016</p>
-              <p class="stage__label" data-i18n="facilitation-and-training">Facilitation &amp; Training</p>
+              <p class="stage__year">2025+</p>
+              <p class="stage__label" data-i18n="digital-education">Digital Education</p>
             </header>
             <div class="stage__body">
-              <h3 class="stage__meaning" data-i18n="helping-people-learn">Helping people learn</h3>
+              <h3 class="stage__meaning" data-i18n="personalization-and-technology-enabled-learn">Personalization &amp;
+                technology-enabled learning</h3>
               <ul class="pf-items">
-                <li class="pf-item" id="vietjet-trainer">
-                  <button class="pf-row" aria-expanded="false" aria-controls="vietjet-trainer-detail" data-preview-item
-                    data-preview-index="1">
-                    <span class="pf-row__org">VietJet Air</span>
-                    <span class="pf-row__cell pf-row__cat" data-i18n="learning-and-facilitation">Learning &amp;
-                      Facilitation</span>
-                    <span class="pf-row__cell" data-i18n="soft-skills-trainer">Soft Skills Trainer</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="jan-2016-may-2021">Jan 2016 – May 2021</span>
+                <li class="pf-item" id="studify">
+                  <button class="pf-row" aria-expanded="false" aria-controls="studify-detail" data-preview-item
+                    data-preview-index="6">
+                    <span class="pf-row__org">Studify Vietnam</span>
+                    <span class="pf-row__cell pf-row__cat" data-i18n="digital-learning-and-education">Digital Learning
+                      &amp; Education</span>
+                    <span class="pf-row__cell" data-i18n="educreator-partnership">Educreator, Partnership</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="mar-2025-present">Mar 2025 – Present</span>
                     <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
                   </button>
-                  <div class="pf-detail" id="vietjet-trainer-detail">
+                  <div class="pf-detail" id="studify-detail">
                     <div class="pf-detail__inner">
                       <div class="pf-detail__grid">
                         <div>
                           <div class="pf-block">
                             <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="in-a-fast-moving-airline-environment">In a fast-moving airline environment,
-                              learning had to work across frontline employees, team leaders and supervisors while
-                              responding continuously to changing operational and customer-service needs.</p>
-                          </div>
-                          <div class="pf-block pf-gallery pf-gallery--1">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="1 / 1" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
+                            <p data-i18n="education-is-increasingly-moving-toward-digi">Education is increasingly moving
+                              toward digital and personalized learning. The work called for educators who could
+                              translate pedagogical thinking into learning materials suitable for digital environments
+                              and contribute within a multidisciplinary educator community.</p>
                           </div>
                           <div class="pf-block">
                             <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-owned-the-learning-cycle-from">I owned the learning cycle from needs
-                              analysis and content revision through facilitation and post-training evaluation. I led
-                              core curricula in Customer Service Excellence, Effective Communication and Teamwork &amp;
-                              Collaboration across ILT, virtual ILT, e-learning/LMS and blended learning formats.</p>
+                            <p data-i18n="i-collaborate-with-a-community-of">I collaborate with a community of experts
+                              to develop and refine digital learning materials, bringing pedagogical perspectives and
+                              creative teaching approaches into the development process.</p>
                           </div>
                           <div class="pf-block">
                             <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="expanded-learning-across-four-delivery-appro">Expanded learning across four
-                              delivery approaches—classroom, virtual classroom, LMS/e-learning and blended
-                              learning—while supporting development across three workforce levels: employees, team
-                              leaders and supervisors.</p>
-                          </div>
-                        </div>
-                        <aside class="pf-built">
-                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="facilitation">Facilitation</span><span
-                              class="pf-tag" data-i18n="instructional-design">Instructional design</span><span
-                              class="pf-tag" data-i18n="adult-learning">Adult learning</span><span class="pf-tag"
-                              data-i18n="blended-learning">Blended learning</span><span class="pf-tag"
-                              data-i18n="learning-evaluation">Learning evaluation</span></div>
-                          <p data-i18n="this-was-the-chapter-where-knowing">This was the chapter where “knowing
-                            something” and “helping another person learn it” became clearly different skills for me. It
-                            built the foundation for my Teaching/Coaching identity and later Learning Design work.</p>
-                        </aside>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="stage" aria-label="Organizational L&D" data-i18n-attr="aria-label:organizational-l-d">
-            <header class="stage__head">
-              <p class="stage__year">2021</p>
-              <p class="stage__label" data-i18n="organizational-l-and-d">Organizational L&amp;D</p>
-            </header>
-            <div class="stage__body">
-              <h3 class="stage__meaning" data-i18n="designing-capability-systems">Designing capability systems</h3>
-              <ul class="pf-items">
-                <li class="pf-item" id="home-credit">
-                  <button class="pf-row" aria-expanded="false" aria-controls="home-credit-detail" data-preview-item
-                    data-preview-index="2">
-                    <span class="pf-row__org">Home Credit Vietnam</span>
-                    <span class="pf-row__cell pf-row__cat" data-i18n="tech-enabled-consumer-finance">Tech-enabled
-                      Consumer Finance</span>
-                    <span class="pf-row__cell" data-i18n="senior-l-and-d-business-partner-2">Senior L&amp;D Business
-                      Partner</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="may-2021-jan-2022">May 2021 – Jan 2022</span>
-                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
-                  </button>
-                  <div class="pf-detail" id="home-credit-detail">
-                    <div class="pf-detail__inner">
-                      <div class="pf-detail__grid">
-                        <div>
-                          <div class="pf-block">
-                            <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="the-role-required-learning-to-respond">The role required learning to respond
-                              directly to organizational needs rather than operate as a separate training
-                              function—connecting business priorities, capability gaps, curriculum, learning investment
-                              and employee development.</p>
+                            <p data-i18n="selected-to-participate-as-an-educreator">Selected to participate as an
+                              Educreator in an initiative focused on building a community of creative educators and
+                              supporting digital transformation in education, with the broader aim of making
+                              personalized learning more accessible to Vietnamese learners.</p>
+                            <!-- TODO: thay href bằng link trang Course -->
+                            <div class="pf-cta"><a href="#" class="btn-pill"><span class="btn__text" data-i18n="explore-more">Explore more</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
                           </div>
                           <div class="pf-block pf-gallery pf-gallery--3">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Home Credit Vietnam" data-meta="1 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Home Credit Vietnam" data-meta="2 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Home Credit Vietnam" data-meta="3 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Studify Vietnam" data-meta="1 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
                               <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
                               <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
                             </button>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-managed-learning-projects-from-training">I managed learning projects from
-                              Training Needs Analysis through strategy, annual curricula, budgeting, delivery and
-                              evaluation; redesigned and facilitated orientation for management and non-management
-                              employees; supported e-learning systems; and established an internal Facilitator Pool.</p>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="established-an-internal-facilitator-pool-to">Established an internal
-                              Facilitator Pool to strengthen in-house learning capability and reduce dependence on
-                              external delivery, while expanding employee access to learning through e-learning systems
-                              and cross-functional HR initiatives.</p>
-                          </div>
-                        </div>
-                        <aside class="pf-built">
-                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="learning-strategy">Learning
-                              strategy</span><span class="pf-tag" data-i18n="capability-development">Capability
-                              development</span><span class="pf-tag" data-i18n="business-partnering">Business
-                              partnering</span><span class="pf-tag" data-i18n="internal-knowledge-transfer">Internal
-                              knowledge transfer</span><span class="pf-tag"
-                              data-i18n="learning-ecosystem-thinking">Learning ecosystem thinking</span></div>
-                          <p data-i18n="this-chapter-sharpened-an-idea-that">This chapter sharpened an idea that remains
-                            important in my work today: good learning should build capability inside the learner or
-                            system, rather than creating long-term dependency on the person delivering it.</p>
-                        </aside>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="pf-item" id="novagroup">
-                  <button class="pf-row" aria-expanded="false" aria-controls="novagroup-detail" data-preview-item
-                    data-preview-index="3">
-                    <span class="pf-row__org">NovaGroup</span>
-                    <span class="pf-row__cell pf-row__cat" data-i18n="real-estate-and-services">Real Estate and
-                      Services</span>
-                    <span class="pf-row__cell" data-i18n="senior-training-supervisor">Senior Training Supervisor</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="mar-2022-oct-2022">Mar 2022 – Oct 2022</span>
-                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
-                  </button>
-                  <div class="pf-detail" id="novagroup-detail">
-                    <div class="pf-detail__inner">
-                      <div class="pf-detail__grid">
-                        <div>
-                          <div class="pf-block">
-                            <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="learning-had-to-operate-across-diverse">Learning had to operate across diverse
-                              service environments—F&amp;B, hospitality, travel, entertainment, butler services and Nova
-                              Service leadership—where different business units had different operational needs but
-                              still required consistency in learning and service standards.</p>
-                          </div>
-                          <div class="pf-block pf-gallery pf-gallery--2">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="NovaGroup" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Studify Vietnam" data-meta="2 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
                               <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
                               <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
                             </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="NovaGroup" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-translated-business-and-operational-needs">I translated business and
-                              operational needs into soft-skills, customer-service and management learning programs;
-                              standardized training content and procedural documents; developed e-learning; facilitated
-                              classroom programs; implemented Train-the-Trainer; and created pre-opening training plans
-                              for large-scale projects.</p>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="built-learning-support-across-classroom-e">Built learning support across
-                              classroom, e-learning and Train-the-Trainer channels while standardizing materials,
-                              documentation and internal learning resources across multiple business units. I also
-                              developed role-based pre-opening learning plans to support workforce readiness for new
-                              projects.</p>
-                          </div>
-                        </div>
-                        <aside class="pf-built">
-                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="systems-thinking">Systems
-                              thinking</span><span class="pf-tag" data-i18n="scalable-learning">Scalable
-                              learning</span><span class="pf-tag" data-i18n="learning-standardization">Learning
-                              standardization</span><span class="pf-tag"
-                              data-i18n="train-the-trainer">Train-the-Trainer</span><span class="pf-tag"
-                              data-i18n="context-based-learning-design">Context-based learning design</span></div>
-                          <p data-i18n="this-chapter-strengthened-my-ability-to">This chapter strengthened my ability to
-                            see learning not simply as a class, but as a system that has to work across contexts,
-                            people, standards and operations.</p>
-                        </aside>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="stage" aria-label="Experiential Learning" data-i18n-attr="aria-label:experiential-learning">
-            <header class="stage__head">
-              <p class="stage__year">2023</p>
-              <p class="stage__label" data-i18n="experiential-learning">Experiential Learning</p>
-            </header>
-            <div class="stage__body">
-              <h3 class="stage__meaning" data-i18n="designing-conditions-for-reflection">Designing conditions for
-                reflection</h3>
-              <ul class="pf-items">
-                <li class="pf-item" id="thom-thao">
-                  <button class="pf-row" aria-expanded="false" aria-controls="thom-thao-detail" data-preview-item
-                    data-preview-index="4">
-                    <span class="pf-row__org">Thom Thao – Holistic Workshop &amp; Retreat</span>
-                    <span class="pf-row__cell pf-row__cat"
-                      data-i18n="experiential-learning-and-facilitation">Experiential Learning &amp; Facilitation</span>
-                    <span class="pf-row__cell" data-i18n="founder">Founder</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="jul-2023-dec-2025">Jul 2023 – Dec 2025</span>
-                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
-                  </button>
-                  <div class="pf-detail" id="thom-thao-detail">
-                    <div class="pf-detail__inner">
-                      <div class="pf-detail__grid">
-                        <div>
-                          <div class="pf-block">
-                            <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="many-development-experiences-rely-heavily-on">Many development experiences
-                              rely heavily on verbal instruction and cognitive understanding. Thom Thao explored another
-                              question: what happens when reflection and personal development are approached through
-                              multi-sensory, creative experiences?</p>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-founded-and-designed-a-portfolio">I founded and designed a portfolio of
-                              experiences using art, sound and aroma, and facilitated workshops for individuals and
-                              corporate groups around personal growth, connection, reflection and creative engagement.
-                            </p>
-                          </div>
-                          <div class="pf-block">
-                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="built-a-multi-sensory-learning-and">Built a multi-sensory learning and
-                              wellbeing portfolio across three primary formats—art, sound and aroma-based
-                              experiences—and extended these formats into corporate workshops designed to support team
-                              connection, engagement and creative energy.</p>
-                            <!-- TODO: logo các brand đã cộng tác -->
-                            <span class="pf-pending" data-i18n="brand-collaborations-coming-soon">Brand collaborations —
-                              coming soon</span>
-                          </div>
-                          <div class="pf-block pf-gallery pf-gallery--2">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Thom Thao – Holistic Workshop &amp; Retreat" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Thom Thao – Holistic Workshop &amp; Retreat" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Studify Vietnam" data-meta="3 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
                               <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
                               <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
                             </button>
@@ -510,15 +238,15 @@
                         </div>
                         <aside class="pf-built">
                           <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="experiential-learning-2">Experiential
-                              learning</span><span class="pf-tag" data-i18n="creative-facilitation">Creative
-                              facilitation</span><span class="pf-tag" data-i18n="learning-conditions">Learning
-                              conditions</span><span class="pf-tag" data-i18n="reflection-beyond-instruction">Reflection
-                              beyond instruction</span></div>
-                          <p data-i18n="this-chapter-expanded-my-understanding-that">This chapter expanded my
-                            understanding that meaningful learning does not happen only through information.
-                            Environment, experience, emotion and the way a person is invited to reflect can all shape
-                            what they are able to see and learn.</p>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="digital-learning">Digital
+                              learning</span><span class="pf-tag"
+                              data-i18n="personalization">Personalization</span><span class="pf-tag"
+                              data-i18n="cross-disciplinary-collaboration">Cross-disciplinary collaboration</span><span
+                              class="pf-tag" data-i18n="technology-enabled-education">Technology-enabled
+                              education</span></div>
+                          <p data-i18n="this-chapter-is-strengthening-my-ability">This chapter is strengthening my
+                            ability to think beyond the classroom and explore how technology can extend, personalize and
+                            scale learning while keeping the learner at the center.</p>
                         </aside>
                       </div>
                     </div>
@@ -626,62 +354,59 @@
             </div>
           </section>
 
-          <section class="stage" aria-label="Digital Education" data-i18n-attr="aria-label:digital-education">
+          <section class="stage" aria-label="Experiential Learning" data-i18n-attr="aria-label:experiential-learning">
             <header class="stage__head">
-              <p class="stage__year">2025+</p>
-              <p class="stage__label" data-i18n="digital-education">Digital Education</p>
+              <p class="stage__year">2023</p>
+              <p class="stage__label" data-i18n="experiential-learning">Experiential Learning</p>
             </header>
             <div class="stage__body">
-              <h3 class="stage__meaning" data-i18n="personalization-and-technology-enabled-learn">Personalization &amp;
-                technology-enabled learning</h3>
+              <h3 class="stage__meaning" data-i18n="designing-conditions-for-reflection">Designing conditions for
+                reflection</h3>
               <ul class="pf-items">
-                <li class="pf-item" id="studify">
-                  <button class="pf-row" aria-expanded="false" aria-controls="studify-detail" data-preview-item
-                    data-preview-index="6">
-                    <span class="pf-row__org">Studify Vietnam</span>
-                    <span class="pf-row__cell pf-row__cat" data-i18n="digital-learning-and-education">Digital Learning
-                      &amp; Education</span>
-                    <span class="pf-row__cell" data-i18n="educreator-partnership">Educreator, Partnership</span>
-                    <span class="pf-row__cell pf-row__year" data-i18n="mar-2025-present">Mar 2025 – Present</span>
+                <li class="pf-item" id="thom-thao">
+                  <button class="pf-row" aria-expanded="false" aria-controls="thom-thao-detail" data-preview-item
+                    data-preview-index="4">
+                    <span class="pf-row__org">Thom Thao – Holistic Workshop &amp; Retreat</span>
+                    <span class="pf-row__cell pf-row__cat"
+                      data-i18n="experiential-learning-and-facilitation">Experiential Learning &amp; Facilitation</span>
+                    <span class="pf-row__cell" data-i18n="founder">Founder</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="jul-2023-dec-2025">Jul 2023 – Dec 2025</span>
                     <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
                   </button>
-                  <div class="pf-detail" id="studify-detail">
+                  <div class="pf-detail" id="thom-thao-detail">
                     <div class="pf-detail__inner">
                       <div class="pf-detail__grid">
                         <div>
                           <div class="pf-block">
                             <h4 data-i18n="context">Context</h4>
-                            <p data-i18n="education-is-increasingly-moving-toward-digi">Education is increasingly moving
-                              toward digital and personalized learning. The work called for educators who could
-                              translate pedagogical thinking into learning materials suitable for digital environments
-                              and contribute within a multidisciplinary educator community.</p>
+                            <p data-i18n="many-development-experiences-rely-heavily-on">Many development experiences
+                              rely heavily on verbal instruction and cognitive understanding. Thom Thao explored another
+                              question: what happens when reflection and personal development are approached through
+                              multi-sensory, creative experiences?</p>
                           </div>
                           <div class="pf-block">
                             <h4 data-i18n="key-contribution">Key Contribution</h4>
-                            <p data-i18n="i-collaborate-with-a-community-of">I collaborate with a community of experts
-                              to develop and refine digital learning materials, bringing pedagogical perspectives and
-                              creative teaching approaches into the development process.</p>
+                            <p data-i18n="i-founded-and-designed-a-portfolio">I founded and designed a portfolio of
+                              experiences using art, sound and aroma, and facilitated workshops for individuals and
+                              corporate groups around personal growth, connection, reflection and creative engagement.
+                            </p>
                           </div>
                           <div class="pf-block">
                             <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
-                            <p data-i18n="selected-to-participate-as-an-educreator">Selected to participate as an
-                              Educreator in an initiative focused on building a community of creative educators and
-                              supporting digital transformation in education, with the broader aim of making
-                              personalized learning more accessible to Vietnamese learners.</p>
-                            <!-- TODO: thay href bằng link trang Course -->
-                            <div class="pf-cta"><a href="#" class="btn-pill"><span class="btn__text"><span
-                                    data-i18n="explore-more">Explore more</span> <svg class="lucide lucide-arrow-right icon icon--inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a></div>
+                            <p data-i18n="built-a-multi-sensory-learning-and">Built a multi-sensory learning and
+                              wellbeing portfolio across three primary formats—art, sound and aroma-based
+                              experiences—and extended these formats into corporate workshops designed to support team
+                              connection, engagement and creative energy.</p>
+                            <!-- TODO: logo các brand đã cộng tác -->
+                            <span class="pf-pending" data-i18n="brand-collaborations-coming-soon">Brand collaborations —
+                              coming soon</span>
                           </div>
-                          <div class="pf-block pf-gallery pf-gallery--3">
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Studify Vietnam" data-meta="1 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                          <div class="pf-block pf-gallery pf-gallery--2">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Thom Thao – Holistic Workshop &amp; Retreat" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
                               <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
                               <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
                             </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Studify Vietnam" data-meta="2 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
-                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
-                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
-                            </button>
-                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Studify Vietnam" data-meta="3 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Thom Thao – Holistic Workshop &amp; Retreat" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
                               <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
                               <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
                             </button>
@@ -689,15 +414,15 @@
                         </div>
                         <aside class="pf-built">
                           <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
-                          <div class="pf-tags"><span class="pf-tag" data-i18n="digital-learning">Digital
-                              learning</span><span class="pf-tag"
-                              data-i18n="personalization">Personalization</span><span class="pf-tag"
-                              data-i18n="cross-disciplinary-collaboration">Cross-disciplinary collaboration</span><span
-                              class="pf-tag" data-i18n="technology-enabled-education">Technology-enabled
-                              education</span></div>
-                          <p data-i18n="this-chapter-is-strengthening-my-ability">This chapter is strengthening my
-                            ability to think beyond the classroom and explore how technology can extend, personalize and
-                            scale learning while keeping the learner at the center.</p>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="experiential-learning-2">Experiential
+                              learning</span><span class="pf-tag" data-i18n="creative-facilitation">Creative
+                              facilitation</span><span class="pf-tag" data-i18n="learning-conditions">Learning
+                              conditions</span><span class="pf-tag" data-i18n="reflection-beyond-instruction">Reflection
+                              beyond instruction</span></div>
+                          <p data-i18n="this-chapter-expanded-my-understanding-that">This chapter expanded my
+                            understanding that meaningful learning does not happen only through information.
+                            Environment, experience, emotion and the way a person is invited to reflect can all shape
+                            what they are able to see and learn.</p>
                         </aside>
                       </div>
                     </div>
@@ -707,13 +432,290 @@
             </div>
           </section>
 
-          <section class="stage stage--end" aria-label="Now" data-i18n-attr="aria-label:now">
+          <section class="stage" aria-label="Organizational L&D" data-i18n-attr="aria-label:organizational-l-d">
             <header class="stage__head">
-              <p class="stage__year" data-i18n="now">Now</p>
+              <p class="stage__year">2021</p>
+              <p class="stage__label" data-i18n="organizational-l-and-d">Organizational L&amp;D</p>
             </header>
             <div class="stage__body">
-              <h3 class="stage__meaning">Lorem Ipsum</h3>
-              <p class="stage__tagline" data-i18n="self-leadership-family-education-ai-enabled">Lorem ipsum dolor sit amet.</p>
+              <h3 class="stage__meaning" data-i18n="designing-capability-systems">Designing capability systems</h3>
+              <ul class="pf-items">
+                <li class="pf-item" id="novagroup">
+                  <button class="pf-row" aria-expanded="false" aria-controls="novagroup-detail" data-preview-item
+                    data-preview-index="3">
+                    <span class="pf-row__org">NovaGroup</span>
+                    <span class="pf-row__cell pf-row__cat" data-i18n="real-estate-and-services">Real Estate and
+                      Services</span>
+                    <span class="pf-row__cell" data-i18n="senior-training-supervisor">Senior Training Supervisor</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="mar-2022-oct-2022">Mar 2022 – Oct 2022</span>
+                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                  </button>
+                  <div class="pf-detail" id="novagroup-detail">
+                    <div class="pf-detail__inner">
+                      <div class="pf-detail__grid">
+                        <div>
+                          <div class="pf-block">
+                            <h4 data-i18n="context">Context</h4>
+                            <p data-i18n="learning-had-to-operate-across-diverse">Learning had to operate across diverse
+                              service environments—F&amp;B, hospitality, travel, entertainment, butler services and Nova
+                              Service leadership—where different business units had different operational needs but
+                              still required consistency in learning and service standards.</p>
+                          </div>
+                          <div class="pf-block pf-gallery pf-gallery--2">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="NovaGroup" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="NovaGroup" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="key-contribution">Key Contribution</h4>
+                            <p data-i18n="i-translated-business-and-operational-needs">I translated business and
+                              operational needs into soft-skills, customer-service and management learning programs;
+                              standardized training content and procedural documents; developed e-learning; facilitated
+                              classroom programs; implemented Train-the-Trainer; and created pre-opening training plans
+                              for large-scale projects.</p>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
+                            <p data-i18n="built-learning-support-across-classroom-e">Built learning support across
+                              classroom, e-learning and Train-the-Trainer channels while standardizing materials,
+                              documentation and internal learning resources across multiple business units. I also
+                              developed role-based pre-opening learning plans to support workforce readiness for new
+                              projects.</p>
+                          </div>
+                        </div>
+                        <aside class="pf-built">
+                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="systems-thinking">Systems
+                              thinking</span><span class="pf-tag" data-i18n="scalable-learning">Scalable
+                              learning</span><span class="pf-tag" data-i18n="learning-standardization">Learning
+                              standardization</span><span class="pf-tag"
+                              data-i18n="train-the-trainer">Train-the-Trainer</span><span class="pf-tag"
+                              data-i18n="context-based-learning-design">Context-based learning design</span></div>
+                          <p data-i18n="this-chapter-strengthened-my-ability-to">This chapter strengthened my ability to
+                            see learning not simply as a class, but as a system that has to work across contexts,
+                            people, standards and operations.</p>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="pf-item" id="home-credit">
+                  <button class="pf-row" aria-expanded="false" aria-controls="home-credit-detail" data-preview-item
+                    data-preview-index="2">
+                    <span class="pf-row__org">Home Credit Vietnam</span>
+                    <span class="pf-row__cell pf-row__cat" data-i18n="tech-enabled-consumer-finance">Tech-enabled
+                      Consumer Finance</span>
+                    <span class="pf-row__cell" data-i18n="senior-l-and-d-business-partner-2">Senior L&amp;D Business
+                      Partner</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="may-2021-jan-2022">May 2021 – Jan 2022</span>
+                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                  </button>
+                  <div class="pf-detail" id="home-credit-detail">
+                    <div class="pf-detail__inner">
+                      <div class="pf-detail__grid">
+                        <div>
+                          <div class="pf-block">
+                            <h4 data-i18n="context">Context</h4>
+                            <p data-i18n="the-role-required-learning-to-respond">The role required learning to respond
+                              directly to organizational needs rather than operate as a separate training
+                              function—connecting business priorities, capability gaps, curriculum, learning investment
+                              and employee development.</p>
+                          </div>
+                          <div class="pf-block pf-gallery pf-gallery--3">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Home Credit Vietnam" data-meta="1 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-image.png" data-title="Home Credit Vietnam" data-meta="2 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="Home Credit Vietnam" data-meta="3 / 3" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="key-contribution">Key Contribution</h4>
+                            <p data-i18n="i-managed-learning-projects-from-training">I managed learning projects from
+                              Training Needs Analysis through strategy, annual curricula, budgeting, delivery and
+                              evaluation; redesigned and facilitated orientation for management and non-management
+                              employees; supported e-learning systems; and established an internal Facilitator Pool.</p>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
+                            <p data-i18n="established-an-internal-facilitator-pool-to">Established an internal
+                              Facilitator Pool to strengthen in-house learning capability and reduce dependence on
+                              external delivery, while expanding employee access to learning through e-learning systems
+                              and cross-functional HR initiatives.</p>
+                          </div>
+                        </div>
+                        <aside class="pf-built">
+                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="learning-strategy">Learning
+                              strategy</span><span class="pf-tag" data-i18n="capability-development">Capability
+                              development</span><span class="pf-tag" data-i18n="business-partnering">Business
+                              partnering</span><span class="pf-tag" data-i18n="internal-knowledge-transfer">Internal
+                              knowledge transfer</span><span class="pf-tag"
+                              data-i18n="learning-ecosystem-thinking">Learning ecosystem thinking</span></div>
+                          <p data-i18n="this-chapter-sharpened-an-idea-that">This chapter sharpened an idea that remains
+                            important in my work today: good learning should build capability inside the learner or
+                            system, rather than creating long-term dependency on the person delivering it.</p>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Facilitation & Training" data-i18n-attr="aria-label:facilitation-training">
+            <header class="stage__head">
+              <p class="stage__year">2016</p>
+              <p class="stage__label" data-i18n="facilitation-and-training">Facilitation &amp; Training</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning" data-i18n="helping-people-learn">Helping people learn</h3>
+              <ul class="pf-items">
+                <li class="pf-item" id="vietjet-trainer">
+                  <button class="pf-row" aria-expanded="false" aria-controls="vietjet-trainer-detail" data-preview-item
+                    data-preview-index="1">
+                    <span class="pf-row__org">VietJet Air</span>
+                    <span class="pf-row__cell pf-row__cat" data-i18n="learning-and-facilitation">Learning &amp;
+                      Facilitation</span>
+                    <span class="pf-row__cell" data-i18n="soft-skills-trainer">Soft Skills Trainer</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="jan-2016-may-2021">Jan 2016 – May 2021</span>
+                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                  </button>
+                  <div class="pf-detail" id="vietjet-trainer-detail">
+                    <div class="pf-detail__inner">
+                      <div class="pf-detail__grid">
+                        <div>
+                          <div class="pf-block">
+                            <h4 data-i18n="context">Context</h4>
+                            <p data-i18n="in-a-fast-moving-airline-environment">In a fast-moving airline environment,
+                              learning had to work across frontline employees, team leaders and supervisors while
+                              responding continuously to changing operational and customer-service needs.</p>
+                          </div>
+                          <div class="pf-block pf-gallery pf-gallery--1">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="1 / 1" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="key-contribution">Key Contribution</h4>
+                            <p data-i18n="i-owned-the-learning-cycle-from">I owned the learning cycle from needs
+                              analysis and content revision through facilitation and post-training evaluation. I led
+                              core curricula in Customer Service Excellence, Effective Communication and Teamwork &amp;
+                              Collaboration across ILT, virtual ILT, e-learning/LMS and blended learning formats.</p>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
+                            <p data-i18n="expanded-learning-across-four-delivery-appro">Expanded learning across four
+                              delivery approaches—classroom, virtual classroom, LMS/e-learning and blended
+                              learning—while supporting development across three workforce levels: employees, team
+                              leaders and supervisors.</p>
+                          </div>
+                        </div>
+                        <aside class="pf-built">
+                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="facilitation">Facilitation</span><span
+                              class="pf-tag" data-i18n="instructional-design">Instructional design</span><span
+                              class="pf-tag" data-i18n="adult-learning">Adult learning</span><span class="pf-tag"
+                              data-i18n="blended-learning">Blended learning</span><span class="pf-tag"
+                              data-i18n="learning-evaluation">Learning evaluation</span></div>
+                          <p data-i18n="this-was-the-chapter-where-knowing">This was the chapter where “knowing
+                            something” and “helping another person learn it” became clearly different skills for me. It
+                            built the foundation for my Teaching/Coaching identity and later Learning Design work.</p>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stage" aria-label="Customer Experience" data-i18n-attr="aria-label:customer-experience">
+            <header class="stage__head">
+              <p class="stage__year">2013</p>
+              <p class="stage__label" data-i18n="customer-experience">Customer Experience</p>
+            </header>
+            <div class="stage__body">
+              <h3 class="stage__meaning" data-i18n="understanding-people-in-context">Understanding people in context
+              </h3>
+              <ul class="pf-items">
+                <li class="pf-item" id="vietjet-cx">
+                  <button class="pf-row" aria-expanded="false" aria-controls="vietjet-cx-detail" data-preview-item
+                    data-preview-index="0">
+                    <span class="pf-row__org">VietJet Air</span>
+                    <span class="pf-row__cell pf-row__cat" data-i18n="customer-experience">Customer Experience</span>
+                    <span class="pf-row__cell" data-i18n="senior-customer-service-executive">Senior Customer Service
+                      Executive</span>
+                    <span class="pf-row__cell pf-row__year" data-i18n="dec-2013-may-2021">Dec 2013 – May 2021</span>
+                    <span class="pf-row__icon" aria-hidden="true"><svg class="lucide lucide-plus icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                  </button>
+                  <div class="pf-detail" id="vietjet-cx-detail">
+                    <div class="pf-detail__inner">
+                      <div class="pf-detail__grid">
+                        <div>
+                          <div class="pf-block">
+                            <h4 data-i18n="context">Context</h4>
+                            <p data-i18n="customer-issues-rarely-exist-in-isolation">Customer issues rarely exist in
+                              isolation. Understanding a complaint required looking across the customer journey,
+                              operational touchpoints, expectations, available information and the context surrounding
+                              each situation.</p>
+                          </div>
+                          <div class="pf-block pf-gallery pf-gallery--2">
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="1 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                            <button type="button" class="pf-shot" data-lightbox data-src="assets/placeholder-portrait.png" data-title="VietJet Air" data-meta="2 / 2" aria-label="View image" data-i18n-attr="aria-label:view-image">
+                              <img src="assets/placeholder-portrait.png" alt="" loading="lazy" width="1200" height="1800" decoding="async">
+                              <span class="pf-shot__zoom" aria-hidden="true"><svg class="lucide lucide-maximize-2 icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></span>
+                            </button>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="key-contribution">Key Contribution</h4>
+                            <p data-i18n="i-investigated-complex-customer-feedback-han">I investigated complex customer
+                              feedback, handled escalations and crisis situations, audited service quality across
+                              customer touchpoints, supported training planning and workshops, and collaborated with IT
+                              on customer-service systems including CRM, touchpoint evaluation and Lost &amp; Found.</p>
+                          </div>
+                          <div class="pf-block">
+                            <h4 data-i18n="achievement-milestone">Achievement / Milestone</h4>
+                            <p data-i18n="contributed-to-the-development-of-customer">Contributed to the development of
+                              customer-service systems with IT while combining case investigation, service-quality
+                              auditing and complex feedback resolution across multiple customer-journey touchpoints.</p>
+                          </div>
+                        </div>
+                        <aside class="pf-built">
+                          <h4 data-i18n="what-it-built-in-me">What It Built in Me</h4>
+                          <div class="pf-tags"><span class="pf-tag" data-i18n="problem-diagnosis">Problem
+                              diagnosis</span><span class="pf-tag" data-i18n="context-awareness">Context
+                              awareness</span><span class="pf-tag" data-i18n="connecting-the-dots">Connecting the
+                              dots</span><span class="pf-tag" data-i18n="customer-perspective">Customer
+                              perspective</span><span class="pf-tag" data-i18n="systems-thinking">Systems
+                              thinking</span></div>
+                          <p data-i18n="looking-back-this-is-one-of">Looking back, this is one of the earliest
+                            professional environments in which my Analytical identity became visible: before solving a
+                            problem, I learned to gather information across multiple touchpoints, understand context and
+                            question what was actually happening.</p>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </section>
         </div>
@@ -894,18 +896,13 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__cta">
-          <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
+          <div class="footer__cta-main">
+            <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
           consectetur adipiscing elit</p>
-          <h2 class="footer__title"><span data-i18n="let-s-make-it">Let’s make it</span> <span data-i18n="together">together</span></h2>
-          <a href="contact.html" class="btn-pill btn-pill--solid" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <h2 class="footer__title" data-i18n="work-with-me-title">Work With Me</h2>
+            <a href="contact.html" class="btn-pill btn-pill--solid btn-pill--lg" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
         </div>
-
-        <!-- TODO: thay email / số Zalo / WhatsApp thật -->
-        <ul class="footer__contacts">
-          <li><a class="footer__contact" href="mailto:abc@gmail.com"><svg class="lucide lucide-mail icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span class="footer__contact-label">Email</span><span class="footer__contact-value">abc@gmail.com</span></a></li>
-          <li><a class="footer__contact" href="https://zalo.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-message-circle icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span class="footer__contact-label">Zalo</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
-          <li><a class="footer__contact" href="https://wa.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-phone icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span class="footer__contact-label">WhatsApp</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
-        </ul>
 
         <div class="footer__bottom">
           <div class="footer__meta">

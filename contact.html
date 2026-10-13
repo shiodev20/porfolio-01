@@ -19,6 +19,9 @@
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
       }
+      // Greeting intro (home only) plays on every direct visit (typed URL, reload, external link)
+      // and is skipped only when arriving via an internal link (the transition cover is up then)
+      if (tl !== null) document.documentElement.classList.add("is-greeted");
     } catch (e) {}
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
@@ -31,7 +34,7 @@
 
   <header class="header header--dark">
     <a href="index.html" class="logo" data-magnetic="0.3" data-page="Home">
-      <!-- <span class="logo__copy">©</span> -->
+      <svg class="lucide lucide-globe icon logo__globe" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
       <span class="logo__names">
         <span class="logo__name">Your Brand</span>
       </span>
@@ -81,7 +84,7 @@
           <img class="contact-intro__avatar" src="assets/placeholder-portrait.png" alt="Thao" data-i18n-attr="alt:thao" width="1200" height="1800" decoding="async">
           <p class="contact-intro__eyebrow" data-i18n="facilitator-speaker-consultant">Facilitator · Speaker · Consultant</p>
         </div>
-        <h1 class="page-title contact-title" data-i18n="lets-make-it-together">Let’s make it together</h1>
+        <h1 class="page-title contact-title" data-i18n="work-with-me-title">Work With Me</h1>
         <aside class="contact-aside">
         <div>
           <h5 data-i18n="contact-details">Contact details</h5>
@@ -149,10 +152,29 @@
               <label class="chip"><input type="checkbox" name="format" value="Not sure"><span data-i18n="opt-not-sure">Not sure</span></label>
             </div>
           </fieldset>
-          <div class="form__group">
-            <label class="form__label" for="f-timing" data-i18n="when-are-you-hoping">When are you hoping this could happen?</label>
-            <input class="form__input" id="f-timing" name="timing" type="text" placeholder="Timing" data-i18n-attr="placeholder:timing">
-          </div>
+          <!-- Timing. Sent fields (all optional, any combination):
+               timing_date   = YYYY-MM-DD   (native date picker)
+               timing_time   = HH:MM, 24h   (native time picker)
+               timing_preset = today | this_week | this_month | other   (stable codes; only the label is translated) -->
+          <fieldset class="form__group">
+            <legend class="form__label" data-i18n="when-are-you-hoping">When are you hoping this could happen?</legend>
+            <div class="form__datetime">
+              <label class="form__sub">
+                <span class="form__sub-label" data-i18n="date">Date</span>
+                <input class="form__input" id="f-timing-date" name="timing_date" type="date">
+              </label>
+              <label class="form__sub">
+                <span class="form__sub-label" data-i18n="time">Time</span>
+                <input class="form__input" id="f-timing-time" name="timing_time" type="time">
+              </label>
+            </div>
+            <div class="chips" role="radiogroup" aria-label="Quick timing" data-i18n-attr="aria-label:quick-timing">
+              <label class="chip"><input type="radio" name="timing_preset" value="today"><span data-i18n="opt-today">Today</span></label>
+              <label class="chip"><input type="radio" name="timing_preset" value="this_week"><span data-i18n="opt-this-week">This week</span></label>
+              <label class="chip"><input type="radio" name="timing_preset" value="this_month"><span data-i18n="opt-this-month">This month</span></label>
+              <label class="chip"><input type="radio" name="timing_preset" value="other"><span data-i18n="opt-other">Other</span></label>
+            </div>
+          </fieldset>
           <div class="form__group">
             <label class="form__label form__label--req" for="f-message" data-i18n="your-message">Your message</label>
             <textarea class="form__input" id="f-message" name="message" rows="5" placeholder="Hello thảo, can you help me with…" aria-required="true" data-i18n-attr="placeholder:hello-thao-can-you-help"></textarea>

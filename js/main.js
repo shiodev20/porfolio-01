@@ -72,7 +72,7 @@ function initTransitions() {
       setTimeout(() => {
         overlay.classList.remove("is-covering");
         overlay.classList.add("is-leaving");
-        setTimeout(() => overlay.classList.remove("is-leaving"), 900);
+        setTimeout(() => overlay.classList.remove("is-leaving"), 950);
       }, 250);
     });
   }
@@ -91,11 +91,11 @@ function initTransitions() {
         return;
       }
       e.preventDefault();
-      const name = (a.dataset.page || a.textContent).replace(/s+/g, " ").trim(); // one line, same text before/after load
+      const name = (a.dataset.page || a.textContent).replace(/\s+/g, " ").trim(); // one line, same text before/after load
       label.textContent = window.i18n ? i18n.page(name) : name;
       try { sessionStorage.setItem("transition-label", label.textContent); } catch (err) {}
       overlay.classList.add("is-entering");
-      setTimeout(() => { location.href = url.href; }, 500);
+      setTimeout(() => { location.href = url.href; }, 750);    // after the sheet has covered the page
     });
   });
 
@@ -139,7 +139,7 @@ function initMagnetic() {
 }
 
 /* --------------------------------------------------------------------------
-   Scroll: menu pill visibility + the hero name marquee (reacts to scroll speed/direction)
+   Scroll: menu pill visibility + the hero name marquee (right → left, faster while scrolling)
    -------------------------------------------------------------------------- */
 function initScroll() {
   const menuBtn = $(".menu-btn");
@@ -150,14 +150,12 @@ function initScroll() {
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let lastY = scrollY;
-  let direction = -1;   // -1 = runs left (scrolling down), 1 = runs right (scrolling up)
   let x = 0;            // % of the track; the track holds two identical halves, so it wraps at -50%
   const speed = 0.035;  // % per frame at rest
   let boost = 0;        // extra speed from scroll velocity, eased up and down
 
   const loop = () => {
     const y = scrollY;
-    if (y !== lastY) direction = y > lastY ? -1 : 1;
     const delta = Math.abs(y - lastY);
     lastY = y;
 
@@ -166,7 +164,7 @@ function initScroll() {
 
     if (track && !still) {
       boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);
-      x += direction * (speed + boost);
+      x -= speed + boost;                 // always runs right → left; scrolling only speeds it up
       if (x <= -50) x += 50;
       if (x > 0) x -= 50;
       track.style.transform = `translate3d(${x}%,0,0)`;
@@ -203,29 +201,33 @@ function initWorkPreview() {
   // Rows: home work list, or any [data-preview-item] (portfolio). A row may set
   // data-preview-index to pick its slide, so filtering doesn't break the mapping.
   const rows = $$(".work__row, [data-preview-item], [data-preview-src]");
-  const preview = $(".preview");
-  if (!rows.length || !preview || isTouch) return;
-
-  const slider = $(".preview__slider", preview);
+  const preview = $(".preview");                     // floating image (Portfolio page only)
   const cursor = $(".preview-cursor");
   const label = $(".preview-label");
+  if (!rows.length || !cursor || isTouch) return;
+
+  const slider = preview ? $(".preview__slider", preview) : null;
   const els = [
-    { el: preview, x: 0, y: 0, ease: 0.12 },
+    preview && { el: preview, x: 0, y: 0, ease: 0.12 },
     { el: cursor, x: 0, y: 0, ease: 0.2 },
-    { el: label, x: 0, y: 0, ease: 0.25 },
-  ];
+    label && { el: label, x: 0, y: 0, ease: 0.25 },
+  ].filter(Boolean);
+  const circle = els.filter((o) => o.el !== preview); // the "View" circle on its own
   let mx = innerWidth / 2, my = innerHeight / 2;
 
   window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
 
-  const slides = $$(".preview__slide", slider);
-  const dynamic = $(".preview__slide--dynamic", slider);
+  const slides = slider ? $$(".preview__slide", slider) : [];
+  const dynamic = slider ? $(".preview__slide--dynamic", slider) : null;
 
   rows.forEach((row, i) => {
     const index = row.dataset.previewIndex !== undefined ? +row.dataset.previewIndex : i;
     row.addEventListener("mouseenter", () => {
       if (row.closest(".pf-item.is-open")) return;        // opened project: no hover effect
-      if (row.closest('.work[data-view="grid"]')) return; // home cards already show their image
+      if (row.classList.contains("work__row") || !slider) {   // home cards: only the View circle follows
+        circle.forEach((o) => o.el.classList.add("is-active"));
+        return;
+      }
       let target = index;
       if (row.dataset.previewSrc && dynamic) {            // per-row image (e.g. certificates)
         dynamic.querySelector("img").src = row.dataset.previewSrc;
@@ -325,6 +327,35 @@ function initLightbox() {
 }
 
 /* --------------------------------------------------------------------------
+   Greeting intro: "Xin chào" … "Hello" in several languages, then the screen
+   slides up. Home page, on every direct visit; the <head> script skips it
+   (html.is-greeted) only when arriving from another page of the site.
+   -------------------------------------------------------------------------- */
+function initGreeting() {
+  const el = $(".greeting");
+  if (!el || document.documentElement.classList.contains("is-greeted")) { if (el) el.remove(); return Promise.resolve(); }
+  const words = ["Xin chào", "Bonjour", "Hola", "Ciao", "Olá", "Hallo", "こんにちは", "안녕하세요", "你好", "Hello"];
+  const word = $(".greeting__word", el);
+  document.body.classList.add("is-locked");
+
+  return new Promise((resolve) => {
+    let i = 0;
+    const next = () => {
+      word.textContent = words[i];
+      i++;
+      if (i < words.length) setTimeout(next, i === 1 ? 900 : 160);   // first word lingers, the rest flick by
+      else setTimeout(() => {
+        el.classList.add("is-done");
+        document.body.classList.remove("is-locked");
+        setTimeout(() => el.remove(), 1000);
+        resolve();
+      }, 700);
+    };
+    next();
+  });
+}
+
+/* --------------------------------------------------------------------------
    Reveal on scroll
    -------------------------------------------------------------------------- */
 function initReveal() {
@@ -358,6 +389,14 @@ function initClock() {
 function initForm() {
   const form = $(".form");
   if (!form) return;
+
+  // Timing: the date picker can't go back in time; "Today" fills in today's date if none is set
+  const date = $("#f-timing-date", form);
+  const toISO = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+  if (date) date.min = toISO(new Date());
+  $$('input[name="timing_preset"]', form).forEach((r) => r.addEventListener("change", () => {
+    if (r.value === "today" && date && !date.value) date.value = toISO(new Date());
+  }));
   const status = $(".form__status");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -372,7 +411,7 @@ function initForm() {
       `Reaching out as: ${d.get("as") || "-"}`,
       `Would like to work with me as: ${d.get("role") || "-"}`,
       `Format: ${d.getAll("format").join(", ") || "-"}`,
-      `Timing: ${d.get("timing") || "-"}`,
+      `Timing: ${[d.get("timing_preset"), d.get("timing_date"), d.get("timing_time")].filter(Boolean).join(" · ") || "-"}`,
       "",
       d.get("message"),
     ].join("\n");
@@ -506,6 +545,9 @@ function initSubnav() {
    Boot
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  // block dragging images out of the page (Firefox ignores the CSS -webkit-user-drag)
+  document.addEventListener("dragstart", (e) => { if (e.target instanceof HTMLImageElement) e.preventDefault(); });
+  document.querySelectorAll("img").forEach((img) => img.setAttribute("draggable", "false"));
   initSmoothScroll();
   initTransitions();
   initMenu();
@@ -521,5 +563,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initFlow();
   initPortfolio();
   initSubnav();
-  initReveal();
+  initGreeting().then(() => {
+    initReveal();
+    // Hero entrance plays once the greeting (or the page-transition cover) is out of the way
+    const html = document.documentElement;
+    const wait = html.classList.contains("is-greeted") ? 450 : 150;
+    setTimeout(() => html.classList.replace("hero-pending", "hero-in"), wait);
+  });
 });

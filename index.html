@@ -24,6 +24,12 @@
         document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
         setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
       }
+      // Greeting intro (home only) plays on every direct visit (typed URL, reload, external link)
+      // and is skipped only when arriving via an internal link (the transition cover is up then)
+      if (tl !== null) document.documentElement.classList.add("is-greeted");
+      // Hero entrance: blocks wait off-position until js/main.js plays them in (failsafe after 6s)
+      document.documentElement.classList.add("hero-pending");
+      setTimeout(function () { document.documentElement.classList.replace("hero-pending", "hero-in"); }, 6000);
     } catch (e) {}
   </script>
   <!-- DEV ONLY: live colour tester. Remove this tag (and js/dev-theme.js) before launch. -->
@@ -32,6 +38,11 @@
 </head>
 
 <body>
+  <!-- Greeting intro (home only, once per visit) -->
+  <div class="greeting" aria-hidden="true">
+    <p class="greeting__word">Xin chào</p>
+    <svg class="greeting__curve" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 0 Q50 20 100 0 Z"/></svg>
+  </div>
 
 
   <!-- Page transition -->
@@ -42,7 +53,7 @@
   <!-- Header -->
   <header class="header header--dark">
     <a href="index.html" class="logo" data-magnetic="0.3" data-page="Home">
-      <!-- <span class="logo__copy">©</span> -->
+      <svg class="lucide lucide-globe icon logo__globe" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
       <span class="logo__names">
         <span class="logo__name">Your Brand</span>
       </span>
@@ -88,13 +99,9 @@
   <main>
     <!-- Hero -->
     <section class="home-hero container">
-      <div class="home-hero__text" data-reveal>
-        <p class="home-hero__eyebrow"><svg class="lucide lucide-globe icon home-hero__globe" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span data-i18n="based-in-vietnam-line">Based in Vietnam</span></p>
+      <div class="home-hero__text">
+        <p class="home-hero__eyebrow"><svg class="lucide lucide-map-pin icon home-hero__pin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="based-in-vietnam-line">Based in Vietnam</span></p>
         <p class="home-hero__role" data-i18n="hero-role">Lorem Ipsum is simply <br> dummy text of the printing</p>
-        <div class="home-hero__actions">
-          <a href="portfolio.html" class="btn-pill btn-pill--solid" data-page="Portfolio"><span class="btn__text" data-i18n="view-portfolio">View portfolio</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          <a href="contact.html" class="btn-pill" data-page="Contact"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span></a>
-        </div>
       </div>
       <figure class="home-hero__media">
         <img class="home-hero__img" src="assets/portrait.png" alt="Portrait of thảo"
@@ -126,7 +133,7 @@
           <a href="portfolio.html" class="btn-pill intro__btn"><span class="btn__text" data-i18n="about-me">About me</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
         <div class="work__head">
-          <p class="label" data-i18n="portfolio">Portfolio</p>
+          <p class="label" data-i18n="explore">Explore</p>
           <div class="view-toggle" role="group" aria-label="View" data-i18n-attr="aria-label:view-mode">
             <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="false"
               aria-label="List view" data-i18n-attr="aria-label:list-view"><svg class="lucide lucide-list icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg></button>
@@ -135,79 +142,38 @@
           </div>
         </div>
       </div>
-      <ul class="work__list">
+      <ul class="work__list work__list--hubs">
         <li>
-          <a class="work__row" href="portfolio.html#studify" data-page="Studify Vietnam">
-            <span class="work__media" aria-hidden="true"
-              style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
+          <a class="work__row" href="portfolio.html" data-page="Portfolio">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
-            <span class="work__num">01</span>
-            <span class="work__cat" data-i18n="digital-learning-and-education">Digital Learning &amp; Education</span>
-            <h3 class="work__title">Studify Vietnam</h3>
-            <span class="work__meta"><span class="work__role" data-i18n="educreator-partnership">Educreator,
-                Partnership</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year"
-                data-i18n="year-2025-present">2025 – Present</span></span>
+            <span class="work__cat" data-i18n="card-portfolio-cat">Career timeline · Education</span>
+            <h3 class="work__title" data-i18n="portfolio">Portfolio</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="card-portfolio-desc">The journey, roles and learning behind my work</span></span>
           </a>
         </li>
         <li>
-          <a class="work__row" href="portfolio.html#titbrain" data-page="TiTBrain Education">
-            <span class="work__media" aria-hidden="true"
-              style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
+          <a class="work__row" href="course.html" data-page="Course">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
-            <span class="work__num">02</span>
-            <span class="work__cat" data-i18n="abacus-mental-arithmetic-enrichment-programs">Abacus Mental Arithmetic - Enrichment programs</span>
-            <h3 class="work__title">TiTBrain Education</h3>
-            <span class="work__meta"><span class="work__role" data-i18n="chief-executive-officer">Chief Executive
-                Officer</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year">2024 –
-                2026</span></span>
+            <span class="work__cat" data-i18n="card-course-cat">Learning programs</span>
+            <h3 class="work__title" data-i18n="course">Course</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="card-course-desc">Programs for self-leadership and family education</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year work__status" data-i18n="coming-soon">Coming soon</span></span>
           </a>
         </li>
         <li>
-          <a class="work__row" href="portfolio.html#thom-thao" data-page="Thom Thao">
-            <span class="work__media" aria-hidden="true"
-              style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
+          <a class="work__row" href="ai-tool.html" data-page="AI Tool">
+            <span class="work__media" aria-hidden="true" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
                 src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
-            <span class="work__num">03</span>
-            <span class="work__cat" data-i18n="experiential-learning-and-facilitation">Experiential Learning &amp; Facilitation</span>
-            <h3 class="work__title">Thom Thao</h3>
-            <span class="work__meta"><span class="work__role" data-i18n="founder">Founder</span><span class="work__sep"
-                aria-hidden="true"> · </span><span class="work__year">2023 – 2025</span></span>
-          </a>
-        </li>
-        <li>
-          <a class="work__row" href="portfolio.html#home-credit" data-page="Home Credit Vietnam">
-            <span class="work__media" aria-hidden="true"
-              style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
-                src="assets/placeholder-image.png" alt="" loading="lazy" width="1200" height="800" decoding="async"></span>
-            <span class="work__num">04</span>
-            <span class="work__cat" data-i18n="tech-enabled-consumer-finance">Tech-enabled Consumer Finance</span>
-            <h3 class="work__title">Home Credit Vietnam</h3>
-            <span class="work__meta"><span class="work__role" data-i18n="senior-l-and-d-business-partner-2">Senior
-                L&amp;D Business Partner</span><span class="work__sep" aria-hidden="true"> · </span><span
-                class="work__year">2021 – 2022</span></span>
+            <span class="work__cat" data-i18n="card-ai-cat">AI-enabled learning</span>
+            <h3 class="work__title" data-i18n="ai-tool">AI Tool</h3>
+            <span class="work__meta"><span class="work__role" data-i18n="card-ai-desc">Tools that bring AI into everyday learning</span><span class="work__sep" aria-hidden="true"> · </span><span class="work__year work__status" data-i18n="coming-soon">Coming soon</span></span>
           </a>
         </li>
       </ul>
-      <div class="work__more">
-        <a href="portfolio.html" class="btn-pill">
-          <span class="btn__text" data-i18n="view-full-portfolio">View full portfolio</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
     </section>
 
-    <!-- Floating preview: follows the pointer over project rows in List mode -->
-    <div class="preview" aria-hidden="true">
-      <div class="preview__slider">
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 35%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 55%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 55%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
-        <div class="preview__slide" style="background:color-mix(in srgb, var(--blush) 35%, var(--ivory))"><img
-            src="assets/placeholder-image.png" alt="" width="1200" height="800" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
+    <!-- Pointer-following "View" circle for the cards -->
     <div class="preview-cursor" aria-hidden="true"></div>
     <div class="preview-label" aria-hidden="true" data-i18n="view">View</div>
 
@@ -219,18 +185,13 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__cta">
-          <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
+          <div class="footer__cta-main">
+            <p class="footer__eyebrow" data-i18n="work-with-me-facilitator-speaker-consultant">Lorem ipsum dolor sit amet,
           consectetur adipiscing elit</p>
-          <h2 class="footer__title"><span data-i18n="let-s-make-it">Let’s make it</span> <span data-i18n="together">together</span></h2>
-          <a href="contact.html" class="btn-pill btn-pill--solid" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <h2 class="footer__title" data-i18n="work-with-me-title">Work With Me</h2>
+            <a href="contact.html" class="btn-pill btn-pill--solid btn-pill--lg" data-page="Work with me"><span class="btn__text" data-i18n="get-in-touch">Get in touch</span><svg class="lucide lucide-arrow-right icon btn__arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
         </div>
-
-        <!-- TODO: thay email / số Zalo / WhatsApp thật -->
-        <ul class="footer__contacts">
-          <li><a class="footer__contact" href="mailto:abc@gmail.com"><svg class="lucide lucide-mail icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span class="footer__contact-label">Email</span><span class="footer__contact-value">abc@gmail.com</span></a></li>
-          <li><a class="footer__contact" href="https://zalo.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-message-circle icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span class="footer__contact-label">Zalo</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
-          <li><a class="footer__contact" href="https://wa.me/84000000000" target="_blank" rel="noopener"><svg class="lucide lucide-phone icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span class="footer__contact-label">WhatsApp</span><span class="footer__contact-value">+84 000 000 000</span></a></li>
-        </ul>
 
         <div class="footer__bottom">
           <div class="footer__meta">

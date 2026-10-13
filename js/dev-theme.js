@@ -21,6 +21,72 @@
     { v: "--khaki", name: "Khaki",     use: "Secondary · small details",      fallback: "#C1B094" },
   ];
 
+  /* ---------- fonts (dev only) ----------
+     Google Fonts families with a Vietnamese subset, plus Poppins, which the client asked
+     about but which does NOT cover Vietnamese (flagged). "Fraunces"/"Inter" are the defaults. */
+  const FONT_KEY = "dev-fonts";
+  const FONTS = [
+    // serif
+    { name: "Fraunces", kind: "Serif", w: "300;400;500;600" },
+    { name: "Lora", kind: "Serif", w: "400;500;600" },
+    { name: "Playfair Display", kind: "Serif", w: "400;500;600" },
+    { name: "Merriweather", kind: "Serif", w: "300;400;700" },
+    { name: "Noto Serif", kind: "Serif", w: "400;500;600" },
+    { name: "Literata", kind: "Serif", w: "400;500;600" },
+    { name: "Cormorant Garamond", kind: "Serif", w: "400;500;600" },
+    { name: "EB Garamond", kind: "Serif", w: "400;500;600" },
+    { name: "Prata", kind: "Serif", w: "400" },
+    { name: "Gelasio", kind: "Serif", w: "400;500;600" },   // open-source stand-in for Georgia (same proportions), covers Vietnamese
+    // sans
+    { name: "Inter", kind: "Sans", w: "400;500;600" },
+    { name: "Be Vietnam Pro", kind: "Sans", w: "400;500;600" },
+    { name: "Raleway", kind: "Sans", w: "400;500;600", lining: true },
+    { name: "Montserrat", kind: "Sans", w: "400;500;600" },
+    { name: "Roboto", kind: "Sans", w: "400;500;700" },
+    { name: "Open Sans", kind: "Sans", w: "400;500;600" },
+    { name: "Noto Sans", kind: "Sans", w: "400;500;600" },
+    { name: "Nunito", kind: "Sans", w: "400;500;600" },
+    { name: "Source Sans 3", kind: "Sans", w: "400;500;600" },
+    { name: "Lexend", kind: "Sans", w: "400;500;600" },
+    { name: "Manrope", kind: "Sans", w: "400;500;600" },
+    { name: "Plus Jakarta Sans", kind: "Sans", w: "400;500;600" },
+    { name: "Work Sans", kind: "Sans", w: "400;500;600" },
+    { name: "Josefin Sans", kind: "Sans", w: "400;500;600" },
+    { name: "Poppins", kind: "Sans", w: "400;500;600", noVn: true },
+  ];
+  const FONT_ROLES = [
+    { v: "--font-display", name: "Heading", def: "Fraunces", fallback: "\"Times New Roman\", serif" },
+    { v: "--font-body", name: "Body", def: "Inter", fallback: "system-ui, sans-serif" },
+  ];
+  const fontDefaults = Object.fromEntries(FONT_ROLES.map((r) => [r.v, r.def]));
+  let fonts = { ...fontDefaults };
+  try {
+    const saved = JSON.parse(localStorage.getItem(FONT_KEY) || "null");
+    if (saved) FONT_ROLES.forEach((r) => { if (FONTS.some((f) => f.name === saved[r.v])) fonts[r.v] = saved[r.v]; });
+  } catch (e) {}
+
+  const loaded = new Set(["Fraunces", "Inter"]);   // already linked by the pages
+  function loadFont(name) {
+    const f = FONTS.find((x) => x.name === name);
+    if (!f || f.system || loaded.has(name)) return;
+    loaded.add(name);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${name.replace(/ /g, "+")}:wght@${f.w}&display=swap`;
+    document.head.appendChild(link);
+  }
+  const fontsDefault = () => FONT_ROLES.every((r) => fonts[r.v] === fontDefaults[r.v]);
+  function applyFonts() {
+    FONT_ROLES.forEach((r) => {
+      if (fonts[r.v] === fontDefaults[r.v]) root.style.removeProperty(r.v);
+      else { loadFont(fonts[r.v]); root.style.setProperty(r.v, `"${fonts[r.v]}", ${r.fallback}`); }
+    });
+    // Raleway's default figures are old-style: switch to lining so years line up
+    const lining = FONT_ROLES.some((r) => FONTS.find((f) => f.name === fonts[r.v])?.lining);
+    root.style.fontVariantNumeric = lining ? "lining-nums" : "";
+    try { fontsDefault() ? localStorage.removeItem(FONT_KEY) : localStorage.setItem(FONT_KEY, JSON.stringify(fonts)); } catch (e) {}
+  }
+
   const root = document.documentElement;
   const norm = (h) => {
     let s = String(h).trim().replace(/^#/, "");
@@ -68,6 +134,7 @@
   // paint saved colours immediately (script runs in <head>, before first paint)
   ROLES.forEach((r) => root.style.setProperty(r.v, state[r.v]));
   if (!isDefault()) root.style.setProperty("--accent-ink", accentInk());
+  applyFonts();
 
   /* ---------- UI ---------- */
   const CSS = `
@@ -92,6 +159,12 @@
   .dt__actions { display: flex; margin-top: .8rem; }
   .dt__btn { flex: 1; padding: .6rem .8rem; border: 1px solid #d5d5d5; border-radius: 999px; font: 600 .8rem system-ui, sans-serif; color: #1a1a1a; background: #fff; cursor: pointer; text-align: center; }
   .dt__btn:hover { background: #f3f3f3; } .dt__btn:disabled { opacity: .4; cursor: default; }
+  .dt__fonts { display: grid; gap: 1.1rem; margin-top: 1rem; padding-top: 1.1rem; border-top: 1px solid #eee; }
+  .dt__font { display: grid; gap: .5rem; }
+  .dt__font .dt__name { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: #666; }
+  .dt__font select { width: 100%; padding: .6rem .7rem; border: 1px solid #d5d5d5; border-radius: .6rem; font: 500 .85rem system-ui, sans-serif; color: #1a1a1a; background: #fff; cursor: pointer; }
+  .dt__sample { padding: .6rem .75rem; border-radius: .6rem; background: #f6f5f2; font-size: 1.1rem; line-height: 1.35; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dt__warn { font-size: .74rem; color: #d4380d; }
   `;
 
   const panels = [];
@@ -108,6 +181,18 @@
         <span class="dt__name">${r.name}</span>
         <input class="dt__hex" type="text" maxlength="7" spellcheck="false" aria-label="${r.name} hex">
       </div>`).join("")}
+      <div class="dt__fonts">
+        ${FONT_ROLES.map((r) => `
+        <label class="dt__font" data-font="${r.v}">
+          <span class="dt__name">${r.name}</span>
+          <select aria-label="${r.name} font">
+            ${["Serif", "Sans"].map((k) => `<optgroup label="${k}">${FONTS.filter((f) => f.kind === k).map((f) =>
+              `<option value="${f.name}">${f.name}${f.noVn ? " ⚠ thiếu tiếng Việt" : ""}</option>`).join("")}</optgroup>`).join("")}
+          </select>
+          <span class="dt__sample">Lorem ipsum dolor sit amet</span>
+          <span class="dt__warn" hidden>Font này thiếu dấu tiếng Việt (ơ, ư, ạ, ệ…)</span>
+        </label>`).join("")}
+      </div>
       <div class="dt__actions">
         <button type="button" class="dt__btn" data-act="reset">Reset</button>
       </div>`;
@@ -118,6 +203,8 @@
       if (e.target.type === "color") { state[row.dataset.var] = e.target.value.toUpperCase(); applyTheme(); }
     });
     el.addEventListener("change", (e) => {
+      const fontRow = e.target.closest(".dt__font");
+      if (fontRow) { fonts[fontRow.dataset.font] = e.target.value; applyFonts(); refreshUi(); return; }
       const row = e.target.closest(".dt__row");
       if (!row || !e.target.classList.contains("dt__hex")) return;
       const n = norm(e.target.value);
@@ -128,7 +215,7 @@
     });
     el.addEventListener("click", (e) => {
       const act = e.target.dataset && e.target.dataset.act;
-      if (act === "reset") { state = { ...defaults }; applyTheme(); }
+      if (act === "reset") { state = { ...defaults }; fonts = { ...fontDefaults }; applyFonts(); applyTheme(); }
     });
     panels.push(el);
     return el;
@@ -142,7 +229,15 @@
         const color = row.querySelector('input[type="color"]'); if (color.value.toUpperCase() !== state[r.v]) color.value = state[r.v];
         const hex = row.querySelector(".dt__hex"); if (document.activeElement !== hex) { hex.value = state[r.v]; hex.classList.remove("is-bad"); }
       });
-      p.querySelector('[data-act="reset"]').disabled = isDefault();
+      FONT_ROLES.forEach((r) => {
+        const row = p.querySelector(`[data-font="${r.v}"]`);
+        const f = FONTS.find((x) => x.name === fonts[r.v]);
+        row.querySelector("select").value = fonts[r.v];
+        loadFont(fonts[r.v]);
+        row.querySelector(".dt__sample").style.fontFamily = `"${fonts[r.v]}", ${r.fallback}`;
+        row.querySelector(".dt__warn").hidden = !f?.noVn;
+      });
+      p.querySelector('[data-act="reset"]').disabled = isDefault() && fontsDefault();
     });
     document.querySelectorAll(".dt__dots").forEach((d) => {
       d.innerHTML = ROLES.map((r) => `<i style="background:${state[r.v]}"></i>`).join("");
