@@ -139,46 +139,63 @@ function initMagnetic() {
 }
 
 /* --------------------------------------------------------------------------
+   ticker(step): runs step() on animation frames only while it returns true.
+   kick() wakes it up (e.g. on scroll); it then sleeps again once settled.
+   Keeps the page idle when nothing moves instead of looping every frame.
+   -------------------------------------------------------------------------- */
+function ticker(step) {
+  let running = false;
+  const frame = () => { running = step() === true; if (running) requestAnimationFrame(frame); };
+  return () => { if (!running) { running = true; requestAnimationFrame(frame); } };
+}
+
+/* --------------------------------------------------------------------------
    Scroll: menu pill visibility + the hero name marquee (right → left, faster while scrolling)
    -------------------------------------------------------------------------- */
 function initScroll() {
   const menuBtn = $(".menu-btn");
+  const band = $(".home-marquee");
   const track = $(".home-marquee__track");
   const footerWrap = $(".footer-wrap");
   const curve = $(".footer-curve");
-  let curveP = null;    // eased progress of the footer curve
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let lastY = scrollY;
-  let x = 0;            // % of the track; the track holds two identical halves, so it wraps at -50%
-  const speed = 0.035;  // % per frame at rest
-  let boost = 0;        // extra speed from scroll velocity, eased up and down
+  // menu pill (desktop): shown once the header has scrolled away; always shown on small screens
+  const menu = () => { if (menuBtn && !isTouch && innerWidth > 900) menuBtn.classList.toggle("is-visible", scrollY > 150); };
 
-  const loop = () => {
-    const y = scrollY;
-    const delta = Math.abs(y - lastY);
-    lastY = y;
+  // hero name band: runs right → left, faster while scrolling; paused while off screen
+  let x = 0, boost = 0, lastY = scrollY, bandVisible = true;
+  const speed = 0.035;
+  const marquee = ticker(() => {
+    const delta = Math.abs(scrollY - lastY);
+    lastY = scrollY;
+    boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);
+    x -= speed + boost;
+    if (x <= -50) x += 50;
+    track.style.transform = `translate3d(${x}%,0,0)`;
+    return bandVisible;
+  });
+  if (track && !still) {
+    new IntersectionObserver(([e]) => { bandVisible = e.isIntersecting; if (bandVisible) marquee(); }).observe(band);
+    marquee();
+  }
 
-    // desktop: the menu pill appears once the header has scrolled away (always shown on small screens)
-    if (menuBtn && !isTouch && innerWidth > 900) menuBtn.classList.toggle("is-visible", y > 150);
+  // footer curve: deep Ivory arc when the footer enters, flat once it fills the screen
+  let curveP = null;
+  const footer = ticker(() => {
+    const r = footerWrap.getBoundingClientRect();
+    if (r.top > innerHeight) { if (curveP !== 0) { curveP = 0; curve.style.height = `${innerHeight * 0.18}px`; } return false; }
+    const p = Math.min(Math.max((innerHeight - r.top) / (innerHeight * 0.8), 0), 1);
+    curveP = curveP === null ? p : lerp(curveP, p, 0.12);
+    if (Math.abs(curveP - p) < 0.002) curveP = p;
+    curve.style.height = `${(1 - curveP) * innerHeight * 0.18}px`;
+    return curveP !== p;                                    // keep easing until it catches up
+  });
 
-    if (track && !still) {
-      boost = lerp(boost, Math.min(delta * 0.02, 0.6), 0.08);
-      x -= speed + boost;                 // always runs right → left; scrolling only speeds it up
-      if (x <= -50) x += 50;
-      if (x > 0) x -= 50;
-      track.style.transform = `translate3d(${x}%,0,0)`;
-    }
-    // Footer curve: a deep Ivory arc when the footer enters, flat once it fills the screen
-    if (footerWrap && curve) {
-      const r = footerWrap.getBoundingClientRect();
-      const p = Math.min(Math.max((innerHeight - r.top) / (innerHeight * 0.8), 0), 1);
-      curveP = curveP === null ? p : lerp(curveP, p, 0.12);
-      curve.style.height = `${(1 - curveP) * innerHeight * 0.18}px`;
-    }
-    requestAnimationFrame(loop);
-  };
-  requestAnimationFrame(loop);
+  const onScroll = () => { menu(); if (footerWrap && curve) footer(); };
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
 }
 
 /* --------------------------------------------------------------------------
@@ -198,58 +215,50 @@ function initMenu() {
    Work list floating preview
    -------------------------------------------------------------------------- */
 function initWorkPreview() {
-  // Rows: home work list, or any [data-preview-item] (portfolio). A row may set
-  // data-preview-index to pick its slide, so filtering doesn't break the mapping.
+  // Rows: home cards, Portfolio project rows ([data-preview-item]) and certificate rows ([data-preview-src]).
   const rows = $$(".work__row, [data-preview-item], [data-preview-src]");
   const preview = $(".preview");                     // floating image (Portfolio page only)
   const cursor = $(".preview-cursor");
   const label = $(".preview-label");
   if (!rows.length || !cursor || isTouch) return;
 
-  const slider = preview ? $(".preview__slider", preview) : null;
+  const previewImg = preview ? $(".preview__slide img", preview) : null;
   const els = [
     preview && { el: preview, x: 0, y: 0, ease: 0.12 },
     { el: cursor, x: 0, y: 0, ease: 0.2 },
     label && { el: label, x: 0, y: 0, ease: 0.25 },
   ].filter(Boolean);
   const circle = els.filter((o) => o.el !== preview); // the "View" circle on its own
-  let mx = innerWidth / 2, my = innerHeight / 2;
+  let mx = innerWidth / 2, my = innerHeight / 2, active = false;
 
-  window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
-
-  const slides = slider ? $$(".preview__slide", slider) : [];
-  const dynamic = slider ? $(".preview__slide--dynamic", slider) : null;
-
-  rows.forEach((row, i) => {
-    const index = row.dataset.previewIndex !== undefined ? +row.dataset.previewIndex : i;
-    row.addEventListener("mouseenter", () => {
-      if (row.closest(".pf-item.is-open")) return;        // opened project: no hover effect
-      if (row.classList.contains("work__row") || !slider) {   // home cards: only the View circle follows
-        circle.forEach((o) => o.el.classList.add("is-active"));
-        return;
-      }
-      let target = index;
-      if (row.dataset.previewSrc && dynamic) {            // per-row image (e.g. certificates)
-        dynamic.querySelector("img").src = row.dataset.previewSrc;
-        target = slides.indexOf(dynamic);
-      }
-      slider.style.transform = `translateY(${-target * 100}%)`;
-      els.forEach((o) => o.el.classList.add("is-active"));
-    });
-    row.addEventListener("mouseleave", () => els.forEach((o) => o.el.classList.remove("is-active")));
-    row.addEventListener("click", () => els.forEach((o) => o.el.classList.remove("is-active")));
-  });
-
-  const loop = () => {
+  // follow the pointer only while something is shown (or still easing back)
+  const follow = ticker(() => {
+    let moving = false;
     els.forEach((o) => {
       o.x = lerp(o.x, mx, o.ease);
       o.y = lerp(o.y, my, o.ease);
-      o.el.style.left = `${o.x}px`;
-      o.el.style.top = `${o.y}px`;
+      if (Math.abs(o.x - mx) > 0.5 || Math.abs(o.y - my) > 0.5) moving = true;
+      o.el.style.transform = `translate3d(${o.x}px, ${o.y}px, 0) translate(-50%, -50%) scale(var(--s, 0))`;
     });
-    requestAnimationFrame(loop);
-  };
-  requestAnimationFrame(loop);
+    return active || moving;
+  });
+  addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; if (active) follow(); }, { passive: true });
+
+  const show = (list) => { active = true; list.forEach((o) => o.el.classList.add("is-active")); follow(); };
+  const hide = () => { active = false; els.forEach((o) => o.el.classList.remove("is-active")); follow(); };
+
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => {
+      if (row.closest(".pf-item.is-open")) return;        // opened project: no hover effect
+      if (row.classList.contains("work__row") || !previewImg) return show(circle);   // home cards: View circle only
+      // per-row image: certificates use data-preview-src, projects use their first gallery photo
+      const src = row.dataset.previewSrc || row.closest(".pf-item")?.querySelector(".pf-shot img")?.getAttribute("src");
+      if (src && previewImg.getAttribute("src") !== src) previewImg.src = src;
+      show(els);
+    });
+    row.addEventListener("mouseleave", hide);
+    row.addEventListener("click", hide);
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -461,19 +470,19 @@ function initTimeline() {
   const items = $$(".stage", timeline);
 
   let shown = 0;                                   // eased value actually drawn
-  const update = () => {
+  const update = ticker(() => {
     const r = timeline.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > innerHeight + 200) return false;   // off screen: nothing to draw
     const mid = innerHeight * 0.6;
     const p = Math.min(Math.max((mid - r.top) / r.height, 0), 1);
     shown = Math.abs(p - shown) < 0.0005 ? p : lerp(shown, p, 0.12);
     progress.style.transform = `scaleY(${shown})`;
-    items.forEach((it) => {
-      const dot = it.getBoundingClientRect().top + 50;
-      it.classList.toggle("is-in", dot < mid);
-    });
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
+    items.forEach((it) => it.classList.toggle("is-in", it.getBoundingClientRect().top + 50 < mid));
+    return shown !== p;
+  });
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", update);
+  update();
 }
 
 function initFlow() {

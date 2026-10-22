@@ -23,7 +23,7 @@
 
   /* ---------- fonts (dev only) ----------
      Google Fonts families with a Vietnamese subset, plus Poppins, which the client asked
-     about but which does NOT cover Vietnamese (flagged). "Fraunces"/"Inter" are the defaults. */
+     about but which does NOT cover Vietnamese (flagged). "Be Vietnam Pro"/"Plus Jakarta Sans" are the defaults. */
   const FONT_KEY = "dev-fonts";
   const FONTS = [
     // serif
@@ -55,8 +55,8 @@
     { name: "Poppins", kind: "Sans", w: "400;500;600", noVn: true },
   ];
   const FONT_ROLES = [
-    { v: "--font-display", name: "Heading", def: "Fraunces", fallback: "\"Times New Roman\", serif" },
-    { v: "--font-body", name: "Body", def: "Inter", fallback: "system-ui, sans-serif" },
+    { v: "--font-display", name: "Heading", def: "Be Vietnam Pro", fallback: "system-ui, sans-serif" },
+    { v: "--font-body", name: "Body", def: "Plus Jakarta Sans", fallback: "system-ui, sans-serif" },
   ];
   const fontDefaults = Object.fromEntries(FONT_ROLES.map((r) => [r.v, r.def]));
   let fonts = { ...fontDefaults };
@@ -65,7 +65,7 @@
     if (saved) FONT_ROLES.forEach((r) => { if (FONTS.some((f) => f.name === saved[r.v])) fonts[r.v] = saved[r.v]; });
   } catch (e) {}
 
-  const loaded = new Set(["Fraunces", "Inter"]);   // already linked by the pages
+  const loaded = new Set(["Be Vietnam Pro", "Plus Jakarta Sans"]);   // already linked by the pages
   function loadFont(name) {
     const f = FONTS.find((x) => x.name === name);
     if (!f || f.system || loaded.has(name)) return;
