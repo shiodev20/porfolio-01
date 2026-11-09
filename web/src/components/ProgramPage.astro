@@ -1,0 +1,32 @@
+---
+// Shared template for Course / AI Tool (currently "coming soon" pages)
+import Base from "../layouts/Base.astro";
+import FooterMeta from "./FooterMeta.astro";
+import Icon from "./Icon.astro";
+import { html, localizePath, tr, useT, type LanguageId } from "../i18n";
+import { getProgram, getSettings } from "../lib/content";
+import type { PageKey } from "../lib/pages";
+
+interface Props {
+  lang: LanguageId;
+  page: Extract<PageKey, "course" | "aiTool">;
+}
+const { lang, page } = Astro.props;
+const t = useT(lang);
+const [settings, p] = await Promise.all([getSettings(), getProgram(page === "course" ? "coursePage" : "aiToolPage")]);
+---
+<Base lang={lang} page={page} settings={settings} seo={p.seo} bodyClass="contact-page">
+  <main class="soon">
+    <section class="soon__hero container">
+      <p class="section-label">{tr(p.category, lang)}</p>
+      <h1 class="soon__title">{tr(p.title, lang)}</h1>
+      {p.comingSoon && <p class="soon__badge"><span class="soon__dot" aria-hidden="true"></span><span>{t("comingSoon")}</span></p>}
+      <p class="soon__text" set:html={html(tr(p.description, lang))} />
+      <a href={localizePath("/", lang)} class="btn-pill" data-page={t("home")}><span class="btn__text">{t("backHome")}</span><Icon name="arrow-right" class="icon btn__arrow" /></a>
+    </section>
+
+    <section class="container">
+      <FooterMeta lang={lang} settings={settings} />
+    </section>
+  </main>
+</Base>

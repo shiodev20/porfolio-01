@@ -1,0 +1,12 @@
+{
+  "name": "thao-portfolio",
+  "private": true,
+  "scripts": {
+    "setup": "npm --prefix web install && npm --prefix studio install",
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "preview": "npm --prefix web run preview",
+    "studio": "npm --prefix studio run dev",
+    "seed": "npm --prefix studio run seed"
+  }
+}

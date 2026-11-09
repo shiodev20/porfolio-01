@@ -1,0 +1,8 @@
+---
+import ProgramPage from "../../components/ProgramPage.astro";
+import { langPaths, type LanguageId } from "../../i18n";
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: LanguageId };
+---
+<ProgramPage lang={lang} page="aiTool" />

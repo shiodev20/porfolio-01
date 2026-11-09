@@ -1,0 +1,88 @@
+---
+import Base from "../../layouts/Base.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import { html, langPaths, localizePath, tr, useT, type LanguageId } from "../../i18n";
+import { getHome, getSettings } from "../../lib/content";
+import { img } from "../../lib/image";
+import { pageLabelFor } from "../../lib/pages";
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: LanguageId };
+const t = useT(lang);
+const [settings, home] = await Promise.all([getSettings(), getHome()]);
+
+const hero = img(home.heroImage, 1200);
+const tint = (v = "khaki-35") => {
+  const [color, pct] = v.split("-");
+  return `background:color-mix(in srgb, var(--${color}) ${pct}%, var(--ivory))`;
+};
+const pageName = (href?: string) => {
+  const key = pageLabelFor(href);
+  return key ? t(key) : undefined;
+};
+const marquee = settings.marqueeText || settings.brandName || "";
+---
+<Base lang={lang} page="home" settings={settings} seo={home.seo}>
+  <main>
+    <section class="home-hero container">
+      <div class="home-hero__text">
+        <p class="home-hero__eyebrow"><Icon name="map-pin" class="icon home-hero__pin" /><span>{tr(home.heroEyebrow, lang)}</span></p>
+        <p class="home-hero__role" set:html={html(tr(home.heroRole, lang))} />
+      </div>
+      {hero && (
+        <figure class="home-hero__media">
+          <img class="home-hero__img" src={hero.src} alt={tr(home.heroImage?.alt, lang)} width={hero.width} height={hero.height} fetchpriority="high" decoding="async">
+        </figure>
+      )}
+      <h1 class="home-marquee" aria-label={marquee}>
+        <span class="home-marquee__track" aria-hidden="true">
+          {[1, 2, 3, 4].map(() => <span class="home-marquee__item">{marquee} —</span>)}
+        </span>
+      </h1>
+    </section>
+
+    <section class="work container" id="portfolio" data-view="grid">
+      <div class="intro__grid">
+        <p class="intro__lead" data-reveal set:html={html(tr(home.introLead, lang))} />
+        <div class="intro__col">
+          <p class="intro__side" data-reveal set:html={html(tr(home.introSide, lang))} />
+          {home.introButton?.label && (
+            <a href={localizePath(home.introButton.href, lang)} class="btn-pill intro__btn" data-page={pageName(home.introButton.href)}><span class="btn__text">{tr(home.introButton.label, lang)}</span><Icon name="arrow-right" class="icon btn__arrow" /></a>
+          )}
+        </div>
+        <div class="work__head">
+          <p class="label">{tr(home.exploreLabel, lang)}</p>
+          <div class="view-toggle" role="group" aria-label={t("viewMode")}>
+            <button type="button" class="view-toggle__btn" data-work-view="list" aria-pressed="false" aria-label={t("listView")}><Icon name="list" /></button>
+            <button type="button" class="view-toggle__btn" data-work-view="grid" aria-pressed="true" aria-label={t("gridView")}><Icon name="layout-grid" /></button>
+          </div>
+        </div>
+      </div>
+      <ul class="work__list work__list--hubs">
+        {(home.cards ?? []).map((card: any) => {
+          const image = img(card.image, 1200);
+          return (
+            <li>
+              <a class="work__row" href={localizePath(card.href, lang)} data-page={pageName(card.href) ?? tr(card.title, lang)}>
+                <span class="work__media" aria-hidden="true" style={tint(card.tint)}>
+                  {image && <img src={image.src} alt="" loading="lazy" width={image.width} height={image.height} decoding="async">}
+                </span>
+                <span class="work__cat">{tr(card.category, lang)}</span>
+                <h3 class="work__title">{tr(card.title, lang)}</h3>
+                <span class="work__meta">
+                  <span class="work__role">{tr(card.description, lang)}</span>
+                  {card.comingSoon && <span class="work__year work__status">{t("comingSoon")}</span>}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <div class="preview-cursor" aria-hidden="true"></div>
+    <div class="preview-label" aria-hidden="true">{t("view")}</div>
+  </main>
+  <Footer lang={lang} settings={settings} />
+</Base>

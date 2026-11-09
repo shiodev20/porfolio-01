@@ -1,0 +1,91 @@
+---
+import Header from "../components/Header.astro";
+import { languages, defaultLanguage, alternates as altsFor, tr, type LanguageId } from "../i18n";
+import { pages, type PageKey } from "../lib/pages";
+import { img } from "../lib/image";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  page: PageKey;
+  settings: Doc;
+  seo?: Doc;
+  bodyClass?: string;
+}
+const { lang, page, settings, seo = {}, bodyClass } = Astro.props;
+const isHome = page === "home";
+const alternates = altsFor(pages[page].path);
+const title = tr(seo.title, lang) || settings.brandName || "";
+const description = tr(seo.description, lang);
+const ogImage = img(seo.image, 1200);
+const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).href : undefined);
+const locale = languages.find((l) => l.id === lang)!.locale;
+---
+<!doctype html>
+<html lang={lang} data-alternates={JSON.stringify(alternates)} data-default-lang={defaultLanguage}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  {description && <meta name="description" content={description}>}
+  {abs(alternates[lang]) && <link rel="canonical" href={abs(alternates[lang])}>}
+  {Astro.site && languages.map((l) => <link rel="alternate" hreflang={l.id} href={abs(alternates[l.id])}>)}
+  {Astro.site && <link rel="alternate" hreflang="x-default" href={abs(alternates[defaultLanguage])}>}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  {description && <meta property="og:description" content={description}>}
+  <meta property="og:locale" content={locale}>
+  {ogImage && <meta property="og:image" content={ogImage.src}>}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script is:inline define:vars={{ isHome }}>
+    try {
+      // First visit to a default-language page: open the visitor's browser language if the site has it.
+      // Prefixed pages (/vi/...) are an explicit choice and never redirect (also keeps search engines happy).
+      var html = document.documentElement;
+      var alts = JSON.parse(html.dataset.alternates);
+      var saved = localStorage.getItem("lang");
+      if (!saved && html.lang === html.dataset.defaultLang) {
+        var browser = (navigator.language || "").toLowerCase().split("-")[0];
+        localStorage.setItem("lang", alts[browser] ? browser : html.lang);
+        if (alts[browser] && browser !== html.lang) location.replace(alts[browser] + location.hash);
+      }
+    } catch (e) {}
+    try {
+      // Page transition: when arriving from an internal link, show the cover + page name
+      // before the first paint (no flash of the page). js/main.js then slides it away.
+      var tl = sessionStorage.getItem("transition-label");
+      if (tl !== null) {
+        document.documentElement.classList.add("is-arriving");
+        document.documentElement.style.setProperty("--transition-label", JSON.stringify(tl));
+        setTimeout(function () { document.documentElement.classList.remove("is-arriving"); }, 4000); // failsafe
+        // Greeting intro (home only) is skipped when arriving via an internal link
+        document.documentElement.classList.add("is-greeted");
+      }
+      if (isHome) {
+        // Hero entrance: blocks wait off-position until js/main.js plays them in (failsafe after 6s)
+        document.documentElement.classList.add("hero-pending");
+        setTimeout(function () { document.documentElement.classList.replace("hero-pending", "hero-in"); }, 6000);
+      }
+    } catch (e) {}
+  </script>
+</head>
+<body class={bodyClass}>
+  {isHome && (
+    <div class="greeting" aria-hidden="true">
+      <p class="greeting__word">Xin chào</p>
+      <svg class="greeting__curve" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 0 Q50 20 100 0 Z"/></svg>
+    </div>
+  )}
+  <div class="transition" aria-hidden="true"><p class="transition__label"></p></div>
+
+  <Header lang={lang} page={page} alternates={alternates} settings={settings} />
+  <slot />
+
+  <script is:inline src="/js/lang-switch.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script is:inline src="/js/main.js"></script>
+</body>
+</html>

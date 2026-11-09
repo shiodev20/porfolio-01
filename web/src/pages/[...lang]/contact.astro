@@ -1,0 +1,101 @@
+---
+import Base from "../../layouts/Base.astro";
+import FooterMeta from "../../components/FooterMeta.astro";
+import Socials from "../../components/Socials.astro";
+import Chips from "../../components/Chips.astro";
+import Icon from "../../components/Icon.astro";
+import { langPaths, tr, useT, type LanguageId } from "../../i18n";
+import { getContact, getSettings } from "../../lib/content";
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: LanguageId };
+const t = useT(lang);
+const [settings, c] = await Promise.all([getSettings(), getContact()]);
+const phoneHref = settings.phone ? `tel:${settings.phone.replace(/[^\d+]/g, "")}` : undefined;
+---
+<Base lang={lang} page="contact" settings={settings} seo={c.seo} bodyClass="contact-page">
+  <main class="contact">
+    <section class="contact-wrap container">
+      <div class="contact-intro" data-reveal>
+        <div class="contact-intro__who">
+          <p class="contact-intro__eyebrow">{tr(c.eyebrow, lang)}</p>
+        </div>
+        <h1 class="page-title contact-title">{tr(c.title, lang)}</h1>
+        <aside class="contact-aside">
+          <div>
+            <h5>{t("contactDetails")}</h5>
+            <ul>
+              {settings.email && <li><a href={`mailto:${settings.email}`} class="u-link">{settings.email}</a></li>}
+              {phoneHref && <li><a href={phoneHref} class="u-link">{settings.phone}</a></li>}
+            </ul>
+          </div>
+          <div>
+            <h5>{t("businessDetails")}</h5>
+            <ul>
+              {tr(settings.businessName, lang) && <li>{tr(settings.businessName, lang)}</li>}
+              {tr(settings.location, lang) && <li>{t("location")}: {tr(settings.location, lang)}</li>}
+              {settings.taxId && <li>{t("taxId")}: {settings.taxId}</li>}
+            </ul>
+          </div>
+          <div>
+            <h5>{t("socials")}</h5>
+            <Socials socials={settings.socials} />
+          </div>
+        </aside>
+      </div>
+
+      <form class="form form-card" data-mailto={settings.email} data-msg-fill={t("formFill")} data-msg-opening={t("formOpening")} novalidate>
+        <div class="form__group">
+          <label class="form__label form__label--req" for="f-name">{tr(c.nameLabel, lang)}</label>
+          <input class="form__input" id="f-name" name="name" type="text" placeholder={tr(c.namePlaceholder, lang)} autocomplete="name" aria-required="true">
+        </div>
+        <div class="form__group">
+          <label class="form__label form__label--req" for="f-email">{tr(c.emailLabel, lang)}</label>
+          <input class="form__input" id="f-email" name="email" type="email" placeholder={tr(c.emailPlaceholder, lang)} autocomplete="email" aria-required="true">
+        </div>
+        <fieldset class="form__group">
+          <legend class="form__label">{tr(c.asQuestion?.label, lang)}</legend>
+          <Chips lang={lang} question={c.asQuestion} name="as" />
+        </fieldset>
+        <fieldset class="form__group">
+          <legend class="form__label">{tr(c.roleQuestion?.label, lang)}</legend>
+          <Chips lang={lang} question={c.roleQuestion} name="role" />
+        </fieldset>
+        <fieldset class="form__group">
+          <legend class="form__label">{tr(c.formatQuestion?.label, lang)}</legend>
+          <Chips lang={lang} question={c.formatQuestion} name="format" type="checkbox" />
+        </fieldset>
+        <!-- Timing. Sent fields (all optional, any combination):
+             timing_date   = YYYY-MM-DD   (native date picker)
+             timing_time   = HH:MM, 24h   (native time picker)
+             timing_preset = option values from the dashboard ("today" also fills in the date) -->
+        <fieldset class="form__group">
+          <legend class="form__label">{tr(c.timingQuestion?.label, lang)}</legend>
+          <div class="form__datetime">
+            <label class="form__sub">
+              <span class="form__sub-label">{t("date")}</span>
+              <input class="form__input" id="f-timing-date" name="timing_date" type="date">
+            </label>
+            <label class="form__sub">
+              <span class="form__sub-label">{t("time")}</span>
+              <input class="form__input" id="f-timing-time" name="timing_time" type="time">
+            </label>
+          </div>
+          <Chips lang={lang} question={c.timingQuestion} name="timing_preset" ariaLabel={t("quickTiming")} />
+        </fieldset>
+        <div class="form__group">
+          <label class="form__label form__label--req" for="f-message">{tr(c.messageLabel, lang)}</label>
+          <textarea class="form__input" id="f-message" name="message" rows="5" placeholder={tr(c.messagePlaceholder, lang)} aria-required="true"></textarea>
+        </div>
+        <div class="form__actions">
+          <button type="submit" class="btn-pill"><span class="btn__text">{tr(c.submitLabel, lang)}</span><Icon name="arrow-right" class="icon btn__arrow" /></button>
+          <p class="form__status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+    <section class="container">
+      <FooterMeta lang={lang} settings={settings} />
+    </section>
+  </main>
+</Base>
