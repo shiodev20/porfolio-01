@@ -595,8 +595,7 @@ html.hero-in .home-marquee { transition-delay: 0.35s; }
   font-size: clamp(3rem, 7vw, 7rem); line-height: 1.05;
   letter-spacing: -0.02em; max-width: 14ch;
 }
-.page-head__divider { position: relative; margin-top: clamp(5rem, 9vw, 8rem); border-top: 1px solid var(--line); }
-.page-head__divider .btn-round { position: absolute; right: 10%; top: 0; transform: translateY(-50%); }
+.page-head__divider { margin-top: clamp(5rem, 9vw, 8rem); border-top: 1px solid var(--line); }
 
 .about-body {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start;
@@ -611,12 +610,10 @@ html.hero-in .home-marquee { transition-delay: 0.35s; }
 }
 
 @media (min-width: 901px) {
-  .about-body { padding-top: clamp(2.5rem, 4vw, 3.5rem); }               /* text starts right under the divider */
-  .about-body__img { margin-top: clamp(4rem, 6vw, 5.5rem); }             /* clears the round globe on the divider */
+  .about-body { padding-top: clamp(2.5rem, 4vw, 3.5rem); }               /* text + image start right under the divider */
 }
 @media (max-width: 900px) {
   .page-head__divider { margin-top: 5rem; }
-  .page-head__divider .btn-round { right: 0; }
   .about-body { grid-template-columns: 1fr; gap: 3rem; padding-block: 5rem 3.5rem; }
   .about-body__img { justify-self: start; width: min(100%, 24rem); }
 }
@@ -675,8 +672,9 @@ html.hero-in .home-marquee { transition-delay: 0.35s; }
   margin-top: clamp(5rem, 9vw, 8rem);
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
   gap: clamp(1rem, 3vw, 3rem);
-  font-size: clamp(2.4rem, 6vw, 6.5rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(2.2rem, 4vw, 5rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;
 }
+.flow > span { white-space: nowrap; }   /* "Sáng tỏ", "Chủ động"… never split inside a phrase */
 .flow > span { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
 .flow.is-in > span { opacity: 1; transform: none; }
 .flow.is-in > span:nth-child(2) { transition-delay: 0.25s; }
