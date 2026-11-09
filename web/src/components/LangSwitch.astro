@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+import { languages, useT, type LanguageId } from "../i18n";
+
+interface Props {
+  lang: LanguageId;
+  alternates: Record<string, string>;
+  id: string;
+  class?: string;
+}
+const { lang, alternates, id, class: cls = "" } = Astro.props;
+const t = useT(lang);
+const current = languages.find((l) => l.id === lang)!;
+---
+<!-- Behaviour: public/js/lang-switch.js. Choosing a language opens the same page in that language. -->
+<div class:list={["lang", cls]} data-lang-switch>
+  <button type="button" class="lang__toggle" aria-haspopup="listbox" aria-expanded="false" aria-controls={id} aria-label={t("language")}>
+    <span class="lang__current">{current.short}</span><Icon name="chevron-down" class="lang__chevron icon" />
+  </button>
+  <ul class="lang__menu" id={id} role="listbox" tabindex="-1" aria-label={t("language")}>
+    {languages.map((l) => (
+      <li class="lang__option" role="option" tabindex="-1" data-lang={l.id} data-href={alternates[l.id]} lang={l.id} aria-selected={l.id === lang}>
+        <span class="lang__label">{l.title}</span><span class="lang__code">{l.short}</span>
+      </li>
+    ))}
+  </ul>
+</div>

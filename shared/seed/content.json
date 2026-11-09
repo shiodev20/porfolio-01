@@ -1,0 +1,1829 @@
+[
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "brandName": "Your Brand",
+    "marqueeText": "Your Name",
+    "email": "abc@gmail.com",
+    "phone": "+84 000 000 000",
+    "socials": [
+      {
+        "_type": "socialLink",
+        "label": "Instagram",
+        "url": ""
+      },
+      {
+        "_type": "socialLink",
+        "label": "Facebook",
+        "url": ""
+      },
+      {
+        "_type": "socialLink",
+        "label": "YouTube",
+        "url": ""
+      },
+      {
+        "_type": "socialLink",
+        "label": "LinkedIn",
+        "url": ""
+      }
+    ],
+    "businessName": {
+      "en": "Your Brand"
+    },
+    "location": {
+      "en": "Vietnam",
+      "vi": "Việt Nam"
+    },
+    "taxId": "00000000",
+    "footerEyebrow": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "vi": "Hợp tác cùng tôi · Facilitator · Diễn giả · Tư vấn"
+    },
+    "footerTitle": {
+      "en": "Work With Me",
+      "vi": "Hợp tác cùng tôi"
+    },
+    "footerCta": {
+      "en": "Get in touch",
+      "vi": "Liên hệ ngay"
+    },
+    "edition": {
+      "en": "2026 © Edition",
+      "vi": "Ấn bản 2026 ©"
+    }
+  },
+  {
+    "_id": "homePage",
+    "_type": "homePage",
+    "seo": {
+      "_type": "seo",
+      "title": {
+        "en": "Your Brand — Your Quote",
+        "vi": "thảo educator — Self-Leadership & Giáo dục gia đình"
+      },
+      "description": {
+        "en": "thảo educator — Solo Expert in Self-Leadership & Family Education, based in Vietnam. I design learning experiences that help people make more intentional choices and create meaningful change in their lives and families.",
+        "vi": "thảo educator — Chuyên gia độc lập về Self-Leadership & Giáo dục gia đình, có trụ sở tại Việt Nam. Tôi thiết kế những trải nghiệm học tập giúp mỗi người đưa ra lựa chọn có chủ đích hơn và tạo nên thay đổi ý nghĩa trong cuộc sống của bản thân và gia đình."
+      }
+    },
+    "heroEyebrow": {
+      "en": "Based in Vietnam",
+      "vi": "Có trụ sở tại Việt Nam"
+    },
+    "heroRole": {
+      "en": "Lorem Ipsum is simply\ndummy text of the printing",
+      "vi": "Chuyên gia độc lập\nSelf-Leadership &\nGiáo dục gia đình"
+    },
+    "heroImage": {
+      "_type": "image",
+      "_seedImage": "placeholder.jpg",
+      "_w": 1600,
+      "_h": 1280,
+      "alt": {
+        "en": "Portrait of thảo",
+        "vi": "Chân dung của thảo"
+      }
+    },
+    "introLead": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "vi": "Tôi thiết kế những trải nghiệm học tập giúp mỗi người hiểu điều gì đã hình thành nên mình, đưa ra những lựa chọn có chủ đích hơn và tạo nên thay đổi ý nghĩa trong cuộc sống của bản thân và gia đình — với tác động tích cực đến thế hệ kế tiếp."
+    },
+    "introSide": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "vi": "Tư duy phân tích × Thiết kế học tập hòa nhập × Điều phối chuyển hóa\n\nSáng tỏ → Chủ động → Phát triển"
+    },
+    "introButton": {
+      "_type": "link",
+      "label": {
+        "en": "About me",
+        "vi": "Về tôi"
+      },
+      "href": "/portfolio"
+    },
+    "exploreLabel": {
+      "en": "Explore",
+      "vi": "Khám phá"
+    },
+    "cards": [
+      {
+        "_type": "homeCard",
+        "title": {
+          "en": "Portfolio",
+          "vi": "Hồ sơ năng lực"
+        },
+        "category": {
+          "en": "Career timeline · Education",
+          "vi": "Hành trình sự nghiệp · Học vấn"
+        },
+        "description": {
+          "en": "The journey, roles and learning behind my work",
+          "vi": "Hành trình, vai trò và việc học đằng sau công việc của tôi"
+        },
+        "href": "/portfolio",
+        "comingSoon": false,
+        "tint": "khaki-35",
+        "image": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "homeCard",
+        "title": {
+          "en": "Course",
+          "vi": "Khóa học"
+        },
+        "category": {
+          "en": "Learning programs",
+          "vi": "Chương trình học"
+        },
+        "description": {
+          "en": "Programs for self-leadership and family education",
+          "vi": "Chương trình về self-leadership và giáo dục gia đình"
+        },
+        "href": "/course",
+        "comingSoon": true,
+        "tint": "blush-55",
+        "image": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "homeCard",
+        "title": {
+          "en": "AI Tool",
+          "vi": "Công cụ AI"
+        },
+        "category": {
+          "en": "AI-enabled learning",
+          "vi": "Học tập ứng dụng AI"
+        },
+        "description": {
+          "en": "Tools that bring AI into everyday learning",
+          "vi": "Công cụ đưa AI vào việc học mỗi ngày"
+        },
+        "href": "/ai-tool",
+        "comingSoon": true,
+        "tint": "khaki-55",
+        "image": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "contactPage",
+    "_type": "contactPage",
+    "seo": {
+      "_type": "seo",
+      "title": {
+        "en": "Your Brand — Your Quote",
+        "vi": "Liên hệ — thảo educator"
+      },
+      "description": {
+        "en": "Get in touch with Thao about your next project.",
+        "vi": "Liên hệ với thảo về dự án tiếp theo của bạn."
+      }
+    },
+    "eyebrow": {
+      "en": "Facilitator · Speaker · Consultant",
+      "vi": "Facilitator · Diễn giả · Tư vấn"
+    },
+    "title": {
+      "en": "Work With Me",
+      "vi": "Hợp tác cùng tôi"
+    },
+    "nameLabel": {
+      "en": "What should I call you?",
+      "vi": "Tôi nên gọi bạn là gì?"
+    },
+    "namePlaceholder": {
+      "en": "Ken Robinson"
+    },
+    "emailLabel": {
+      "en": "What’s your email?",
+      "vi": "Email của bạn là gì?"
+    },
+    "emailPlaceholder": {
+      "en": "ken@robinson.com"
+    },
+    "asQuestion": {
+      "_type": "choiceQuestion",
+      "label": {
+        "en": "Are you reaching out as…?",
+        "vi": "Bạn liên hệ với tư cách…?"
+      },
+      "options": [
+        {
+          "_type": "choiceOption",
+          "value": "Individual",
+          "label": {
+            "en": "Individual",
+            "vi": "Cá nhân"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Organization",
+          "label": {
+            "en": "Organization",
+            "vi": "Tổ chức"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Education institution",
+          "label": {
+            "en": "Education institution",
+            "vi": "Cơ sở giáo dục"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Community",
+          "label": {
+            "en": "Community",
+            "vi": "Cộng đồng"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Other",
+          "label": {
+            "en": "Other",
+            "vi": "Khác"
+          }
+        }
+      ]
+    },
+    "roleQuestion": {
+      "_type": "choiceQuestion",
+      "label": {
+        "en": "How would you like to work with me?",
+        "vi": "Bạn muốn hợp tác với tôi theo hình thức nào?"
+      },
+      "options": [
+        {
+          "_type": "choiceOption",
+          "value": "Facilitator",
+          "label": {
+            "en": "Facilitator",
+            "vi": "Điều phối viên"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Speaker",
+          "label": {
+            "en": "Speaker",
+            "vi": "Diễn giả"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Consultant",
+          "label": {
+            "en": "Consultant",
+            "vi": "Tư vấn"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Not sure yet",
+          "label": {
+            "en": "Not sure yet",
+            "vi": "Chưa chắc chắn"
+          }
+        }
+      ]
+    },
+    "formatQuestion": {
+      "_type": "choiceQuestion",
+      "label": {
+        "en": "What format are you considering?",
+        "vi": "Bạn đang cân nhắc hình thức nào?"
+      },
+      "options": [
+        {
+          "_type": "choiceOption",
+          "value": "Workshop",
+          "label": {
+            "en": "Workshop"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Talk",
+          "label": {
+            "en": "Talk",
+            "vi": "Buổi nói chuyện"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Facilitation",
+          "label": {
+            "en": "Facilitation",
+            "vi": "Điều phối"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Consulting",
+          "label": {
+            "en": "Consulting",
+            "vi": "Tư vấn"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Program",
+          "label": {
+            "en": "Program",
+            "vi": "Chương trình"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "Not sure",
+          "label": {
+            "en": "Not sure",
+            "vi": "Chưa chắc"
+          }
+        }
+      ]
+    },
+    "timingQuestion": {
+      "_type": "choiceQuestion",
+      "label": {
+        "en": "When are you hoping this could happen?",
+        "vi": "Bạn mong muốn bắt đầu khi nào?"
+      },
+      "options": [
+        {
+          "_type": "choiceOption",
+          "value": "today",
+          "label": {
+            "en": "Today",
+            "vi": "Hôm nay"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "this_week",
+          "label": {
+            "en": "This week",
+            "vi": "Tuần này"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "this_month",
+          "label": {
+            "en": "This month",
+            "vi": "Tháng này"
+          }
+        },
+        {
+          "_type": "choiceOption",
+          "value": "other",
+          "label": {
+            "en": "Other",
+            "vi": "Khác"
+          }
+        }
+      ]
+    },
+    "messageLabel": {
+      "en": "Your message",
+      "vi": "Lời nhắn của bạn"
+    },
+    "messagePlaceholder": {
+      "en": "Hello thảo, can you help me with…",
+      "vi": "Chào thảo, bạn có thể giúp mình về…"
+    },
+    "submitLabel": {
+      "en": "Send it",
+      "vi": "Gửi đi"
+    }
+  },
+  {
+    "_id": "coursePage",
+    "_type": "programPage",
+    "seo": {
+      "_type": "seo",
+      "title": {
+        "en": "Course — thảo educator",
+        "vi": "Khóa học — thảo educator"
+      },
+      "description": {
+        "en": "Programs for self-leadership and family education — coming soon.",
+        "vi": "Chương trình về self-leadership và giáo dục gia đình — sắp ra mắt."
+      }
+    },
+    "category": {
+      "en": "Learning programs",
+      "vi": "Chương trình học"
+    },
+    "title": {
+      "en": "Course",
+      "vi": "Khóa học"
+    },
+    "comingSoon": true,
+    "description": {
+      "en": "Programs for self-leadership and family education",
+      "vi": "Chương trình về self-leadership và giáo dục gia đình"
+    }
+  },
+  {
+    "_id": "aiToolPage",
+    "_type": "programPage",
+    "seo": {
+      "_type": "seo",
+      "title": {
+        "en": "AI Tool — thảo educator",
+        "vi": "Công cụ AI — thảo educator"
+      },
+      "description": {
+        "en": "Tools that bring AI into everyday learning — coming soon.",
+        "vi": "Công cụ đưa AI vào việc học mỗi ngày — sắp ra mắt."
+      }
+    },
+    "category": {
+      "en": "AI-enabled learning",
+      "vi": "Học tập ứng dụng AI"
+    },
+    "title": {
+      "en": "AI Tool",
+      "vi": "Công cụ AI"
+    },
+    "comingSoon": true,
+    "description": {
+      "en": "Tools that bring AI into everyday learning",
+      "vi": "Công cụ đưa AI vào việc học mỗi ngày"
+    }
+  },
+  {
+    "_id": "stage-digital-education",
+    "_type": "careerStage",
+    "year": "2025+",
+    "label": {
+      "en": "Digital Education",
+      "vi": "Giáo dục số"
+    },
+    "meaning": {
+      "en": "Personalization & technology-enabled learning",
+      "vi": "Cá nhân hóa & học tập ứng dụng công nghệ"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "studify",
+        "organization": "Studify Vietnam",
+        "category": {
+          "en": "Digital Learning & Education",
+          "vi": "Học tập số & Giáo dục"
+        },
+        "role": {
+          "en": "Educreator, Partnership",
+          "vi": "Educreator, Đối tác"
+        },
+        "period": {
+          "en": "Mar 2025 – Present",
+          "vi": "Th3/2025 – Nay"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Digital learning",
+            "vi": "Học tập số"
+          },
+          {
+            "_type": "localeString",
+            "en": "Personalization",
+            "vi": "Cá nhân hóa"
+          },
+          {
+            "_type": "localeString",
+            "en": "Cross-disciplinary collaboration",
+            "vi": "Hợp tác liên ngành"
+          },
+          {
+            "_type": "localeString",
+            "en": "Technology-enabled education",
+            "vi": "Giáo dục ứng dụng công nghệ"
+          }
+        ],
+        "builtText": {
+          "en": "This chapter is strengthening my ability to think beyond the classroom and explore how technology can extend, personalize and scale learning while keeping the learner at the center.",
+          "vi": "Chặng này đang củng cố khả năng của tôi trong việc nghĩ vượt ra ngoài lớp học và khám phá cách công nghệ có thể mở rộng, cá nhân hóa và nhân rộng việc học mà vẫn đặt người học ở trung tâm."
+        },
+        "context": {
+          "en": "Education is increasingly moving toward digital and personalized learning. The work called for educators who could translate pedagogical thinking into learning materials suitable for digital environments and contribute within a multidisciplinary educator community.",
+          "vi": "Giáo dục ngày càng chuyển sang học tập số và cá nhân hóa. Công việc này cần những nhà giáo dục biết chuyển tư duy sư phạm thành học liệu phù hợp với môi trường số và đóng góp trong một cộng đồng giáo dục đa ngành."
+        },
+        "keyContribution": {
+          "en": "I collaborate with a community of experts to develop and refine digital learning materials, bringing pedagogical perspectives and creative teaching approaches into the development process.",
+          "vi": "Tôi cộng tác với một cộng đồng chuyên gia để phát triển và hoàn thiện học liệu số, đưa góc nhìn sư phạm và cách dạy sáng tạo vào quá trình phát triển."
+        },
+        "achievementText": {
+          "en": "Selected to participate as an Educreator in an initiative focused on building a community of creative educators and supporting digital transformation in education, with the broader aim of making personalized learning more accessible to Vietnamese learners.",
+          "vi": "Được chọn tham gia với vai trò Educreator trong một sáng kiến xây dựng cộng đồng nhà giáo dục sáng tạo và hỗ trợ chuyển đổi số trong giáo dục, với mục tiêu rộng hơn là giúp việc học cá nhân hóa dễ tiếp cận hơn với người học Việt Nam."
+        },
+        "cta": {
+          "_type": "link",
+          "label": {
+            "en": "Explore more",
+            "vi": "Khám phá thêm"
+          },
+          "href": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "stage-education-leadership",
+    "_type": "careerStage",
+    "year": "2024",
+    "label": {
+      "en": "Education Leadership",
+      "vi": "Lãnh đạo giáo dục"
+    },
+    "meaning": {
+      "en": "Developing the whole learner",
+      "vi": "Phát triển toàn diện người học"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "titbrain",
+        "organization": "TiTBrain Education",
+        "category": {
+          "en": "Abacus Mental Arithmetic - Enrichment programs",
+          "vi": "Toán tính nhẩm Abacus - Chương trình ngoại khóa"
+        },
+        "role": {
+          "en": "Chief Executive Officer",
+          "vi": "Giám đốc điều hành"
+        },
+        "period": {
+          "en": "Jun 2024 – Oct 2026",
+          "vi": "Th6/2024 – Th10/2026"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Education leadership",
+            "vi": "Lãnh đạo giáo dục"
+          },
+          {
+            "_type": "localeString",
+            "en": "Child development",
+            "vi": "Phát triển trẻ em"
+          },
+          {
+            "_type": "localeString",
+            "en": "Curriculum architecture",
+            "vi": "Kiến trúc chương trình học"
+          },
+          {
+            "_type": "localeString",
+            "en": "Positive Education",
+            "vi": "Giáo dục tích cực"
+          },
+          {
+            "_type": "localeString",
+            "en": "Constructivism",
+            "vi": "Thuyết kiến tạo"
+          },
+          {
+            "_type": "localeString",
+            "en": "Diversity Learning Design",
+            "vi": "Thiết kế học tập đa dạng"
+          }
+        ],
+        "builtText": {
+          "en": "This chapter moved my thinking from “teaching content” toward developing the whole learner. It also deepened the question that now connects to Family Education: what conditions allow a child to develop not only ability, but also confidence, emotional capacity and independent thinking?",
+          "vi": "Chặng này chuyển tư duy của tôi từ “dạy nội dung” sang phát triển toàn diện người học. Nó cũng làm sâu sắc thêm câu hỏi giờ đây gắn với Giáo dục gia đình: những điều kiện nào cho phép một đứa trẻ phát triển không chỉ năng lực, mà cả sự tự tin, năng lực cảm xúc và tư duy độc lập?"
+        },
+        "context": {
+          "en": "Leading an extracurricular education center for children aged 3–14 required moving beyond the delivery of individual subjects toward a broader question: how can learning develop cognitive ability while also supporting emotional and creative development?",
+          "vi": "Điều hành một trung tâm giáo dục ngoại khóa cho trẻ từ 3–14 tuổi đòi hỏi vượt ra ngoài việc giảng dạy từng môn học để trả lời một câu hỏi lớn hơn: làm thế nào việc học có thể phát triển năng lực nhận thức đồng thời hỗ trợ sự phát triển về cảm xúc và sáng tạo?"
+        },
+        "keyContribution": {
+          "en": "I lead strategic operations, curriculum development, educator and learner development, partnerships and educational initiatives. A central curriculum direction has been integrating Soroban mental mathematics with emotional intelligence and creative thinking rather than treating cognitive performance as the sole learning outcome.",
+          "vi": "Tôi dẫn dắt vận hành chiến lược, phát triển chương trình học, phát triển giáo viên và học viên, hợp tác đối tác và các sáng kiến giáo dục. Định hướng chương trình cốt lõi là tích hợp toán tính nhẩm Soroban với trí tuệ cảm xúc và tư duy sáng tạo, thay vì xem thành tích nhận thức là kết quả học tập duy nhất."
+        },
+        "achievements": [
+          {
+            "_type": "achievement",
+            "title": {
+              "en": "International achievement",
+              "vi": "Thành tích quốc tế"
+            },
+            "text": {
+              "en": "Led teams and learners to 1st, 2nd and 3rd prize levels across the 2025 Genting International Abacus and Mental Arithmetic Competition, Malaysia; 2024 PAMA - Pacific Abacus and Mental Arithmetic Association, Vietnam.",
+              "vi": "Dẫn dắt đội ngũ và học viên đạt các giải Nhất, Nhì, Ba tại Cuộc thi Toán tính nhẩm Abacus Quốc tế Genting 2025, Malaysia; PAMA - Hiệp hội Abacus và Toán tính nhẩm Thái Bình Dương 2024, Việt Nam."
+            }
+          },
+          {
+            "_type": "achievement",
+            "title": {
+              "en": "National learning platform",
+              "vi": "Nền tảng học tập quốc gia"
+            },
+            "text": {
+              "en": "TiTBrain was designated by S.A.M.A as the sole authorized unit to host Vietnam's 2025 Global Online Soroban Competition.",
+              "vi": "TiTBrain được S.A.M.A chỉ định là đơn vị duy nhất được ủy quyền tổ chức Cuộc thi Soroban Trực tuyến Toàn cầu 2025 tại Việt Nam."
+            }
+          },
+          {
+            "_type": "achievement",
+            "title": {
+              "en": "Curriculum innovation",
+              "vi": "Đổi mới chương trình học"
+            },
+            "text": {
+              "en": "Developed curricula combining Soroban mental mathematics, emotional intelligence and creative thinking.",
+              "vi": "Phát triển các chương trình học kết hợp toán tính nhẩm Soroban, trí tuệ cảm xúc và tư duy sáng tạo."
+            }
+          },
+          {
+            "_type": "achievement",
+            "title": {
+              "en": "Education voice",
+              "vi": "Tiếng nói giáo dục"
+            },
+            "text": {
+              "en": "Featured in national media in connection with Positive Education, Constructivist pedagogy and English integration in education.",
+              "vi": "Xuất hiện trên báo chí quốc gia về Giáo dục tích cực, phương pháp sư phạm kiến tạo và việc tích hợp tiếng Anh trong giáo dục."
+            }
+          }
+        ],
+        "pendingNote": {
+          "en": "Press links — coming soon",
+          "vi": "Liên kết báo chí — sắp ra mắt"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "stage-experiential-learning",
+    "_type": "careerStage",
+    "year": "2023",
+    "label": {
+      "en": "Experiential Learning",
+      "vi": "Học tập trải nghiệm"
+    },
+    "meaning": {
+      "en": "Designing conditions for reflection",
+      "vi": "Thiết kế điều kiện cho sự chiêm nghiệm"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "thom-thao",
+        "organization": "Thom Thao – Holistic Workshop & Retreat",
+        "category": {
+          "en": "Experiential Learning & Facilitation",
+          "vi": "Học tập trải nghiệm & Điều phối"
+        },
+        "role": {
+          "en": "Founder",
+          "vi": "Nhà sáng lập"
+        },
+        "period": {
+          "en": "Jul 2023 – Dec 2025",
+          "vi": "Th7/2023 – Th12/2025"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Experiential learning",
+            "vi": "Học tập trải nghiệm"
+          },
+          {
+            "_type": "localeString",
+            "en": "Creative facilitation",
+            "vi": "Điều phối sáng tạo"
+          },
+          {
+            "_type": "localeString",
+            "en": "Learning conditions",
+            "vi": "Điều kiện học tập"
+          },
+          {
+            "_type": "localeString",
+            "en": "Reflection beyond instruction",
+            "vi": "Chiêm nghiệm vượt ngoài chỉ dẫn"
+          }
+        ],
+        "builtText": {
+          "en": "This chapter expanded my understanding that meaningful learning does not happen only through information. Environment, experience, emotion and the way a person is invited to reflect can all shape what they are able to see and learn.",
+          "vi": "Chặng này mở rộng hiểu biết của tôi rằng việc học có ý nghĩa không chỉ diễn ra qua thông tin. Môi trường, trải nghiệm, cảm xúc và cách một người được mời gọi chiêm nghiệm đều có thể định hình điều họ nhìn thấy và học được."
+        },
+        "context": {
+          "en": "Many development experiences rely heavily on verbal instruction and cognitive understanding. Thom Thao explored another question: what happens when reflection and personal development are approached through multi-sensory, creative experiences?",
+          "vi": "Nhiều trải nghiệm phát triển bản thân dựa nặng vào hướng dẫn bằng lời và sự thấu hiểu về mặt nhận thức. Thom Thao khám phá một câu hỏi khác: điều gì xảy ra khi sự chiêm nghiệm và phát triển cá nhân được tiếp cận qua những trải nghiệm đa giác quan, sáng tạo?"
+        },
+        "keyContribution": {
+          "en": "I founded and designed a portfolio of experiences using art, sound and aroma, and facilitated workshops for individuals and corporate groups around personal growth, connection, reflection and creative engagement.",
+          "vi": "Tôi sáng lập và thiết kế một danh mục trải nghiệm sử dụng nghệ thuật, âm thanh và hương thơm, đồng thời điều phối các workshop cho cá nhân và doanh nghiệp xoay quanh phát triển bản thân, kết nối, chiêm nghiệm và gắn kết sáng tạo."
+        },
+        "achievementText": {
+          "en": "Built a multi-sensory learning and wellbeing portfolio across three primary formats—art, sound and aroma-based experiences—and extended these formats into corporate workshops designed to support team connection, engagement and creative energy.",
+          "vi": "Xây dựng một danh mục học tập và chăm sóc sức khỏe tinh thần đa giác quan qua ba hình thức chính — trải nghiệm nghệ thuật, âm thanh và hương thơm — và mở rộng các hình thức này thành workshop doanh nghiệp nhằm tăng cường kết nối, sự gắn kết và năng lượng sáng tạo của đội nhóm."
+        },
+        "pendingNote": {
+          "en": "Brand collaborations — coming soon",
+          "vi": "Các thương hiệu đã hợp tác — sắp ra mắt"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "stage-organizational-landd",
+    "_type": "careerStage",
+    "year": "2021",
+    "label": {
+      "en": "Organizational L&D",
+      "vi": "L&D tổ chức"
+    },
+    "meaning": {
+      "en": "Designing capability systems",
+      "vi": "Thiết kế hệ thống năng lực"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "novagroup",
+        "organization": "NovaGroup",
+        "category": {
+          "en": "Real Estate and Services",
+          "vi": "Bất động sản và Dịch vụ"
+        },
+        "role": {
+          "en": "Senior Training Supervisor",
+          "vi": "Giám sát đào tạo cấp cao"
+        },
+        "period": {
+          "en": "Mar 2022 – Oct 2022",
+          "vi": "Th3/2022 – Th10/2022"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Systems thinking",
+            "vi": "Tư duy hệ thống"
+          },
+          {
+            "_type": "localeString",
+            "en": "Scalable learning",
+            "vi": "Học tập có thể mở rộng"
+          },
+          {
+            "_type": "localeString",
+            "en": "Learning standardization",
+            "vi": "Chuẩn hóa học tập"
+          },
+          {
+            "_type": "localeString",
+            "en": "Train-the-Trainer"
+          },
+          {
+            "_type": "localeString",
+            "en": "Context-based learning design",
+            "vi": "Thiết kế học tập theo bối cảnh"
+          }
+        ],
+        "builtText": {
+          "en": "This chapter strengthened my ability to see learning not simply as a class, but as a system that has to work across contexts, people, standards and operations.",
+          "vi": "Chặng này củng cố khả năng nhìn việc học không chỉ là một lớp học, mà là một hệ thống phải vận hành xuyên suốt các bối cảnh, con người, tiêu chuẩn và hoạt động."
+        },
+        "context": {
+          "en": "Learning had to operate across diverse service environments—F&B, hospitality, travel, entertainment, butler services and Nova Service leadership—where different business units had different operational needs but still required consistency in learning and service standards.",
+          "vi": "Việc học phải vận hành xuyên suốt nhiều môi trường dịch vụ — F&B, khách sạn, du lịch, giải trí, dịch vụ quản gia và đội ngũ lãnh đạo Nova Service — nơi mỗi đơn vị có nhu cầu vận hành riêng nhưng vẫn cần sự nhất quán về học tập và tiêu chuẩn dịch vụ."
+        },
+        "keyContribution": {
+          "en": "I translated business and operational needs into soft-skills, customer-service and management learning programs; standardized training content and procedural documents; developed e-learning; facilitated classroom programs; implemented Train-the-Trainer; and created pre-opening training plans for large-scale projects.",
+          "vi": "Tôi chuyển hóa nhu cầu kinh doanh và vận hành thành các chương trình học về kỹ năng mềm, chăm sóc khách hàng và quản lý; chuẩn hóa nội dung đào tạo và tài liệu quy trình; phát triển e-learning; điều phối các lớp học trực tiếp; triển khai Train-the-Trainer; và xây dựng kế hoạch đào tạo trước khai trương cho các dự án quy mô lớn."
+        },
+        "achievementText": {
+          "en": "Built learning support across classroom, e-learning and Train-the-Trainer channels while standardizing materials, documentation and internal learning resources across multiple business units. I also developed role-based pre-opening learning plans to support workforce readiness for new projects.",
+          "vi": "Xây dựng hệ thống hỗ trợ học tập qua các kênh lớp học, e-learning và Train-the-Trainer, đồng thời chuẩn hóa tài liệu, hồ sơ và nguồn học liệu nội bộ cho nhiều đơn vị kinh doanh. Tôi cũng phát triển các kế hoạch học tập trước khai trương theo từng vai trò để đảm bảo nhân sự sẵn sàng cho các dự án mới."
+        }
+      },
+      {
+        "_type": "careerRole",
+        "anchor": "home-credit",
+        "organization": "Home Credit Vietnam",
+        "category": {
+          "en": "Tech-enabled Consumer Finance",
+          "vi": "Tài chính tiêu dùng ứng dụng công nghệ"
+        },
+        "role": {
+          "en": "Senior L&D Business Partner",
+          "vi": "Đối tác kinh doanh L&D cấp cao"
+        },
+        "period": {
+          "en": "May 2021 – Jan 2022",
+          "vi": "Th5/2021 – Th1/2022"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Learning strategy",
+            "vi": "Chiến lược học tập"
+          },
+          {
+            "_type": "localeString",
+            "en": "Capability development",
+            "vi": "Phát triển năng lực"
+          },
+          {
+            "_type": "localeString",
+            "en": "Business partnering",
+            "vi": "Đồng hành cùng kinh doanh"
+          },
+          {
+            "_type": "localeString",
+            "en": "Internal knowledge transfer",
+            "vi": "Chuyển giao tri thức nội bộ"
+          },
+          {
+            "_type": "localeString",
+            "en": "Learning ecosystem thinking",
+            "vi": "Tư duy hệ sinh thái học tập"
+          }
+        ],
+        "builtText": {
+          "en": "This chapter sharpened an idea that remains important in my work today: good learning should build capability inside the learner or system, rather than creating long-term dependency on the person delivering it.",
+          "vi": "Chặng này làm rõ hơn một ý tưởng vẫn quan trọng trong công việc của tôi hôm nay: học tập tốt nên xây dựng năng lực ngay bên trong người học hoặc hệ thống, thay vì tạo ra sự phụ thuộc lâu dài vào người triển khai."
+        },
+        "context": {
+          "en": "The role required learning to respond directly to organizational needs rather than operate as a separate training function—connecting business priorities, capability gaps, curriculum, learning investment and employee development.",
+          "vi": "Vai trò này đòi hỏi việc học phải đáp ứng trực tiếp nhu cầu của tổ chức thay vì hoạt động như một bộ phận đào tạo tách biệt — kết nối ưu tiên kinh doanh, khoảng trống năng lực, chương trình học, đầu tư cho học tập và phát triển nhân viên."
+        },
+        "keyContribution": {
+          "en": "I managed learning projects from Training Needs Analysis through strategy, annual curricula, budgeting, delivery and evaluation; redesigned and facilitated orientation for management and non-management employees; supported e-learning systems; and established an internal Facilitator Pool.",
+          "vi": "Tôi quản lý các dự án học tập từ Phân tích nhu cầu đào tạo, chiến lược, chương trình học hằng năm, ngân sách, triển khai đến đánh giá; thiết kế lại và điều phối chương trình định hướng cho nhân viên quản lý và không quản lý; hỗ trợ hệ thống e-learning; và thành lập Facilitator Pool nội bộ."
+        },
+        "achievementText": {
+          "en": "Established an internal Facilitator Pool to strengthen in-house learning capability and reduce dependence on external delivery, while expanding employee access to learning through e-learning systems and cross-functional HR initiatives.",
+          "vi": "Thành lập Facilitator Pool nội bộ để củng cố năng lực học tập tại chỗ và giảm phụ thuộc vào đơn vị bên ngoài, đồng thời mở rộng cơ hội học tập cho nhân viên thông qua hệ thống e-learning và các sáng kiến nhân sự liên chức năng."
+        }
+      }
+    ]
+  },
+  {
+    "_id": "stage-facilitation-and-training",
+    "_type": "careerStage",
+    "year": "2016",
+    "label": {
+      "en": "Facilitation & Training",
+      "vi": "Điều phối & Đào tạo"
+    },
+    "meaning": {
+      "en": "Helping people learn",
+      "vi": "Giúp con người học"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "vietjet-trainer",
+        "organization": "VietJet Air",
+        "category": {
+          "en": "Learning & Facilitation",
+          "vi": "Học tập & Điều phối"
+        },
+        "role": {
+          "en": "Soft Skills Trainer",
+          "vi": "Giảng viên kỹ năng mềm"
+        },
+        "period": {
+          "en": "Jan 2016 – May 2021",
+          "vi": "Th1/2016 – Th5/2021"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Facilitation",
+            "vi": "Điều phối"
+          },
+          {
+            "_type": "localeString",
+            "en": "Instructional design",
+            "vi": "Thiết kế giảng dạy"
+          },
+          {
+            "_type": "localeString",
+            "en": "Adult learning",
+            "vi": "Học tập người lớn"
+          },
+          {
+            "_type": "localeString",
+            "en": "Blended learning",
+            "vi": "Học tập kết hợp"
+          },
+          {
+            "_type": "localeString",
+            "en": "Learning evaluation",
+            "vi": "Đánh giá học tập"
+          }
+        ],
+        "builtText": {
+          "en": "This was the chapter where “knowing something” and “helping another person learn it” became clearly different skills for me. It built the foundation for my Teaching/Coaching identity and later Learning Design work.",
+          "vi": "Đây là chặng mà “biết một điều” và “giúp người khác học được điều đó” trở thành hai kỹ năng hoàn toàn khác nhau đối với tôi. Nó đặt nền móng cho bản sắc Giảng dạy/Coaching và công việc Thiết kế học tập sau này."
+        },
+        "context": {
+          "en": "In a fast-moving airline environment, learning had to work across frontline employees, team leaders and supervisors while responding continuously to changing operational and customer-service needs.",
+          "vi": "Trong môi trường hàng không biến động nhanh, việc học phải phục vụ cả nhân viên tuyến đầu, trưởng nhóm và giám sát, đồng thời liên tục đáp ứng những nhu cầu thay đổi về vận hành và chăm sóc khách hàng."
+        },
+        "keyContribution": {
+          "en": "I owned the learning cycle from needs analysis and content revision through facilitation and post-training evaluation. I led core curricula in Customer Service Excellence, Effective Communication and Teamwork & Collaboration across ILT, virtual ILT, e-learning/LMS and blended learning formats.",
+          "vi": "Tôi phụ trách toàn bộ chu trình học tập: từ phân tích nhu cầu, rà soát nội dung đến điều phối và đánh giá sau đào tạo. Tôi dẫn dắt các chương trình cốt lõi về Dịch vụ khách hàng xuất sắc, Giao tiếp hiệu quả và Làm việc nhóm & Hợp tác, qua các hình thức ILT, ILT trực tuyến, e-learning/LMS và học tập kết hợp."
+        },
+        "achievementText": {
+          "en": "Expanded learning across four delivery approaches—classroom, virtual classroom, LMS/e-learning and blended learning—while supporting development across three workforce levels: employees, team leaders and supervisors.",
+          "vi": "Mở rộng việc học qua bốn hình thức triển khai — lớp học trực tiếp, lớp học ảo, LMS/e-learning và học tập kết hợp — đồng thời hỗ trợ phát triển ba cấp độ nhân sự: nhân viên, trưởng nhóm và giám sát."
+        }
+      }
+    ]
+  },
+  {
+    "_id": "stage-customer-experience",
+    "_type": "careerStage",
+    "year": "2013",
+    "label": {
+      "en": "Customer Experience",
+      "vi": "Trải nghiệm khách hàng"
+    },
+    "meaning": {
+      "en": "Understanding people in context",
+      "vi": "Thấu hiểu con người trong bối cảnh"
+    },
+    "roles": [
+      {
+        "_type": "careerRole",
+        "anchor": "vietjet-cx",
+        "organization": "VietJet Air",
+        "category": {
+          "en": "Customer Experience",
+          "vi": "Trải nghiệm khách hàng"
+        },
+        "role": {
+          "en": "Senior Customer Service Executive",
+          "vi": "Chuyên viên chăm sóc khách hàng cấp cao"
+        },
+        "period": {
+          "en": "Dec 2013 – May 2021",
+          "vi": "Th12/2013 – Th5/2021"
+        },
+        "gallery": [
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          },
+          {
+            "_type": "image",
+            "_seedImage": "placeholder.jpg",
+            "_w": 1600,
+            "_h": 1280
+          }
+        ],
+        "builtTags": [
+          {
+            "_type": "localeString",
+            "en": "Problem diagnosis",
+            "vi": "Chẩn đoán vấn đề"
+          },
+          {
+            "_type": "localeString",
+            "en": "Context awareness",
+            "vi": "Nhạy bén với bối cảnh"
+          },
+          {
+            "_type": "localeString",
+            "en": "Connecting the dots",
+            "vi": "Kết nối các mảnh ghép"
+          },
+          {
+            "_type": "localeString",
+            "en": "Customer perspective",
+            "vi": "Góc nhìn khách hàng"
+          },
+          {
+            "_type": "localeString",
+            "en": "Systems thinking",
+            "vi": "Tư duy hệ thống"
+          }
+        ],
+        "builtText": {
+          "en": "Looking back, this is one of the earliest professional environments in which my Analytical identity became visible: before solving a problem, I learned to gather information across multiple touchpoints, understand context and question what was actually happening.",
+          "vi": "Nhìn lại, đây là một trong những môi trường nghề nghiệp đầu tiên nơi bản sắc Phân tích của tôi bộc lộ rõ: trước khi giải quyết vấn đề, tôi học cách thu thập thông tin từ nhiều điểm chạm, hiểu bối cảnh và đặt câu hỏi về điều thực sự đang xảy ra."
+        },
+        "context": {
+          "en": "Customer issues rarely exist in isolation. Understanding a complaint required looking across the customer journey, operational touchpoints, expectations, available information and the context surrounding each situation.",
+          "vi": "Vấn đề của khách hàng hiếm khi tồn tại riêng lẻ. Để hiểu một khiếu nại, cần nhìn xuyên suốt hành trình khách hàng, các điểm chạm vận hành, kỳ vọng, thông tin sẵn có và bối cảnh xung quanh từng tình huống."
+        },
+        "keyContribution": {
+          "en": "I investigated complex customer feedback, handled escalations and crisis situations, audited service quality across customer touchpoints, supported training planning and workshops, and collaborated with IT on customer-service systems including CRM, touchpoint evaluation and Lost & Found.",
+          "vi": "Tôi điều tra các phản hồi phức tạp của khách hàng, xử lý các vụ việc leo thang và khủng hoảng, kiểm định chất lượng dịch vụ tại các điểm chạm, hỗ trợ lập kế hoạch đào tạo và workshop, đồng thời phối hợp với IT trong các hệ thống chăm sóc khách hàng như CRM, đánh giá điểm chạm và Lost & Found."
+        },
+        "achievementText": {
+          "en": "Contributed to the development of customer-service systems with IT while combining case investigation, service-quality auditing and complex feedback resolution across multiple customer-journey touchpoints.",
+          "vi": "Góp phần phát triển các hệ thống chăm sóc khách hàng cùng bộ phận IT, đồng thời kết hợp điều tra vụ việc, kiểm định chất lượng dịch vụ và giải quyết các phản hồi phức tạp trên nhiều điểm chạm của hành trình khách hàng."
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-academic",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Academic",
+      "vi": "Học thuật"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "M.Ed in Emerging Technologies"
+        },
+        "organization": {
+          "en": "Edgewood University – Madison, USA"
+        },
+        "year": {
+          "en": "2026–Present",
+          "vi": "2026–Nay"
+        },
+        "inProgress": true,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Bachelor of Arts – French Linguistics and Literature"
+        },
+        "organization": {
+          "en": "University of Social Sciences and Humanities, Vietnam National University – HCMC"
+        },
+        "year": {
+          "en": "2009–2013"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Diplôme de Technicien Supérieur – Business English"
+        },
+        "organization": {
+          "en": "Lotus University & CCI Paris, Vietnam"
+        },
+        "year": {
+          "en": "2010–2012"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-leadership",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Learning, Leadership & OD",
+      "vi": "Học tập, Lãnh đạo & Phát triển tổ chức"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "L&D Business Partner Development – CIPD Standards"
+        },
+        "organization": {
+          "en": "Eduviet"
+        },
+        "year": {
+          "en": "2021"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Emergency Response SAT Team Leader Training"
+        },
+        "organization": {
+          "en": "GHS Aviation Group, USA"
+        },
+        "year": {
+          "en": "2019"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Account Leadership"
+        },
+        "organization": {
+          "en": "AIM Academy"
+        },
+        "year": {
+          "en": "2018"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Building a Professional Leader"
+        },
+        "organization": {
+          "en": "Griffin Vietnam"
+        },
+        "year": {
+          "en": "2017"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-child",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Education & Child Development",
+      "vi": "Giáo dục & Phát triển trẻ em"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Developing Creative Capacities in Children Aged 1–8 Through Visual Arts"
+        },
+        "organization": {
+          "en": "Vietnam International Reggio Emilia Society"
+        },
+        "year": {
+          "en": "2023"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Introduction to Visual Arts for Educators"
+        },
+        "organization": {
+          "en": "Vietnam International Reggio Emilia Society"
+        },
+        "year": {
+          "en": "2023"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Promoting Child Development in the First 3000 Days"
+        },
+        "organization": {
+          "en": "Vietnam–France Psychology Institute"
+        },
+        "year": {
+          "en": "2023"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Professional Training in Psychology and Teaching Skills"
+        },
+        "organization": {
+          "en": "Ho Chi Minh City University of Education"
+        },
+        "year": {
+          "en": "2015"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-coaching",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Coaching & Career Development",
+      "vi": "Coaching & Phát triển nghề nghiệp"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Employee Performance Coach"
+        },
+        "organization": {
+          "en": "Transformation Academy"
+        },
+        "year": {
+          "en": "2021"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Group Life Coach"
+        },
+        "organization": {
+          "en": "Transformation Academy"
+        },
+        "year": {
+          "en": "2021"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Job & Career Transition Coach"
+        },
+        "organization": {
+          "en": "Career Network, USA"
+        },
+        "year": {
+          "en": "2020"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Job & Career Development Coach"
+        },
+        "organization": {
+          "en": "Career Network, USA"
+        },
+        "year": {
+          "en": "2020"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-creative",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Creative & Experiential Learning",
+      "vi": "Học tập sáng tạo & trải nghiệm"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Advanced Music Therapy"
+        },
+        "organization": {
+          "en": "Institute for Psychological Research, Training and Application"
+        },
+        "year": {
+          "en": "2024"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Fundamentals of Music Therapy"
+        },
+        "organization": {
+          "en": "Institute for Psychological Research, Training and Application"
+        },
+        "year": {
+          "en": "2024"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Foundations of Aromatherapy"
+        },
+        "organization": {
+          "en": "National Association for Holistic Aromatherapy and the School for Aromatic Studies, Essensian Vietnam"
+        },
+        "year": {
+          "en": "2024"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Draw All You Can"
+        },
+        "organization": {
+          "en": "Circle Painting, USA"
+        },
+        "year": {
+          "en": "2023"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "edu-cx",
+    "_type": "educationGroup",
+    "title": {
+      "en": "Customer Experience & Service",
+      "vi": "Trải nghiệm & Dịch vụ khách hàng"
+    },
+    "items": [
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Customer Service and Complaint Handling Skills"
+        },
+        "organization": {
+          "en": "TÜV Rheinland Vietnam"
+        },
+        "year": {
+          "en": "2019"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Professional Skills of Customer Service and Handling Customer Feedback"
+        },
+        "organization": {
+          "en": "ISM Center"
+        },
+        "year": {
+          "en": "2015"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      },
+      {
+        "_type": "certificate",
+        "degree": {
+          "en": "Professional Skills of Handling Customer Feedback"
+        },
+        "organization": {
+          "en": "Griffin Vietnam"
+        },
+        "year": {
+          "en": "2014"
+        },
+        "inProgress": false,
+        "certificate": {
+          "_type": "image",
+          "_seedImage": "placeholder.jpg",
+          "_w": 1600,
+          "_h": 1280
+        }
+      }
+    ]
+  },
+  {
+    "_id": "portfolioPage",
+    "_type": "portfolioPage",
+    "seo": {
+      "_type": "seo",
+      "title": {
+        "en": "Your Brand — Your Quote",
+        "vi": "Hồ sơ năng lực — thảo educator"
+      },
+      "description": {
+        "en": "Career timeline of thảo educator — from customer experience and organizational L&D to education leadership and digital learning.",
+        "vi": "Dòng thời gian sự nghiệp của thảo educator — từ trải nghiệm khách hàng và L&D tổ chức đến lãnh đạo giáo dục và học tập số."
+      }
+    },
+    "title": {
+      "en": "Lorem ipsum dolor sit amet",
+      "vi": "Nuôi dưỡng trí tuệ con người trong thời đại AI"
+    },
+    "lead": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "vi": "Tôi giúp mỗi người hiểu điều gì đã hình thành nên mình, đưa ra những lựa chọn có chủ đích hơn và tạo nên thay đổi ý nghĩa trong cuộc sống của bản thân và gia đình — với tác động tích cực đến thế hệ kế tiếp."
+    },
+    "tagline": {
+      "en": "Lorem ipsum dolor sit amet",
+      "vi": "Self-Leadership · Giáo dục gia đình · Học tập ứng dụng AI"
+    },
+    "image": {
+      "_type": "image",
+      "_seedImage": "placeholder.jpg",
+      "_w": 1600,
+      "_h": 1280,
+      "alt": {
+        "en": "Portrait of thảo",
+        "vi": "Chân dung của thảo"
+      }
+    },
+    "howLabel": {
+      "en": "How I work",
+      "vi": "Cách tôi làm việc"
+    },
+    "journeyLabel": {
+      "en": "Journey & career",
+      "vi": "Hành trình & sự nghiệp"
+    },
+    "educationNavLabel": {
+      "en": "Education",
+      "vi": "Học vấn"
+    },
+    "pillars": [
+      {
+        "_type": "pillar",
+        "title": {
+          "en": "Analytical Thinking",
+          "vi": "Tư duy phân tích"
+        },
+        "text": {
+          "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      },
+      {
+        "_type": "pillar",
+        "title": {
+          "en": "Inclusive Learning Design",
+          "vi": "Thiết kế học tập hòa nhập"
+        },
+        "text": {
+          "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      },
+      {
+        "_type": "pillar",
+        "title": {
+          "en": "Transformative Facilitation",
+          "vi": "Điều phối chuyển hóa"
+        },
+        "text": {
+          "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      }
+    ],
+    "flow": [
+      {
+        "_type": "localeString",
+        "en": "Clarity",
+        "vi": "Sáng tỏ"
+      },
+      {
+        "_type": "localeString",
+        "en": "Agency",
+        "vi": "Chủ động"
+      },
+      {
+        "_type": "localeString",
+        "en": "Growth",
+        "vi": "Phát triển"
+      }
+    ],
+    "journeyTitle": {
+      "en": "Lorem ipsum dolor sit amet.",
+      "vi": "Không chỉ là danh sách các vị trí — mà là hành trình giúp tư duy của tôi trưởng thành"
+    },
+    "nowLabel": {
+      "en": "Now",
+      "vi": "Hiện nay"
+    },
+    "nowMeaning": {
+      "en": "Lorem Ipsum"
+    },
+    "nowTagline": {
+      "en": "Lorem ipsum dolor sit amet.",
+      "vi": "Self-Leadership · Giáo dục gia đình · Học tập ứng dụng AI"
+    },
+    "stages": [
+      {
+        "_type": "reference",
+        "_ref": "stage-digital-education"
+      },
+      {
+        "_type": "reference",
+        "_ref": "stage-education-leadership"
+      },
+      {
+        "_type": "reference",
+        "_ref": "stage-experiential-learning"
+      },
+      {
+        "_type": "reference",
+        "_ref": "stage-organizational-landd"
+      },
+      {
+        "_type": "reference",
+        "_ref": "stage-facilitation-and-training"
+      },
+      {
+        "_type": "reference",
+        "_ref": "stage-customer-experience"
+      }
+    ],
+    "educationLabel": {
+      "en": "Education & Continuous Learning",
+      "vi": "Học vấn & Học tập liên tục"
+    },
+    "educationIntro": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "vi": "Việc học của tôi phát triển song hành cùng công việc — từ trải nghiệm khách hàng và học tập tổ chức đến coaching, phát triển trẻ em, giáo dục và các công nghệ mới nổi. Những lĩnh vực này tiếp tục định hình cách tôi nghĩ về sự phát triển con người và thiết kế việc học."
+    },
+    "educationGroups": [
+      {
+        "_type": "reference",
+        "_ref": "edu-academic"
+      },
+      {
+        "_type": "reference",
+        "_ref": "edu-leadership"
+      },
+      {
+        "_type": "reference",
+        "_ref": "edu-child"
+      },
+      {
+        "_type": "reference",
+        "_ref": "edu-coaching"
+      },
+      {
+        "_type": "reference",
+        "_ref": "edu-creative"
+      },
+      {
+        "_type": "reference",
+        "_ref": "edu-cx"
+      }
+    ]
+  }
+]

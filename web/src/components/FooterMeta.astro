@@ -1,0 +1,22 @@
+---
+import Socials from "./Socials.astro";
+import { tr, useT, type LanguageId } from "../i18n";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  settings: Doc;
+}
+const { lang, settings } = Astro.props;
+const t = useT(lang);
+---
+<div class="footer__bottom">
+  <div class="footer__meta">
+    <div><h5>{t("version")}</h5><p>{tr(settings.edition, lang)}</p></div>
+    <div><h5>{t("localTime")}</h5><p data-clock="Asia/Ho_Chi_Minh">--:--</p></div>
+  </div>
+  <div class="footer__socials">
+    <h5>{t("socials")}</h5>
+    <Socials socials={settings.socials} />
+  </div>
+</div>

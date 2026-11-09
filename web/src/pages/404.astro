@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import FooterMeta from "../components/FooterMeta.astro";
+import Icon from "../components/Icon.astro";
+import { defaultLanguage, localizePath, useT } from "../i18n";
+import { getSettings } from "../lib/content";
+
+const lang = defaultLanguage;
+const t = useT(lang);
+const settings = await getSettings();
+---
+<Base lang={lang} page="notFound" settings={settings} seo={{ title: { [lang]: t("notFoundTitle") } }} bodyClass="contact-page">
+  <main class="soon">
+    <section class="soon__hero container">
+      <p class="section-label">404</p>
+      <h1 class="soon__title">{t("notFoundTitle")}</h1>
+      <p class="soon__text">{t("notFoundText")}</p>
+      <a href={localizePath("/", lang)} class="btn-pill" data-page={t("home")}><span class="btn__text">{t("backHome")}</span><Icon name="arrow-right" class="icon btn__arrow" /></a>
+    </section>
+    <section class="container"><FooterMeta lang={lang} settings={settings} /></section>
+  </main>
+</Base>

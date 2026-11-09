@@ -1,0 +1,168 @@
+---
+import Base from "../../layouts/Base.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import CareerRole from "../../components/CareerRole.astro";
+import { html, langPaths, tr, useT, type LanguageId } from "../../i18n";
+import { getPortfolio, getSettings } from "../../lib/content";
+import { img } from "../../lib/image";
+import type { Doc } from "../../lib/sanity";
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: LanguageId };
+const t = useT(lang);
+const [settings, p] = await Promise.all([getSettings(), getPortfolio()]);
+
+const portrait = img(p.image, 1400);
+const stages: Doc[] = (p.stages ?? []).filter(Boolean);
+const groups: Doc[] = (p.educationGroups ?? []).filter(Boolean);
+const flow: string[] = (p.flow ?? []).map((f: Doc) => tr(f, lang));
+const firstPreview = img(groups[0]?.items?.[0]?.certificate, 900);
+let roleIndex = 0;
+---
+<Base lang={lang} page="portfolio" settings={settings} seo={p.seo}>
+  <main data-portfolio>
+    <!-- 1. Hero -->
+    <section class="page-head container">
+      <h1 class="page-title" data-reveal>{tr(p.title, lang)}</h1>
+      <div class="page-head__divider">
+        <span class="btn-round" style="pointer-events:none"><Icon name="globe" class="icon icon--lg" /></span>
+      </div>
+    </section>
+    <section class="about-body container">
+      <div class="about-body__text" data-reveal>
+        <p class="lead" set:html={html(tr(p.lead, lang))} />
+        <p class="section-label" style="margin:0">{tr(p.tagline, lang)}</p>
+      </div>
+      {portrait && (
+        <img class="about-body__img" src={portrait.src} alt={tr(p.image?.alt, lang)} data-reveal width={portrait.width} height={portrait.height} loading="lazy" decoding="async">
+      )}
+    </section>
+
+    <!-- In-page navigation (sticky) -->
+    <nav class="subnav" aria-label={t("onThisPage")}>
+      <div class="subnav__inner container">
+        <a href="#how" class="subnav__link">{tr(p.howLabel, lang)}</a>
+        <a href="#journey" class="subnav__link">{tr(p.journeyLabel, lang)}</a>
+        <a href="#education" class="subnav__link">{tr(p.educationNavLabel, lang)}</a>
+      </div>
+    </nav>
+
+    <!-- 2. How I Work -->
+    <section class="how container" id="how">
+      <p class="section-label">{tr(p.howLabel, lang)}</p>
+      <div class="pillars">
+        {(p.pillars ?? []).map((pillar: Doc, i: number) => (
+          <article class="pillar" data-reveal>
+            <p class="pillar__num">{String(i + 1).padStart(2, "0")}</p>
+            <h3>{tr(pillar.title, lang)}</h3>
+            <p set:html={html(tr(pillar.text, lang))} />
+          </article>
+        ))}
+      </div>
+      {flow.length > 0 && (
+        <p class="flow" aria-label={flow.join(" → ")}>
+          {flow.map((word, i) => (
+            <>
+              {i > 0 && <span class="flow__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>}
+              <span>{word}</span>
+            </>
+          ))}
+        </p>
+      )}
+    </section>
+
+    <!-- 3. Journey & Career -->
+    <section class="journey" id="journey">
+      <div class="container">
+        <p class="section-label">{tr(p.journeyLabel, lang)}</p>
+        <h2 class="section-title" data-reveal>{tr(p.journeyTitle, lang)}</h2>
+        <div class="timeline">
+          <span class="timeline__rail" aria-hidden="true"></span>
+          <span class="timeline__progress" aria-hidden="true"></span>
+          <section class="stage stage--end" aria-label={tr(p.nowLabel, lang)}>
+            <header class="stage__head"><p class="stage__year">{tr(p.nowLabel, lang)}</p></header>
+            <div class="stage__body">
+              <h3 class="stage__meaning">{tr(p.nowMeaning, lang)}</h3>
+              <p class="stage__tagline">{tr(p.nowTagline, lang)}</p>
+            </div>
+          </section>
+          {stages.map((stage) => (
+            <section class="stage" aria-label={tr(stage.label, lang)}>
+              <header class="stage__head">
+                <p class="stage__year">{stage.year}</p>
+                <p class="stage__label">{tr(stage.label, lang)}</p>
+              </header>
+              <div class="stage__body">
+                <h3 class="stage__meaning">{tr(stage.meaning, lang)}</h3>
+                <ul class="pf-items">
+                  {(stage.roles ?? []).map((role: Doc) => <CareerRole lang={lang} role={role} index={roleIndex++} />)}
+                </ul>
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Education & Continuous Learning -->
+    <section class="education container" id="education">
+      <p class="section-label">{tr(p.educationLabel, lang)}</p>
+      <p class="lead education__intro" data-reveal set:html={html(tr(p.educationIntro, lang))} />
+      <div data-tabs>
+        <div class="tabs" role="tablist" aria-label={t("fieldsOfStudy")}>
+          {groups.map((g, i) => (
+            <button class="tab" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0} tabindex={i === 0 ? undefined : -1}>
+              <span>{tr(g.title, lang)}</span><span class="tab__count">{g.items?.length ?? 0}</span>
+            </button>
+          ))}
+        </div>
+        <div class="edu-head" aria-hidden="true">
+          <span>{t("colOrganization")}</span>
+          <span>{t("colDegree")}</span>
+          <span>{t("colYear")}</span>
+        </div>
+        {groups.map((g, i) => (
+          <div class="edu-panel" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} hidden={i !== 0}>
+            <ul class="edu-list">
+              {(g.items ?? []).map((item: Doc) => {
+                const cert = img(item.certificate, 1600);
+                return (
+                  <li class="edu-row" data-preview-src={cert?.src}>
+                    <span class="edu-row__degree">{tr(item.degree, lang)}{item.inProgress && <> <span class="edu-row__note">{t("inProgress")}</span></>}</span>
+                    <span class="edu-row__org">{tr(item.organization, lang)}</span>
+                    <span class="edu-row__year">{tr(item.year, lang)}</span>
+                    {cert && <button type="button" class="edu-row__open" aria-haspopup="dialog" aria-label={t("viewCertificate")}></button>}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="continuing" aria-label={t("continuing")}>
+        <span>{t("continuing")}</span><span class="continuing__dot" aria-hidden="true">.</span><span class="continuing__dot" aria-hidden="true">.</span><span class="continuing__dot" aria-hidden="true">.</span>
+      </p>
+    </section>
+
+    <!-- Floating preview (hover a role / certificate) -->
+    <div class="preview" aria-hidden="true">
+      <div class="preview__slide" style="background:color-mix(in srgb, var(--khaki) 30%, var(--ivory))">
+        {firstPreview && <img src={firstPreview.src} alt="" width={firstPreview.width} height={firstPreview.height} loading="lazy" decoding="async">}
+      </div>
+    </div>
+    <div class="preview-cursor" aria-hidden="true"></div>
+    <div class="preview-label" aria-hidden="true">{t("open")}</div>
+  </main>
+
+  <!-- Image viewer (certificates + galleries) -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label={t("viewCertificate")}>
+    <button type="button" class="lightbox__close" aria-label={t("close")}><Icon name="x" /></button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" alt="" loading="lazy" decoding="async">
+      <figcaption class="lightbox__caption"></figcaption>
+    </figure>
+  </div>
+
+  <Footer lang={lang} settings={settings} />
+</Base>

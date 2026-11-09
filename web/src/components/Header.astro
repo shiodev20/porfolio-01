@@ -1,0 +1,54 @@
+---
+import Icon from "./Icon.astro";
+import LangSwitch from "./LangSwitch.astro";
+import Socials from "./Socials.astro";
+import { localizePath, useT, type LanguageId } from "../i18n";
+import { pages, type PageKey } from "../lib/pages";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  page: PageKey;
+  alternates: Record<string, string>;
+  settings: Doc;
+}
+const { lang, page, alternates, settings } = Astro.props;
+const t = useT(lang);
+const link = (key: PageKey) => ({ href: localizePath(pages[key].path, lang), "data-page": t(pages[key].label) });
+const navKeys: PageKey[] = ["portfolio", "contact"];
+const menuKeys: PageKey[] = ["home", "portfolio", "contact"];
+---
+<header class="header">
+  <a {...link("home")} class="logo" data-magnetic="0.3">
+    <Icon name="globe" class="icon logo__globe" />
+    <span class="logo__names"><span class="logo__name">{settings.brandName}</span></span>
+  </a>
+  <nav class="nav">
+    {navKeys.map((k) => (
+      <a {...link(k)} class:list={["nav__link", { "is-active": k === page }]} data-magnetic="0.3"><span class="btn__text">{t(pages[k].label)}</span></a>
+    ))}
+    <LangSwitch lang={lang} alternates={alternates} id="lang-menu-0" />
+  </nav>
+</header>
+
+<button class="menu-btn" aria-label={t("openMenu")}>
+  <span class="menu-btn__label" aria-hidden="true"><span class="menu-btn__text menu-btn__text--open">{t("menu")}</span><span class="menu-btn__text menu-btn__text--close">{t("close")}</span></span>
+  <span class="menu-btn__icons" aria-hidden="true"><Icon name="menu" class="menu-btn__icon menu-btn__icon--open" /><Icon name="x" class="menu-btn__icon menu-btn__icon--close" /></span>
+</button>
+<div class="side-menu-overlay"></div>
+<aside class="side-menu">
+  <div>
+    <p class="side-menu__label">{t("navigation")}</p>
+    <nav class="side-menu__links">
+      {menuKeys.map((k) => <a {...link(k)} class:list={{ "is-active": k === page }}>{t(pages[k].label)}</a>)}
+    </nav>
+  </div>
+  <div>
+    <p class="side-menu__label">{t("language")}</p>
+    <LangSwitch lang={lang} alternates={alternates} id="lang-menu-1" class="lang--menu" />
+  </div>
+  <div>
+    <p class="side-menu__label">{t("socials")}</p>
+    <div class="side-menu__socials"><Socials socials={settings.socials} variant="inline" /></div>
+  </div>
+</aside>

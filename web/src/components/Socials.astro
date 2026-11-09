@@ -1,0 +1,13 @@
+---
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  socials?: Doc[];
+  /** "list": <ul><li><a> (footer, contact) — "inline": bare <a> (side menu) */
+  variant?: "list" | "inline";
+}
+const { socials = [], variant = "list" } = Astro.props;
+---
+{variant === "inline"
+  ? socials.map((s) => <a href={s.url || "#"} class="u-link" target="_blank" rel="noopener">{s.label}</a>)
+  : <ul>{socials.map((s) => <li><a href={s.url || "#"} class="u-link" target="_blank" rel="noopener">{s.label}</a></li>)}</ul>}

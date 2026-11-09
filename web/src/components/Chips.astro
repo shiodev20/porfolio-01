@@ -1,0 +1,18 @@
+---
+import { tr, type LanguageId } from "../i18n";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  question?: Doc;
+  name: string;
+  type?: "radio" | "checkbox";
+  ariaLabel?: string;
+}
+const { lang, question = {}, name, type = "radio", ariaLabel } = Astro.props;
+---
+<div class="chips" role={ariaLabel ? "radiogroup" : undefined} aria-label={ariaLabel}>
+  {(question.options ?? []).map((o: Doc) => (
+    <label class="chip"><input type={type} name={name} value={o.value} /><span>{tr(o.label, lang)}</span></label>
+  ))}
+</div>

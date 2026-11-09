@@ -1,0 +1,81 @@
+---
+// One expandable row of the career timeline (Portfolio page)
+import Icon from "./Icon.astro";
+import { html, localizePath, tr, useT, type LanguageId } from "../i18n";
+import { img } from "../lib/image";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  role: Doc;
+  index: number;
+}
+const { lang, role, index } = Astro.props;
+const t = useT(lang);
+const id = role.anchor || `role-${index + 1}`;
+const gallery = (role.gallery ?? []).map((g: Doc) => ({ thumb: img(g, 800), full: img(g, 2000) })).filter((g: Doc) => g.thumb);
+const text = (v: Doc | undefined) => html(tr(v, lang));
+---
+<li class="pf-item" id={id}>
+  <button class="pf-row" aria-expanded="false" aria-controls={`${id}-detail`} data-preview-item>
+    <span class="pf-row__org">{role.organization}</span>
+    <span class="pf-row__cell pf-row__cat">{tr(role.category, lang)}</span>
+    <span class="pf-row__cell">{tr(role.role, lang)}</span>
+    <span class="pf-row__cell pf-row__year">{tr(role.period, lang)}</span>
+    <span class="pf-row__icon" aria-hidden="true"><Icon name="plus" /></span>
+  </button>
+  <div class="pf-detail" id={`${id}-detail`}>
+    <div class="pf-detail__inner">
+      <div class="pf-detail__grid">
+        <div>
+          {tr(role.context, lang) && (
+            <div class="pf-block">
+              <h4>{t("context")}</h4>
+              <p set:html={text(role.context)} />
+            </div>
+          )}
+          {gallery.length > 0 && (
+            <div class="pf-block pf-gallery">
+              {gallery.map((g: Doc, i: number) => (
+                <button type="button" class="pf-shot" data-lightbox data-src={g.full.src} data-title={role.organization} data-meta={`${i + 1} / ${gallery.length}`} aria-label={t("viewImage")}>
+                  <img src={g.thumb.src} alt="" loading="lazy" width={g.thumb.width} height={g.thumb.height} decoding="async">
+                  <span class="pf-shot__zoom" aria-hidden="true"><Icon name="maximize-2" /></span>
+                </button>
+              ))}
+            </div>
+          )}
+          {tr(role.keyContribution, lang) && (
+            <div class="pf-block">
+              <h4>{t("keyContribution")}</h4>
+              <p set:html={text(role.keyContribution)} />
+            </div>
+          )}
+          {(tr(role.achievementText, lang) || role.achievements?.length || role.cta?.label || role.pendingNote) && (
+            <div class="pf-block">
+              <h4>{t("achievement")}</h4>
+              {tr(role.achievementText, lang) && <p set:html={text(role.achievementText)} />}
+              {role.achievements?.length > 0 && (
+                <div class="pf-achievements">
+                  {role.achievements.map((a: Doc) => (
+                    <div class="pf-achievement"><strong>{tr(a.title, lang)}</strong><p set:html={text(a.text)} /></div>
+                  ))}
+                </div>
+              )}
+              {role.cta?.label && (
+                <div class="pf-cta"><a href={localizePath(role.cta.href, lang)} class="btn-pill"><span class="btn__text">{tr(role.cta.label, lang)}</span><Icon name="arrow-right" class="icon btn__arrow" /></a></div>
+              )}
+              {tr(role.pendingNote, lang) && <span class="pf-pending">{tr(role.pendingNote, lang)}</span>}
+            </div>
+          )}
+        </div>
+        <aside class="pf-built">
+          <h4>{t("builtInMe")}</h4>
+          {role.builtTags?.length > 0 && (
+            <div class="pf-tags">{role.builtTags.map((tag: Doc) => <span class="pf-tag">{tr(tag, lang)}</span>)}</div>
+          )}
+          {tr(role.builtText, lang) && <p set:html={text(role.builtText)} />}
+        </aside>
+      </div>
+    </div>
+  </div>
+</li>

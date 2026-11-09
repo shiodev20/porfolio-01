@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+import FooterMeta from "./FooterMeta.astro";
+import { html, localizePath, tr, useT, type LanguageId } from "../i18n";
+import type { Doc } from "../lib/sanity";
+
+interface Props {
+  lang: LanguageId;
+  settings: Doc;
+}
+const { lang, settings } = Astro.props;
+const t = useT(lang);
+---
+<div class="footer-wrap" id="work-with-me">
+  <div class="footer-curve" aria-hidden="true"></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cta">
+        <div class="footer__cta-main">
+          <p class="footer__eyebrow" set:html={html(tr(settings.footerEyebrow, lang))} />
+          <h2 class="footer__title">{tr(settings.footerTitle, lang)}</h2>
+          <a href={localizePath("/contact", lang)} class="btn-pill btn-pill--lg" data-page={t("workWithMe")}><span class="btn__text">{tr(settings.footerCta, lang)}</span><Icon name="arrow-right" class="icon btn__arrow" /></a>
+        </div>
+      </div>
+      <FooterMeta lang={lang} settings={settings} />
+    </div>
+  </footer>
+</div>
