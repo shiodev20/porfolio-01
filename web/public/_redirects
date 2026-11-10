@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects: https://developers.cloudflare.com/pages/configuration/redirects/
+# Shortcut for the team: <domain>/login (or /admin) opens the content dashboard
+/login  https://thao-educator.sanity.studio  302
+/admin  https://thao-educator.sanity.studio  302
