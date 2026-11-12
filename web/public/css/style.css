@@ -1079,6 +1079,8 @@ textarea.form__input { resize: vertical; min-height: 8rem; }
 
 .form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 .form__status { color: var(--muted); font-size: 0.9rem; }
+.form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }   /* bot trap */
+.btn-pill:disabled { opacity: 0.6; cursor: wait; }
 
 @media (max-width: 900px) {
   .contact-wrap { grid-template-columns: 1fr; }

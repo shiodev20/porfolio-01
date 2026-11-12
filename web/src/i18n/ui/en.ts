@@ -49,6 +49,9 @@ export default {
   quickTiming: "Quick timing",
   formFill: "Please fill in your name, email and message.",
   formOpening: "Opening your mail app…",
+  formSending: "Sending…",
+  formSent: "Thank you! Your message has been sent.",
+  formError: "Couldn’t send your message. Opening your mail app instead…",
   // Course / AI tool
   comingSoon: "Coming soon",
   backHome: "Back to home",

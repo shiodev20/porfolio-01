@@ -24,6 +24,20 @@ export const siteSettings = defineType({
     defineField({ name: "brandName", title: "Tên thương hiệu (logo)", type: "string", group: "brand" }),
     defineField({ name: "marqueeText", title: "Chữ chạy ở trang chủ", type: "string", group: "brand" }),
     defineField({ name: "email", title: "Email", type: "string", group: "contact", description: "Hiện ở trang Liên hệ và là địa chỉ nhận form." }),
+    defineField({
+      name: "contactSheetUrl",
+      title: "Link Web App Google Sheet (nhận form)",
+      type: "url",
+      group: "contact",
+      description:
+        "Dán URL Web App của Apps Script (dạng https://script.google.com/macros/s/.../exec). Mỗi lượt gửi form sẽ thành 1 dòng trong Sheet. Để trống thì form mở ứng dụng email như cũ. Sau khi đổi cần build lại website.",
+      validation: (r) =>
+        r.uri({ scheme: ["https"] }).custom((v) =>
+          !v || /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(v)
+            ? true
+            : "Link phải là URL Web App, dạng https://script.google.com/macros/s/.../exec",
+        ),
+    }),
     defineField({ name: "phone", title: "Số điện thoại", type: "string", group: "contact" }),
     defineField({ name: "socials", title: "Mạng xã hội", type: "array", of: [{ type: "socialLink" }], group: "contact", description: "Dùng chung cho menu, footer và trang Liên hệ." }),
     defineField({ name: "businessName", title: "Tên doanh nghiệp", type: "localeString", group: "contact" }),

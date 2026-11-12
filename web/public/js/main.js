@@ -392,7 +392,8 @@ function initClock() {
 }
 
 /* --------------------------------------------------------------------------
-   Contact form (no backend → opens mail client)
+   Contact form: posts to the Google Sheet web app set in the dashboard
+   (google-apps-script/Code.gs); without one, or if sending fails, opens the mail client
    Messages come translated from data-msg-* on the form (pages/[...lang]/contact.astro).
    -------------------------------------------------------------------------- */
 function initForm() {
@@ -407,13 +408,56 @@ function initForm() {
     if (r.value === "today" && date && !date.value) date.value = toISO(new Date());
   }));
   const status = $(".form__status");
-  form.addEventListener("submit", (e) => {
+  const button = $('button[type="submit"]', form);
+  const { endpoint } = form.dataset;
+  // Chips send their visible label (readable in the sheet), not the internal value
+  const labels = (name) => $$(`input[name="${name}"]:checked`, form).map((i) => i.nextElementSibling?.textContent.trim() || i.value);
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const d = new FormData(form);
     if (!d.get("name") || !d.get("email") || !d.get("message")) {
       status.textContent = form.dataset.msgFill;
       return;
     }
+    if (d.get("website")) return; // bot trap filled in
+
+    if (endpoint) {
+      button.disabled = true;
+      status.textContent = form.dataset.msgSending;
+      try {
+        // text/plain keeps this a "simple" CORS request, which Apps Script accepts
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            name: d.get("name"),
+            email: d.get("email"),
+            as: labels("as"),
+            role: labels("role"),
+            format: labels("format"),
+            timing_date: d.get("timing_date"),
+            timing_time: d.get("timing_time"),
+            timing_preset: labels("timing_preset"),
+            message: d.get("message"),
+            lang: form.dataset.lang,
+            website: d.get("website"),
+          }),
+        });
+        const result = await res.json();
+        if (!result.ok) throw new Error(result.error || "send_failed");
+        form.reset();
+        status.textContent = form.dataset.msgSent;
+        return;
+      } catch (err) {
+        console.error("Contact form:", err);
+        status.textContent = form.dataset.msgError;
+        await new Promise((r) => setTimeout(r, 1200)); // let the message show before falling back to mail
+      } finally {
+        button.disabled = false;
+      }
+    }
+
     const body = [
       `Name: ${d.get("name")}`,
       `Email: ${d.get("email")}`,
