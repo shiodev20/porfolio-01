@@ -94,6 +94,7 @@ const phoneHref = settings.phone ? `tel:${settings.phone.replace(/[^\d+]/g, "")}
           <button type="submit" class="btn-pill"><span class="btn__text">{tr(c.submitLabel, lang)}</span><Icon name="arrow-right" class="icon btn__arrow" /></button>
           <p class="form__status" aria-live="polite"></p>
         </div>
+        <p class="form__note">{t("formPrivacy")}</p>
       </form>
     </section>
 

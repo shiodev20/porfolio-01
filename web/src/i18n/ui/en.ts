@@ -52,6 +52,12 @@ export default {
   formSending: "Sending…",
   formSent: "Thank you! Your message has been sent.",
   formError: "Couldn’t send your message. Opening your mail app instead…",
+  formPrivacy: "Your details are only used to reply to this enquiry and are never shared with third parties.",
+  // Cookie banner
+  cookieTitle: "Cookies",
+  cookieText: "This site uses cookies to understand how visitors use it and to improve your experience. You can accept or decline non-essential cookies.",
+  cookieAccept: "Accept",
+  cookieDecline: "Decline",
   // Course / AI tool
   comingSoon: "Coming soon",
   backHome: "Back to home",

@@ -597,6 +597,23 @@ function initSubnav() {
 /* --------------------------------------------------------------------------
    Boot
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Cookie banner — UI only for now: slides in after the intro, buttons close it.
+   TODO: remember the choice (localStorage) and load analytics only on "accept".
+   -------------------------------------------------------------------------- */
+function initCookieBanner() {
+  const el = $(".cookie");
+  if (!el) return;
+  setTimeout(() => {
+    el.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-visible")));
+  }, 1200);
+  $$("[data-cookie]", el).forEach((btn) => btn.addEventListener("click", () => {
+    el.classList.remove("is-visible");
+    setTimeout(() => { el.hidden = true; }, 600);
+  }));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // block dragging images out of the page (Firefox ignores the CSS -webkit-user-drag)
   document.addEventListener("dragstart", (e) => { if (e.target instanceof HTMLImageElement) e.preventDefault(); });
@@ -622,5 +639,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const html = document.documentElement;
     const wait = html.classList.contains("is-greeted") ? 450 : 150;
     setTimeout(() => html.classList.replace("hero-pending", "hero-in"), wait);
+    initCookieBanner();
   });
 });

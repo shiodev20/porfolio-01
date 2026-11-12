@@ -1,0 +1,19 @@
+---
+/* Cookie consent banner — UI only for now (client review).
+   Buttons just close it; saving the choice and loading analytics comes later
+   (see initCookieBanner in public/js/main.js). */
+import { useT, type LanguageId } from "../i18n";
+
+const { lang } = Astro.props as { lang: LanguageId };
+const t = useT(lang);
+---
+<div class="cookie" role="region" aria-label={t("cookieTitle")} hidden>
+  <div class="cookie__text">
+    <p class="cookie__title">{t("cookieTitle")}</p>
+    <p class="cookie__body">{t("cookieText")}</p>
+  </div>
+  <div class="cookie__actions">
+    <button type="button" class="cookie__btn cookie__btn--ghost" data-cookie="decline">{t("cookieDecline")}</button>
+    <button type="button" class="cookie__btn cookie__btn--accept" data-cookie="accept">{t("cookieAccept")}</button>
+  </div>
+</div>
