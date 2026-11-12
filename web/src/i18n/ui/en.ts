@@ -44,7 +44,6 @@ export default {
   contactDetails: "Contact details",
   businessDetails: "Business details",
   location: "Location",
-  taxId: "Tax ID",
   date: "Date",
   time: "Time",
   quickTiming: "Quick timing",

@@ -34,7 +34,6 @@ const phoneHref = settings.phone ? `tel:${settings.phone.replace(/[^\d+]/g, "")}
             <ul>
               {tr(settings.businessName, lang) && <li>{tr(settings.businessName, lang)}</li>}
               {tr(settings.location, lang) && <li>{t("location")}: {tr(settings.location, lang)}</li>}
-              {settings.taxId && <li>{t("taxId")}: {settings.taxId}</li>}
             </ul>
           </div>
           <div>

@@ -28,7 +28,6 @@ export const siteSettings = defineType({
     defineField({ name: "socials", title: "Mạng xã hội", type: "array", of: [{ type: "socialLink" }], group: "contact", description: "Dùng chung cho menu, footer và trang Liên hệ." }),
     defineField({ name: "businessName", title: "Tên doanh nghiệp", type: "localeString", group: "contact" }),
     defineField({ name: "location", title: "Địa điểm", type: "localeString", group: "contact" }),
-    defineField({ name: "taxId", title: "Mã số thuế", type: "string", group: "contact" }),
     defineField({ name: "footerEyebrow", title: "Dòng nhỏ phía trên", type: "localeText", group: "footer" }),
     defineField({ name: "footerTitle", title: "Tiêu đề lớn", type: "localeString", group: "footer" }),
     defineField({ name: "footerCta", title: "Chữ trên nút", type: "localeString", group: "footer" }),

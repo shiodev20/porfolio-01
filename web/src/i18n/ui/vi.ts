@@ -36,7 +36,6 @@ const vi: Partial<typeof en> = {
   contactDetails: "Thông tin liên hệ",
   businessDetails: "Thông tin doanh nghiệp",
   location: "Địa điểm",
-  taxId: "Mã số thuế",
   date: "Ngày",
   time: "Giờ",
   quickTiming: "Chọn nhanh thời gian",
